@@ -20,7 +20,7 @@ run_dir = os.path.join(working_directory,'copasiRuns', 'reparam')
 if not os.path.isdir(run_dir):
     os.makedirs(run_dir)
     
-secondsToRun = 60*60*2
+secondsToRun = 60*60*47
 endTime = time.time()+secondsToRun
 
 data_names = ["PE_0.5mM_AICAR_AMPK-P.txt",
@@ -115,10 +115,19 @@ if __name__ == "__main__":
                                             rocket=mySuperComputer,
                                             estimatedVar=myKVars,
                                             upperParamBound=myUpperBound,
-                                            method="particle_swarm_default",
+                                            method="particle_swarm_rigorous",
                                             indepToAdd=indep_cond,
                                             endTime=endTime)   
     
     file = open(os.path.join(working_directory,'new-params.p'),'wb')
     pickle.dump(params, file)
+    file.close()
+    
+    timeCourse = myModel.runTimeCourse(24*60*60,
+                                       adjustParams=params[
+                                               next(iter(params))],
+                                               stepSize=60*5) 
+    
+    file = open(os.path.join(data_dir,'new-timeCourses.p'),'wb')
+    pickle.dump(timeCourse, file)
     file.close()

@@ -72,7 +72,7 @@ def replaceVariable(theString,oldName,newName):
 def renameCSVColumns(CSVPathOrList,targetDir,renameDict,indepToAdd=None):
     if not isinstance(CSVPathOrList, list):
         CSVPathOrList = [CSVPathOrList]
-    if not None:
+    if indepToAdd is not None:
         if not isinstance(indepToAdd, list):
             indepToAdd = [indepToAdd]
         if len(CSVPathOrList)!=len(indepToAdd):
@@ -224,8 +224,8 @@ class modelRunner:
                                           pd.DataFrame):
                     doneNum = parse_object[list(parse_object)[0]].shape[0]
             except:
-                time.sleep(10)
-            if rocket & lastLoop<doneNum:
+                time.sleep(60)
+            if rocket and lastLoop<doneNum:
                 print(str(doneNum) + ' of ' + str(copyNum) + ' done')
                 lastLoop = doneNum
             if endTime is not None and rocket:
@@ -275,13 +275,15 @@ class modelRunner:
                     os.system("sbatch "+myScriptName)
                 for theTimeCourse in timeCourses:
                     sucsessful=False
+                    logging.disable(logging.WARNING)
                     while not sucsessful:
                         try:
                             parse_object = viz.Parse(theTimeCourse)
                             results.append(parse_object.data.copy())
                             sucsessful = True
                         except:
-                            time.sleep(10)
+                            time.sleep(60)
+                    logging.disable(logging.NOTSET)
                 return results
             else:
                 if TCName is None:

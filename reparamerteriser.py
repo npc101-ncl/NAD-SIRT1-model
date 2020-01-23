@@ -115,7 +115,8 @@ if __name__ == "__main__":
                                             rocket=mySuperComputer,
                                             estimatedVar=myKVars,
                                             upperParamBound=myUpperBound,
-                                            method="particle_swarm_rigorous",
+                                            method=
+                                            "particle_swarm_aggressive",
                                             indepToAdd=indep_cond,
                                             endTime=endTime)   
     
@@ -123,11 +124,23 @@ if __name__ == "__main__":
     pickle.dump(params, file)
     file.close()
     
-    timeCourse = myModel.runTimeCourse(24*60*60,
+    timeCourse = myModel.runTimeCourse(24,
                                        adjustParams=params[
                                                next(iter(params))],
-                                               stepSize=60*5) 
+                                               stepSize=0.25) 
     
-    file = open(os.path.join(data_dir,'new-timeCourses.p'),'wb')
+    file = open(os.path.join(working_directory,'new-timeCourses.p'),'wb')
     pickle.dump(timeCourse, file)
     file.close()
+    
+    for i in range(4):
+        myModel.clearRunDirectory()
+        df=params[next(iter(params))].copy()
+        for myVar, myVal in indep_cond[i]:
+            df[myVar] = myVal
+        timeCourse = myModel.runTimeCourse(24, adjustParams=df,
+                                           stepSize=0.25)
+        file = open(os.path.join(working_directory,
+                                 'new-timeCourses'+str(i)+'.p'),'wb')
+        pickle.dump(timeCourse, file)
+        file.close()

@@ -1,0 +1,4482 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sbml xmlns="http://www.sbml.org/sbml/level2/version4" xmlns:celldesigner="http://www.sbml.org/2001/ns/celldesigner" level="2" version="4">
+<model metaid="COPASI0" id="Mitonuclear_communication_model" name="Mitonuclear communication model">
+<annotation>
+<celldesigner:extension>
+<celldesigner:modelVersion>4.0</celldesigner:modelVersion>
+<celldesigner:modelDisplay sizeX="1257" sizeY="1255"/>
+<celldesigner:listOfCompartmentAliases>
+<celldesigner:compartmentAlias id="ca0" compartment="compartment_">
+<celldesigner:class>SQUARE</celldesigner:class>
+<celldesigner:bounds x="218.658944978945" y="165.74681494605778" w="988.6234012000616" h="843.8201904371839"/>
+<celldesigner:namePoint x="670.4706455789758" y="974.0670053832416"/>
+<celldesigner:doubleLine thickness="12.0" outerWidth="2.0" innerWidth="1.0"/>
+<celldesigner:paint color="ffcccc00" scheme="Color"/>
+<celldesigner:info state="empty" angle="-1.5707963267948966"/>
+</celldesigner:compartmentAlias>
+</celldesigner:listOfCompartmentAliases>
+<celldesigner:listOfComplexSpeciesAliases/>
+<celldesigner:listOfSpeciesAliases>
+<celldesigner:speciesAlias id="sa0" species="AMPK" compartmentAlias="ca0">
+<celldesigner:activity>inactive</celldesigner:activity>
+<celldesigner:bounds x="400.0" y="600.0" w="80.0" h="40.0"/>
+<celldesigner:font size="12"/>
+<celldesigner:view state="usual"/>
+<celldesigner:usualView>
+<celldesigner:innerPosition x="181.341055021055" y="434.2531850539422"/>
+<celldesigner:boxSize width="80.0" height="40.0"/>
+<celldesigner:singleLine width="1.0"/>
+<celldesigner:paint color="ffccffcc" scheme="Color"/>
+</celldesigner:usualView>
+<celldesigner:briefView>
+<celldesigner:innerPosition x="0.0" y="0.0"/>
+<celldesigner:boxSize width="80.0" height="60.0"/>
+<celldesigner:singleLine width="0.0"/>
+<celldesigner:paint color="3fff0000" scheme="Color"/>
+</celldesigner:briefView>
+<celldesigner:info state="empty" angle="-1.5707963267948966"/>
+</celldesigner:speciesAlias>
+<celldesigner:speciesAlias id="sa1" species="AMPK_P" compartmentAlias="ca0">
+<celldesigner:activity>inactive</celldesigner:activity>
+<celldesigner:bounds x="400.0" y="690.0" w="80.0" h="40.0"/>
+<celldesigner:font size="12"/>
+<celldesigner:view state="usual"/>
+<celldesigner:usualView>
+<celldesigner:innerPosition x="181.341055021055" y="524.2531850539422"/>
+<celldesigner:boxSize width="80.0" height="40.0"/>
+<celldesigner:singleLine width="1.0"/>
+<celldesigner:paint color="ffccffcc" scheme="Color"/>
+</celldesigner:usualView>
+<celldesigner:briefView>
+<celldesigner:innerPosition x="0.0" y="0.0"/>
+<celldesigner:boxSize width="80.0" height="60.0"/>
+<celldesigner:singleLine width="0.0"/>
+<celldesigner:paint color="3fff0000" scheme="Color"/>
+</celldesigner:briefView>
+<celldesigner:info state="empty" angle="-1.5707963267948966"/>
+</celldesigner:speciesAlias>
+<celldesigner:speciesAlias id="sa2" species="PGC1a" compartmentAlias="ca0">
+<celldesigner:activity>inactive</celldesigner:activity>
+<celldesigner:bounds x="510.0" y="620.0" w="80.0" h="40.0"/>
+<celldesigner:font size="12"/>
+<celldesigner:view state="usual"/>
+<celldesigner:usualView>
+<celldesigner:innerPosition x="291.341055021055" y="454.2531850539422"/>
+<celldesigner:boxSize width="80.0" height="40.0"/>
+<celldesigner:singleLine width="1.0"/>
+<celldesigner:paint color="ffccffcc" scheme="Color"/>
+</celldesigner:usualView>
+<celldesigner:briefView>
+<celldesigner:innerPosition x="0.0" y="0.0"/>
+<celldesigner:boxSize width="80.0" height="60.0"/>
+<celldesigner:singleLine width="0.0"/>
+<celldesigner:paint color="3fff0000" scheme="Color"/>
+</celldesigner:briefView>
+<celldesigner:info state="empty" angle="-1.5707963267948966"/>
+</celldesigner:speciesAlias>
+<celldesigner:speciesAlias id="sa3" species="PGC1a_P" compartmentAlias="ca0">
+<celldesigner:activity>inactive</celldesigner:activity>
+<celldesigner:bounds x="510.0" y="730.0" w="80.0" h="40.0"/>
+<celldesigner:font size="12"/>
+<celldesigner:view state="usual"/>
+<celldesigner:usualView>
+<celldesigner:innerPosition x="291.341055021055" y="564.2531850539422"/>
+<celldesigner:boxSize width="80.0" height="40.0"/>
+<celldesigner:singleLine width="1.0"/>
+<celldesigner:paint color="ffccffcc" scheme="Color"/>
+</celldesigner:usualView>
+<celldesigner:briefView>
+<celldesigner:innerPosition x="0.0" y="0.0"/>
+<celldesigner:boxSize width="80.0" height="60.0"/>
+<celldesigner:singleLine width="0.0"/>
+<celldesigner:paint color="3fff0000" scheme="Color"/>
+</celldesigner:briefView>
+<celldesigner:info state="empty" angle="-1.5707963267948966"/>
+</celldesigner:speciesAlias>
+<celldesigner:speciesAlias id="sa4" species="PGC1a_deacet" compartmentAlias="ca0">
+<celldesigner:activity>inactive</celldesigner:activity>
+<celldesigner:bounds x="510.0" y="810.0" w="80.0" h="40.0"/>
+<celldesigner:font size="12"/>
+<celldesigner:view state="usual"/>
+<celldesigner:usualView>
+<celldesigner:innerPosition x="291.341055021055" y="644.2531850539422"/>
+<celldesigner:boxSize width="80.0" height="40.0"/>
+<celldesigner:singleLine width="1.0"/>
+<celldesigner:paint color="ffccffcc" scheme="Color"/>
+</celldesigner:usualView>
+<celldesigner:briefView>
+<celldesigner:innerPosition x="0.0" y="0.0"/>
+<celldesigner:boxSize width="80.0" height="60.0"/>
+<celldesigner:singleLine width="0.0"/>
+<celldesigner:paint color="3fff0000" scheme="Color"/>
+</celldesigner:briefView>
+<celldesigner:info state="empty" angle="-1.5707963267948966"/>
+</celldesigner:speciesAlias>
+<celldesigner:speciesAlias id="sa5" species="SIRT1_activity" compartmentAlias="ca0">
+<celldesigner:activity>inactive</celldesigner:activity>
+<celldesigner:bounds x="720.0" y="780.0" w="80.0" h="40.0"/>
+<celldesigner:font size="12"/>
+<celldesigner:view state="usual"/>
+<celldesigner:usualView>
+<celldesigner:innerPosition x="501.341055021055" y="614.2531850539422"/>
+<celldesigner:boxSize width="80.0" height="40.0"/>
+<celldesigner:singleLine width="1.0"/>
+<celldesigner:paint color="ffccffcc" scheme="Color"/>
+</celldesigner:usualView>
+<celldesigner:briefView>
+<celldesigner:innerPosition x="0.0" y="0.0"/>
+<celldesigner:boxSize width="80.0" height="60.0"/>
+<celldesigner:singleLine width="0.0"/>
+<celldesigner:paint color="3fff0000" scheme="Color"/>
+</celldesigner:briefView>
+<celldesigner:info state="empty" angle="-1.5707963267948966"/>
+</celldesigner:speciesAlias>
+<celldesigner:speciesAlias id="sa7" species="NAD" compartmentAlias="ca0">
+<celldesigner:activity>inactive</celldesigner:activity>
+<celldesigner:bounds x="850.0" y="640.0" w="80.0" h="40.0"/>
+<celldesigner:font size="12"/>
+<celldesigner:view state="usual"/>
+<celldesigner:usualView>
+<celldesigner:innerPosition x="631.341055021055" y="474.2531850539422"/>
+<celldesigner:boxSize width="80.0" height="40.0"/>
+<celldesigner:singleLine width="1.0"/>
+<celldesigner:paint color="ffccffcc" scheme="Color"/>
+</celldesigner:usualView>
+<celldesigner:briefView>
+<celldesigner:innerPosition x="0.0" y="0.0"/>
+<celldesigner:boxSize width="80.0" height="60.0"/>
+<celldesigner:singleLine width="0.0"/>
+<celldesigner:paint color="3fff0000" scheme="Color"/>
+</celldesigner:briefView>
+<celldesigner:info state="empty" angle="-1.5707963267948966"/>
+</celldesigner:speciesAlias>
+<celldesigner:speciesAlias id="sa8" species="Delay_in_NAD_increase" compartmentAlias="ca0">
+<celldesigner:activity>inactive</celldesigner:activity>
+<celldesigner:bounds x="550.0" y="480.0" w="140.0" h="60.0"/>
+<celldesigner:font size="12"/>
+<celldesigner:view state="usual"/>
+<celldesigner:usualView>
+<celldesigner:innerPosition x="331.341055021055" y="314.2531850539422"/>
+<celldesigner:boxSize width="140.0" height="60.0"/>
+<celldesigner:singleLine width="1.0"/>
+<celldesigner:paint color="ffccffcc" scheme="Color"/>
+</celldesigner:usualView>
+<celldesigner:briefView>
+<celldesigner:innerPosition x="0.0" y="0.0"/>
+<celldesigner:boxSize width="80.0" height="60.0"/>
+<celldesigner:singleLine width="0.0"/>
+<celldesigner:paint color="3fff0000" scheme="Color"/>
+</celldesigner:briefView>
+<celldesigner:info state="empty" angle="-1.5707963267948966"/>
+</celldesigner:speciesAlias>
+<celldesigner:speciesAlias id="sa9" species="PARP" compartmentAlias="ca0">
+<celldesigner:activity>inactive</celldesigner:activity>
+<celldesigner:bounds x="960.0" y="520.0" w="80.0" h="40.0"/>
+<celldesigner:font size="12"/>
+<celldesigner:view state="usual"/>
+<celldesigner:usualView>
+<celldesigner:innerPosition x="741.341055021055" y="354.2531850539422"/>
+<celldesigner:boxSize width="80.0" height="40.0"/>
+<celldesigner:singleLine width="1.0"/>
+<celldesigner:paint color="ffccffcc" scheme="Color"/>
+</celldesigner:usualView>
+<celldesigner:briefView>
+<celldesigner:innerPosition x="0.0" y="0.0"/>
+<celldesigner:boxSize width="80.0" height="60.0"/>
+<celldesigner:singleLine width="0.0"/>
+<celldesigner:paint color="3fff0000" scheme="Color"/>
+</celldesigner:briefView>
+<celldesigner:info state="empty" angle="-1.5707963267948966"/>
+</celldesigner:speciesAlias>
+<celldesigner:speciesAlias id="sa10" species="PGC1a_Deacetylation_Activity" compartmentAlias="ca0">
+<celldesigner:activity>inactive</celldesigner:activity>
+<celldesigner:bounds x="340.0" y="810.0" w="140.0" h="40.0"/>
+<celldesigner:font size="12"/>
+<celldesigner:view state="usual"/>
+<celldesigner:usualView>
+<celldesigner:innerPosition x="121.34105502105501" y="644.2531850539422"/>
+<celldesigner:boxSize width="140.0" height="40.0"/>
+<celldesigner:singleLine width="1.0"/>
+<celldesigner:paint color="ffccffcc" scheme="Color"/>
+</celldesigner:usualView>
+<celldesigner:briefView>
+<celldesigner:innerPosition x="0.0" y="0.0"/>
+<celldesigner:boxSize width="80.0" height="60.0"/>
+<celldesigner:singleLine width="0.0"/>
+<celldesigner:paint color="3fff0000" scheme="Color"/>
+</celldesigner:briefView>
+<celldesigner:info state="empty" angle="-1.5707963267948966"/>
+</celldesigner:speciesAlias>
+<celldesigner:speciesAlias id="sa11" species="AICAR_Delay" compartmentAlias="ca0">
+<celldesigner:activity>inactive</celldesigner:activity>
+<celldesigner:bounds x="450.0" y="490.0" w="80.0" h="40.0"/>
+<celldesigner:font size="12"/>
+<celldesigner:view state="usual"/>
+<celldesigner:usualView>
+<celldesigner:innerPosition x="231.341055021055" y="324.2531850539422"/>
+<celldesigner:boxSize width="80.0" height="40.0"/>
+<celldesigner:singleLine width="1.0"/>
+<celldesigner:paint color="ffccffcc" scheme="Color"/>
+</celldesigner:usualView>
+<celldesigner:briefView>
+<celldesigner:innerPosition x="0.0" y="0.0"/>
+<celldesigner:boxSize width="80.0" height="60.0"/>
+<celldesigner:singleLine width="0.0"/>
+<celldesigner:paint color="3fff0000" scheme="Color"/>
+</celldesigner:briefView>
+<celldesigner:info state="empty" angle="-1.5707963267948966"/>
+</celldesigner:speciesAlias>
+<celldesigner:speciesAlias id="sa12" species="AICAR_treatment" compartmentAlias="ca0">
+<celldesigner:activity>inactive</celldesigner:activity>
+<celldesigner:bounds x="370.0" y="410.0" w="80.0" h="40.0"/>
+<celldesigner:font size="12"/>
+<celldesigner:view state="usual"/>
+<celldesigner:usualView>
+<celldesigner:innerPosition x="151.341055021055" y="244.25318505394222"/>
+<celldesigner:boxSize width="80.0" height="40.0"/>
+<celldesigner:singleLine width="1.0"/>
+<celldesigner:paint color="ffccffcc" scheme="Color"/>
+</celldesigner:usualView>
+<celldesigner:briefView>
+<celldesigner:innerPosition x="0.0" y="0.0"/>
+<celldesigner:boxSize width="80.0" height="60.0"/>
+<celldesigner:singleLine width="0.0"/>
+<celldesigner:paint color="3fff0000" scheme="Color"/>
+</celldesigner:briefView>
+<celldesigner:info state="empty" angle="-1.5707963267948966"/>
+</celldesigner:speciesAlias>
+<celldesigner:speciesAlias id="sa13" species="Glucose" compartmentAlias="ca0">
+<celldesigner:activity>inactive</celldesigner:activity>
+<celldesigner:bounds x="250.0" y="350.0" w="80.0" h="40.0"/>
+<celldesigner:font size="12"/>
+<celldesigner:view state="usual"/>
+<celldesigner:usualView>
+<celldesigner:innerPosition x="31.341055021055013" y="184.25318505394222"/>
+<celldesigner:boxSize width="80.0" height="40.0"/>
+<celldesigner:singleLine width="1.0"/>
+<celldesigner:paint color="ffccffcc" scheme="Color"/>
+</celldesigner:usualView>
+<celldesigner:briefView>
+<celldesigner:innerPosition x="0.0" y="0.0"/>
+<celldesigner:boxSize width="80.0" height="60.0"/>
+<celldesigner:singleLine width="0.0"/>
+<celldesigner:paint color="3fff0000" scheme="Color"/>
+</celldesigner:briefView>
+<celldesigner:info state="empty" angle="-1.5707963267948966"/>
+</celldesigner:speciesAlias>
+<celldesigner:speciesAlias id="sa14" species="GlucoseDelay" compartmentAlias="ca0">
+<celldesigner:activity>inactive</celldesigner:activity>
+<celldesigner:bounds x="250.0" y="480.0" w="80.0" h="40.0"/>
+<celldesigner:font size="12"/>
+<celldesigner:view state="usual"/>
+<celldesigner:usualView>
+<celldesigner:innerPosition x="31.341055021055013" y="314.2531850539422"/>
+<celldesigner:boxSize width="80.0" height="40.0"/>
+<celldesigner:singleLine width="1.0"/>
+<celldesigner:paint color="ffccffcc" scheme="Color"/>
+</celldesigner:usualView>
+<celldesigner:briefView>
+<celldesigner:innerPosition x="0.0" y="0.0"/>
+<celldesigner:boxSize width="80.0" height="60.0"/>
+<celldesigner:singleLine width="0.0"/>
+<celldesigner:paint color="3fff0000" scheme="Color"/>
+</celldesigner:briefView>
+<celldesigner:info state="empty" angle="-1.5707963267948966"/>
+</celldesigner:speciesAlias>
+<celldesigner:speciesAlias id="sa15" species="NAD_NegReg" compartmentAlias="ca0">
+<celldesigner:activity>inactive</celldesigner:activity>
+<celldesigner:bounds x="780.0" y="510.0" w="80.0" h="40.0"/>
+<celldesigner:font size="12"/>
+<celldesigner:view state="usual"/>
+<celldesigner:usualView>
+<celldesigner:innerPosition x="561.341055021055" y="344.2531850539422"/>
+<celldesigner:boxSize width="80.0" height="40.0"/>
+<celldesigner:singleLine width="1.0"/>
+<celldesigner:paint color="ffccffcc" scheme="Color"/>
+</celldesigner:usualView>
+<celldesigner:briefView>
+<celldesigner:innerPosition x="0.0" y="0.0"/>
+<celldesigner:boxSize width="80.0" height="60.0"/>
+<celldesigner:singleLine width="0.0"/>
+<celldesigner:paint color="3fff0000" scheme="Color"/>
+</celldesigner:briefView>
+<celldesigner:info state="empty" angle="-1.5707963267948966"/>
+</celldesigner:speciesAlias>
+<celldesigner:speciesAlias id="sa16" species="NR_NMN" compartmentAlias="ca0">
+<celldesigner:activity>inactive</celldesigner:activity>
+<celldesigner:bounds x="850.0" y="450.0" w="80.0" h="40.0"/>
+<celldesigner:font size="12"/>
+<celldesigner:view state="usual"/>
+<celldesigner:usualView>
+<celldesigner:innerPosition x="631.341055021055" y="284.2531850539422"/>
+<celldesigner:boxSize width="80.0" height="40.0"/>
+<celldesigner:singleLine width="1.0"/>
+<celldesigner:paint color="ffccffcc" scheme="Color"/>
+</celldesigner:usualView>
+<celldesigner:briefView>
+<celldesigner:innerPosition x="0.0" y="0.0"/>
+<celldesigner:boxSize width="80.0" height="60.0"/>
+<celldesigner:singleLine width="0.0"/>
+<celldesigner:paint color="3fff0000" scheme="Color"/>
+</celldesigner:briefView>
+<celldesigner:info state="empty" angle="-1.5707963267948966"/>
+</celldesigner:speciesAlias>
+<celldesigner:speciesAlias id="sa17" species="s1" compartmentAlias="ca0">
+<celldesigner:activity>inactive</celldesigner:activity>
+<celldesigner:bounds x="575.0" y="575.0" w="30.0" h="30.0"/>
+<celldesigner:font size="12"/>
+<celldesigner:view state="usual"/>
+<celldesigner:usualView>
+<celldesigner:innerPosition x="356.341055021055" y="409.2531850539422"/>
+<celldesigner:boxSize width="30.0" height="30.0"/>
+<celldesigner:singleLine width="1.0"/>
+<celldesigner:paint color="ffffcccc" scheme="Color"/>
+</celldesigner:usualView>
+<celldesigner:briefView>
+<celldesigner:innerPosition x="0.0" y="0.0"/>
+<celldesigner:boxSize width="80.0" height="60.0"/>
+<celldesigner:singleLine width="0.0"/>
+<celldesigner:paint color="3fff0000" scheme="Color"/>
+</celldesigner:briefView>
+<celldesigner:info state="empty" angle="-1.5707963267948966"/>
+</celldesigner:speciesAlias>
+<celldesigner:speciesAlias id="sa18" species="s2" compartmentAlias="ca0">
+<celldesigner:activity>inactive</celldesigner:activity>
+<celldesigner:bounds x="635.0" y="575.0" w="30.0" h="30.0"/>
+<celldesigner:font size="12"/>
+<celldesigner:view state="usual"/>
+<celldesigner:usualView>
+<celldesigner:innerPosition x="416.341055021055" y="409.2531850539422"/>
+<celldesigner:boxSize width="30.0" height="30.0"/>
+<celldesigner:singleLine width="1.0"/>
+<celldesigner:paint color="ffffcccc" scheme="Color"/>
+</celldesigner:usualView>
+<celldesigner:briefView>
+<celldesigner:innerPosition x="0.0" y="0.0"/>
+<celldesigner:boxSize width="80.0" height="60.0"/>
+<celldesigner:singleLine width="0.0"/>
+<celldesigner:paint color="3fff0000" scheme="Color"/>
+</celldesigner:briefView>
+<celldesigner:info state="empty" angle="-1.5707963267948966"/>
+</celldesigner:speciesAlias>
+<celldesigner:speciesAlias id="sa19" species="s3" compartmentAlias="ca0">
+<celldesigner:activity>inactive</celldesigner:activity>
+<celldesigner:bounds x="785.0" y="635.0" w="30.0" h="30.0"/>
+<celldesigner:font size="12"/>
+<celldesigner:view state="usual"/>
+<celldesigner:usualView>
+<celldesigner:innerPosition x="566.341055021055" y="469.2531850539422"/>
+<celldesigner:boxSize width="30.0" height="30.0"/>
+<celldesigner:singleLine width="1.0"/>
+<celldesigner:paint color="ffffcccc" scheme="Color"/>
+</celldesigner:usualView>
+<celldesigner:briefView>
+<celldesigner:innerPosition x="0.0" y="0.0"/>
+<celldesigner:boxSize width="80.0" height="60.0"/>
+<celldesigner:singleLine width="0.0"/>
+<celldesigner:paint color="3fff0000" scheme="Color"/>
+</celldesigner:briefView>
+<celldesigner:info state="empty" angle="-1.5707963267948966"/>
+</celldesigner:speciesAlias>
+<celldesigner:speciesAlias id="sa20" species="s4" compartmentAlias="ca0">
+<celldesigner:activity>inactive</celldesigner:activity>
+<celldesigner:bounds x="785.0" y="655.0" w="30.0" h="30.0"/>
+<celldesigner:font size="12"/>
+<celldesigner:view state="usual"/>
+<celldesigner:usualView>
+<celldesigner:innerPosition x="566.341055021055" y="489.2531850539422"/>
+<celldesigner:boxSize width="30.0" height="30.0"/>
+<celldesigner:singleLine width="1.0"/>
+<celldesigner:paint color="ffffcccc" scheme="Color"/>
+</celldesigner:usualView>
+<celldesigner:briefView>
+<celldesigner:innerPosition x="0.0" y="0.0"/>
+<celldesigner:boxSize width="80.0" height="60.0"/>
+<celldesigner:singleLine width="0.0"/>
+<celldesigner:paint color="3fff0000" scheme="Color"/>
+</celldesigner:briefView>
+<celldesigner:info state="empty" angle="-1.5707963267948966"/>
+</celldesigner:speciesAlias>
+<celldesigner:speciesAlias id="sa21" species="s5" compartmentAlias="ca0">
+<celldesigner:activity>inactive</celldesigner:activity>
+<celldesigner:bounds x="1055.0" y="655.0" w="30.0" h="30.0"/>
+<celldesigner:font size="12"/>
+<celldesigner:view state="usual"/>
+<celldesigner:usualView>
+<celldesigner:innerPosition x="836.341055021055" y="489.2531850539422"/>
+<celldesigner:boxSize width="30.0" height="30.0"/>
+<celldesigner:singleLine width="1.0"/>
+<celldesigner:paint color="ffffcccc" scheme="Color"/>
+</celldesigner:usualView>
+<celldesigner:briefView>
+<celldesigner:innerPosition x="0.0" y="0.0"/>
+<celldesigner:boxSize width="80.0" height="60.0"/>
+<celldesigner:singleLine width="0.0"/>
+<celldesigner:paint color="3fff0000" scheme="Color"/>
+</celldesigner:briefView>
+<celldesigner:info state="empty" angle="-1.5707963267948966"/>
+</celldesigner:speciesAlias>
+<celldesigner:speciesAlias id="sa22" species="s6" compartmentAlias="ca0">
+<celldesigner:activity>inactive</celldesigner:activity>
+<celldesigner:bounds x="705.0" y="425.0" w="30.0" h="30.0"/>
+<celldesigner:font size="12"/>
+<celldesigner:view state="usual"/>
+<celldesigner:usualView>
+<celldesigner:innerPosition x="486.341055021055" y="259.2531850539422"/>
+<celldesigner:boxSize width="30.0" height="30.0"/>
+<celldesigner:singleLine width="1.0"/>
+<celldesigner:paint color="ffffcccc" scheme="Color"/>
+</celldesigner:usualView>
+<celldesigner:briefView>
+<celldesigner:innerPosition x="0.0" y="0.0"/>
+<celldesigner:boxSize width="80.0" height="60.0"/>
+<celldesigner:singleLine width="0.0"/>
+<celldesigner:paint color="3fff0000" scheme="Color"/>
+</celldesigner:briefView>
+<celldesigner:info state="empty" angle="-1.5707963267948966"/>
+</celldesigner:speciesAlias>
+<celldesigner:speciesAlias id="sa23" species="s7" compartmentAlias="ca0">
+<celldesigner:activity>inactive</celldesigner:activity>
+<celldesigner:bounds x="435.0" y="895.0" w="30.0" h="30.0"/>
+<celldesigner:font size="12"/>
+<celldesigner:view state="usual"/>
+<celldesigner:usualView>
+<celldesigner:innerPosition x="216.341055021055" y="729.2531850539422"/>
+<celldesigner:boxSize width="30.0" height="30.0"/>
+<celldesigner:singleLine width="1.0"/>
+<celldesigner:paint color="ffffcccc" scheme="Color"/>
+</celldesigner:usualView>
+<celldesigner:briefView>
+<celldesigner:innerPosition x="0.0" y="0.0"/>
+<celldesigner:boxSize width="80.0" height="60.0"/>
+<celldesigner:singleLine width="0.0"/>
+<celldesigner:paint color="3fff0000" scheme="Color"/>
+</celldesigner:briefView>
+<celldesigner:info state="empty" angle="-1.5707963267948966"/>
+</celldesigner:speciesAlias>
+<celldesigner:speciesAlias id="sa24" species="s8" compartmentAlias="ca0">
+<celldesigner:activity>inactive</celldesigner:activity>
+<celldesigner:bounds x="345.0" y="505.0" w="30.0" h="30.0"/>
+<celldesigner:font size="12"/>
+<celldesigner:view state="usual"/>
+<celldesigner:usualView>
+<celldesigner:innerPosition x="126.34105502105501" y="339.2531850539422"/>
+<celldesigner:boxSize width="30.0" height="30.0"/>
+<celldesigner:singleLine width="1.0"/>
+<celldesigner:paint color="ffffcccc" scheme="Color"/>
+</celldesigner:usualView>
+<celldesigner:briefView>
+<celldesigner:innerPosition x="0.0" y="0.0"/>
+<celldesigner:boxSize width="80.0" height="60.0"/>
+<celldesigner:singleLine width="0.0"/>
+<celldesigner:paint color="3fff0000" scheme="Color"/>
+</celldesigner:briefView>
+<celldesigner:info state="empty" angle="-1.5707963267948966"/>
+</celldesigner:speciesAlias>
+<celldesigner:speciesAlias id="sa25" species="s9" compartmentAlias="ca0">
+<celldesigner:activity>inactive</celldesigner:activity>
+<celldesigner:bounds x="345.0" y="485.0" w="30.0" h="30.0"/>
+<celldesigner:font size="12"/>
+<celldesigner:view state="usual"/>
+<celldesigner:usualView>
+<celldesigner:innerPosition x="126.34105502105501" y="319.2531850539422"/>
+<celldesigner:boxSize width="30.0" height="30.0"/>
+<celldesigner:singleLine width="1.0"/>
+<celldesigner:paint color="ffffcccc" scheme="Color"/>
+</celldesigner:usualView>
+<celldesigner:briefView>
+<celldesigner:innerPosition x="0.0" y="0.0"/>
+<celldesigner:boxSize width="80.0" height="60.0"/>
+<celldesigner:singleLine width="0.0"/>
+<celldesigner:paint color="3fff0000" scheme="Color"/>
+</celldesigner:briefView>
+<celldesigner:info state="empty" angle="-1.5707963267948966"/>
+</celldesigner:speciesAlias>
+<celldesigner:speciesAlias id="sa26" species="s10" compartmentAlias="ca0">
+<celldesigner:activity>inactive</celldesigner:activity>
+<celldesigner:bounds x="365.0" y="895.0" w="30.0" h="30.0"/>
+<celldesigner:font size="12"/>
+<celldesigner:view state="usual"/>
+<celldesigner:usualView>
+<celldesigner:innerPosition x="146.341055021055" y="729.2531850539422"/>
+<celldesigner:boxSize width="30.0" height="30.0"/>
+<celldesigner:singleLine width="1.0"/>
+<celldesigner:paint color="ffffcccc" scheme="Color"/>
+</celldesigner:usualView>
+<celldesigner:briefView>
+<celldesigner:innerPosition x="0.0" y="0.0"/>
+<celldesigner:boxSize width="80.0" height="60.0"/>
+<celldesigner:singleLine width="0.0"/>
+<celldesigner:paint color="3fff0000" scheme="Color"/>
+</celldesigner:briefView>
+<celldesigner:info state="empty" angle="-1.5707963267948966"/>
+</celldesigner:speciesAlias>
+<celldesigner:speciesAlias id="sa27" species="s11" compartmentAlias="ca0">
+<celldesigner:activity>inactive</celldesigner:activity>
+<celldesigner:bounds x="255.0" y="285.0" w="30.0" h="30.0"/>
+<celldesigner:font size="12"/>
+<celldesigner:view state="usual"/>
+<celldesigner:usualView>
+<celldesigner:innerPosition x="36.34105502105501" y="119.25318505394222"/>
+<celldesigner:boxSize width="30.0" height="30.0"/>
+<celldesigner:singleLine width="1.0"/>
+<celldesigner:paint color="ffffcccc" scheme="Color"/>
+</celldesigner:usualView>
+<celldesigner:briefView>
+<celldesigner:innerPosition x="0.0" y="0.0"/>
+<celldesigner:boxSize width="80.0" height="60.0"/>
+<celldesigner:singleLine width="0.0"/>
+<celldesigner:paint color="3fff0000" scheme="Color"/>
+</celldesigner:briefView>
+<celldesigner:info state="empty" angle="-1.5707963267948966"/>
+</celldesigner:speciesAlias>
+<celldesigner:speciesAlias id="sa28" species="s12" compartmentAlias="ca0">
+<celldesigner:activity>inactive</celldesigner:activity>
+<celldesigner:bounds x="295.0" y="285.0" w="30.0" h="30.0"/>
+<celldesigner:font size="12"/>
+<celldesigner:view state="usual"/>
+<celldesigner:usualView>
+<celldesigner:innerPosition x="76.34105502105501" y="119.25318505394222"/>
+<celldesigner:boxSize width="30.0" height="30.0"/>
+<celldesigner:singleLine width="1.0"/>
+<celldesigner:paint color="ffffcccc" scheme="Color"/>
+</celldesigner:usualView>
+<celldesigner:briefView>
+<celldesigner:innerPosition x="0.0" y="0.0"/>
+<celldesigner:boxSize width="80.0" height="60.0"/>
+<celldesigner:singleLine width="0.0"/>
+<celldesigner:paint color="3fff0000" scheme="Color"/>
+</celldesigner:briefView>
+<celldesigner:info state="empty" angle="-1.5707963267948966"/>
+</celldesigner:speciesAlias>
+<celldesigner:speciesAlias id="sa29" species="s13" compartmentAlias="ca0">
+<celldesigner:activity>inactive</celldesigner:activity>
+<celldesigner:bounds x="295.0" y="395.0" w="30.0" h="30.0"/>
+<celldesigner:font size="12"/>
+<celldesigner:view state="usual"/>
+<celldesigner:usualView>
+<celldesigner:innerPosition x="76.34105502105501" y="229.25318505394222"/>
+<celldesigner:boxSize width="30.0" height="30.0"/>
+<celldesigner:singleLine width="1.0"/>
+<celldesigner:paint color="ffffcccc" scheme="Color"/>
+</celldesigner:usualView>
+<celldesigner:briefView>
+<celldesigner:innerPosition x="0.0" y="0.0"/>
+<celldesigner:boxSize width="80.0" height="60.0"/>
+<celldesigner:singleLine width="0.0"/>
+<celldesigner:paint color="3fff0000" scheme="Color"/>
+</celldesigner:briefView>
+<celldesigner:info state="empty" angle="-1.5707963267948966"/>
+</celldesigner:speciesAlias>
+<celldesigner:speciesAlias id="sa30" species="s14" compartmentAlias="ca0">
+<celldesigner:activity>inactive</celldesigner:activity>
+<celldesigner:bounds x="255.0" y="615.0" w="30.0" h="30.0"/>
+<celldesigner:font size="12"/>
+<celldesigner:view state="usual"/>
+<celldesigner:usualView>
+<celldesigner:innerPosition x="36.34105502105501" y="449.2531850539422"/>
+<celldesigner:boxSize width="30.0" height="30.0"/>
+<celldesigner:singleLine width="1.0"/>
+<celldesigner:paint color="ffffcccc" scheme="Color"/>
+</celldesigner:usualView>
+<celldesigner:briefView>
+<celldesigner:innerPosition x="0.0" y="0.0"/>
+<celldesigner:boxSize width="80.0" height="60.0"/>
+<celldesigner:singleLine width="0.0"/>
+<celldesigner:paint color="3fff0000" scheme="Color"/>
+</celldesigner:briefView>
+<celldesigner:info state="empty" angle="-1.5707963267948966"/>
+</celldesigner:speciesAlias>
+<celldesigner:speciesAlias id="sa31" species="s15" compartmentAlias="ca0">
+<celldesigner:activity>inactive</celldesigner:activity>
+<celldesigner:bounds x="945.0" y="595.0" w="30.0" h="30.0"/>
+<celldesigner:font size="12"/>
+<celldesigner:view state="usual"/>
+<celldesigner:usualView>
+<celldesigner:innerPosition x="726.341055021055" y="429.2531850539422"/>
+<celldesigner:boxSize width="30.0" height="30.0"/>
+<celldesigner:singleLine width="1.0"/>
+<celldesigner:paint color="ffffcccc" scheme="Color"/>
+</celldesigner:usualView>
+<celldesigner:briefView>
+<celldesigner:innerPosition x="0.0" y="0.0"/>
+<celldesigner:boxSize width="80.0" height="60.0"/>
+<celldesigner:singleLine width="0.0"/>
+<celldesigner:paint color="3fff0000" scheme="Color"/>
+</celldesigner:briefView>
+<celldesigner:info state="empty" angle="-1.5707963267948966"/>
+</celldesigner:speciesAlias>
+<celldesigner:speciesAlias id="sa32" species="s16" compartmentAlias="ca0">
+<celldesigner:activity>inactive</celldesigner:activity>
+<celldesigner:bounds x="785.0" y="425.0" w="30.0" h="30.0"/>
+<celldesigner:font size="12"/>
+<celldesigner:view state="usual"/>
+<celldesigner:usualView>
+<celldesigner:innerPosition x="566.341055021055" y="259.2531850539422"/>
+<celldesigner:boxSize width="30.0" height="30.0"/>
+<celldesigner:singleLine width="1.0"/>
+<celldesigner:paint color="ffffcccc" scheme="Color"/>
+</celldesigner:usualView>
+<celldesigner:briefView>
+<celldesigner:innerPosition x="0.0" y="0.0"/>
+<celldesigner:boxSize width="80.0" height="60.0"/>
+<celldesigner:singleLine width="0.0"/>
+<celldesigner:paint color="3fff0000" scheme="Color"/>
+</celldesigner:briefView>
+<celldesigner:info state="empty" angle="-1.5707963267948966"/>
+</celldesigner:speciesAlias>
+<celldesigner:speciesAlias id="sa35" species="s35" compartmentAlias="ca0">
+<celldesigner:activity>inactive</celldesigner:activity>
+<celldesigner:bounds x="930.0" y="780.0" w="80.0" h="40.0"/>
+<celldesigner:font size="12"/>
+<celldesigner:view state="usual"/>
+<celldesigner:usualView>
+<celldesigner:innerPosition x="711.341055021055" y="614.2531850539422"/>
+<celldesigner:boxSize width="80.0" height="40.0"/>
+<celldesigner:singleLine width="1.0"/>
+<celldesigner:paint color="ffccffcc" scheme="Color"/>
+</celldesigner:usualView>
+<celldesigner:briefView>
+<celldesigner:innerPosition x="0.0" y="0.0"/>
+<celldesigner:boxSize width="80.0" height="60.0"/>
+<celldesigner:singleLine width="0.0"/>
+<celldesigner:paint color="3fff0000" scheme="Color"/>
+</celldesigner:briefView>
+<celldesigner:info state="empty" angle="-1.5707963267948966"/>
+</celldesigner:speciesAlias>
+</celldesigner:listOfSpeciesAliases>
+<celldesigner:listOfGroups/>
+<celldesigner:listOfProteins>
+<celldesigner:protein id="pr1" name="AMPK" type="GENERIC"/>
+<celldesigner:protein id="pr2" name="AMPK-P" type="GENERIC"/>
+<celldesigner:protein id="pr3" name="PGC1a" type="GENERIC"/>
+<celldesigner:protein id="pr4" name="PGC1a-P" type="GENERIC"/>
+<celldesigner:protein id="pr5" name="PGC1a_deacet" type="GENERIC"/>
+<celldesigner:protein id="pr6" name="SIRT1_activity" type="GENERIC"/>
+<celldesigner:protein id="pr8" name="NAD" type="GENERIC"/>
+<celldesigner:protein id="pr9" name="Delay_in_NAD_increase" type="GENERIC"/>
+<celldesigner:protein id="pr10" name="PARP1" type="GENERIC"/>
+<celldesigner:protein id="pr11" name="Deacetylation_Delay" type="GENERIC"/>
+<celldesigner:protein id="pr12" name="AICAR_Delay" type="GENERIC"/>
+<celldesigner:protein id="pr13" name="AICAR" type="GENERIC"/>
+<celldesigner:protein id="pr14" name="Glucose" type="GENERIC"/>
+<celldesigner:protein id="pr15" name="GlucoseDelay" type="GENERIC"/>
+<celldesigner:protein id="pr16" name="NAD_NegReg" type="GENERIC"/>
+<celldesigner:protein id="pr17" name="NR-NMN" type="GENERIC"/>
+<celldesigner:protein id="pr18" name="SIRT" type="GENERIC"/>
+</celldesigner:listOfProteins>
+<celldesigner:listOfGenes/>
+<celldesigner:listOfRNAs/>
+<celldesigner:listOfAntisenseRNAs/>
+<celldesigner:listOfLayers/>
+<celldesigner:listOfBlockDiagrams/>
+</celldesigner:extension>
+<COPASI xmlns="http://www.copasi.org/static/sbml">
+<rdf:RDF xmlns:dcterms="http://purl.org/dc/terms/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+<rdf:Description rdf:about="#COPASI0">
+<dcterms:created rdf:parseType="Resource">
+<dcterms:W3CDTF>2020-01-21T14:43:21Z</dcterms:W3CDTF>
+</dcterms:created>
+<dcterms:modified rdf:parseType="Resource">
+<dcterms:W3CDTF/>
+</dcterms:modified>
+</rdf:Description>
+</rdf:RDF>
+</COPASI>
+</annotation>
+<listOfFunctionDefinitions>
+<functionDefinition metaid="COPASI82" id="Constant_flux__irreversible" name="Constant flux (irreversible)">
+<annotation>
+<COPASI xmlns="http://www.copasi.org/static/sbml">
+<rdf:RDF xmlns:dcterms="http://purl.org/dc/terms/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+<rdf:Description rdf:about="#COPASI82">
+<dcterms:created>
+<rdf:Description>
+<dcterms:W3CDTF>2020-01-21T14:43:21Z</dcterms:W3CDTF>
+</rdf:Description>
+</dcterms:created>
+</rdf:Description>
+</rdf:RDF>
+</COPASI>
+</annotation>
+<math xmlns="http://www.w3.org/1998/Math/MathML">
+<lambda>
+<bvar>
+<ci> v </ci>
+</bvar>
+<ci> v </ci>
+</lambda>
+</math>
+</functionDefinition>
+<functionDefinition metaid="COPASI83" id="Function_for_PGC1a_induced_deacetylation" name="Function for PGC1a induced deacetylation">
+<annotation>
+<COPASI xmlns="http://www.copasi.org/static/sbml">
+<rdf:RDF xmlns:dcterms="http://purl.org/dc/terms/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+<rdf:Description rdf:about="#COPASI83">
+<dcterms:created>
+<rdf:Description>
+<dcterms:W3CDTF>2020-01-21T14:43:21Z</dcterms:W3CDTF>
+</rdf:Description>
+</dcterms:created>
+</rdf:Description>
+</rdf:RDF>
+</COPASI>
+</annotation>
+<math xmlns="http://www.w3.org/1998/Math/MathML">
+<lambda>
+<bvar>
+<ci> Induced_PGC1a_deacetylation_k1 </ci>
+</bvar>
+<bvar>
+<ci> PGC1a_Deacetylation_Activity </ci>
+</bvar>
+<bvar>
+<ci> PGC1a_P </ci>
+</bvar>
+<apply>
+<times/>
+<ci> Induced_PGC1a_deacetylation_k1 </ci>
+<ci> PGC1a_P </ci>
+<ci> PGC1a_Deacetylation_Activity </ci>
+</apply>
+</lambda>
+</math>
+</functionDefinition>
+<functionDefinition metaid="COPASI84" id="Function_for_PGC1a_phosphorylation" name="Function for PGC1a phosphorylation">
+<annotation>
+<COPASI xmlns="http://www.copasi.org/static/sbml">
+<rdf:RDF xmlns:dcterms="http://purl.org/dc/terms/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+<rdf:Description rdf:about="#COPASI84">
+<dcterms:created>
+<rdf:Description>
+<dcterms:W3CDTF>2020-01-21T14:43:21Z</dcterms:W3CDTF>
+</rdf:Description>
+</dcterms:created>
+</rdf:Description>
+</rdf:RDF>
+</COPASI>
+</annotation>
+<math xmlns="http://www.w3.org/1998/Math/MathML">
+<lambda>
+<bvar>
+<ci> AMPK_P </ci>
+</bvar>
+<bvar>
+<ci> PGC1a </ci>
+</bvar>
+<bvar>
+<ci> PGC1a_phosphorylation_k1 </ci>
+</bvar>
+<apply>
+<times/>
+<ci> PGC1a_phosphorylation_k1 </ci>
+<ci> AMPK_P </ci>
+<ci> PGC1a </ci>
+</apply>
+</lambda>
+</math>
+</functionDefinition>
+<functionDefinition metaid="COPASI85" id="Function_for_Delay_Reaction_NAD_increase_by_AMPK" name="Function for Delay Reaction NAD increase by AMPK">
+<annotation>
+<COPASI xmlns="http://www.copasi.org/static/sbml">
+<rdf:RDF xmlns:dcterms="http://purl.org/dc/terms/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+<rdf:Description rdf:about="#COPASI85">
+<dcterms:created>
+<rdf:Description>
+<dcterms:W3CDTF>2020-01-21T14:43:21Z</dcterms:W3CDTF>
+</rdf:Description>
+</dcterms:created>
+</rdf:Description>
+</rdf:RDF>
+</COPASI>
+</annotation>
+<math xmlns="http://www.w3.org/1998/Math/MathML">
+<lambda>
+<bvar>
+<ci> AMPK_P </ci>
+</bvar>
+<bvar>
+<ci> DUMMY_REACTION_Delay_in_NAD_Increase_k1 </ci>
+</bvar>
+<apply>
+<times/>
+<ci> DUMMY_REACTION_Delay_in_NAD_Increase_k1 </ci>
+<ci> AMPK_P </ci>
+</apply>
+</lambda>
+</math>
+</functionDefinition>
+<functionDefinition metaid="COPASI86" id="Function_for_NAD_utilisation_by_PARP" name="Function for NAD utilisation by PARP">
+<annotation>
+<COPASI xmlns="http://www.copasi.org/static/sbml">
+<rdf:RDF xmlns:dcterms="http://purl.org/dc/terms/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+<rdf:Description rdf:about="#COPASI86">
+<dcterms:created>
+<rdf:Description>
+<dcterms:W3CDTF>2020-01-21T14:43:21Z</dcterms:W3CDTF>
+</rdf:Description>
+</dcterms:created>
+</rdf:Description>
+</rdf:RDF>
+</COPASI>
+</annotation>
+<math xmlns="http://www.w3.org/1998/Math/MathML">
+<lambda>
+<bvar>
+<ci> NAD </ci>
+</bvar>
+<bvar>
+<ci> NAD_utilisation_by_PARP_k1 </ci>
+</bvar>
+<bvar>
+<ci> PARP </ci>
+</bvar>
+<apply>
+<times/>
+<ci> NAD_utilisation_by_PARP_k1 </ci>
+<ci> NAD </ci>
+<ci> PARP </ci>
+</apply>
+</lambda>
+</math>
+</functionDefinition>
+<functionDefinition metaid="COPASI87" id="Hill_Cooperativity_1_1" name="Hill Cooperativity_1_1">
+<annotation>
+<COPASI xmlns="http://www.copasi.org/static/sbml">
+<rdf:RDF xmlns:dcterms="http://purl.org/dc/terms/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+<rdf:Description rdf:about="#COPASI87">
+<dcterms:created>
+<rdf:Description>
+<dcterms:W3CDTF>2020-01-21T14:43:21Z</dcterms:W3CDTF>
+</rdf:Description>
+</dcterms:created>
+</rdf:Description>
+</rdf:RDF>
+</COPASI>
+</annotation>
+<math xmlns="http://www.w3.org/1998/Math/MathML">
+<lambda>
+<bvar>
+<ci> Delay_in_NAD_increase </ci>
+</bvar>
+<bvar>
+<ci> NAD_increase_by_AMPK_Shalve </ci>
+</bvar>
+<bvar>
+<ci> NAD_increase_by_AMPK_V </ci>
+</bvar>
+<bvar>
+<ci> NAD_increase_by_AMPK_h </ci>
+</bvar>
+<apply>
+<divide/>
+<apply>
+<times/>
+<ci> NAD_increase_by_AMPK_V </ci>
+<apply>
+<power/>
+<apply>
+<divide/>
+<ci> Delay_in_NAD_increase </ci>
+<ci> NAD_increase_by_AMPK_Shalve </ci>
+</apply>
+<ci> NAD_increase_by_AMPK_h </ci>
+</apply>
+</apply>
+<apply>
+<plus/>
+<cn> 1 </cn>
+<apply>
+<power/>
+<apply>
+<divide/>
+<ci> Delay_in_NAD_increase </ci>
+<ci> NAD_increase_by_AMPK_Shalve </ci>
+</apply>
+<ci> NAD_increase_by_AMPK_h </ci>
+</apply>
+</apply>
+</apply>
+</lambda>
+</math>
+</functionDefinition>
+<functionDefinition metaid="COPASI88" id="Hill_Cooperativity_1_2" name="Hill Cooperativity_1_2">
+<annotation>
+<COPASI xmlns="http://www.copasi.org/static/sbml">
+<rdf:RDF xmlns:dcterms="http://purl.org/dc/terms/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+<rdf:Description rdf:about="#COPASI88">
+<dcterms:created>
+<rdf:Description>
+<dcterms:W3CDTF>2020-01-21T14:43:21Z</dcterms:W3CDTF>
+</rdf:Description>
+</dcterms:created>
+</rdf:Description>
+</rdf:RDF>
+</COPASI>
+</annotation>
+<math xmlns="http://www.w3.org/1998/Math/MathML">
+<lambda>
+<bvar>
+<ci> Deacetylation_activity_Shalve </ci>
+</bvar>
+<bvar>
+<ci> Deacetylation_activity_V </ci>
+</bvar>
+<bvar>
+<ci> Deacetylation_activity_h </ci>
+</bvar>
+<bvar>
+<ci> SIRT1_activity </ci>
+</bvar>
+<apply>
+<divide/>
+<apply>
+<times/>
+<ci> Deacetylation_activity_V </ci>
+<apply>
+<power/>
+<apply>
+<divide/>
+<ci> SIRT1_activity </ci>
+<ci> Deacetylation_activity_Shalve </ci>
+</apply>
+<ci> Deacetylation_activity_h </ci>
+</apply>
+</apply>
+<apply>
+<plus/>
+<cn> 1 </cn>
+<apply>
+<power/>
+<apply>
+<divide/>
+<ci> SIRT1_activity </ci>
+<ci> Deacetylation_activity_Shalve </ci>
+</apply>
+<ci> Deacetylation_activity_h </ci>
+</apply>
+</apply>
+</apply>
+</lambda>
+</math>
+</functionDefinition>
+<functionDefinition metaid="COPASI89" id="Function_for_AMPK_induced_phosphorylation_by_AICAR" name="Function for AMPK induced phosphorylation by AICAR">
+<annotation>
+<COPASI xmlns="http://www.copasi.org/static/sbml">
+<rdf:RDF xmlns:dcterms="http://purl.org/dc/terms/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+<rdf:Description rdf:about="#COPASI89">
+<dcterms:created>
+<rdf:Description>
+<dcterms:W3CDTF>2020-01-21T14:43:21Z</dcterms:W3CDTF>
+</rdf:Description>
+</dcterms:created>
+</rdf:Description>
+</rdf:RDF>
+</COPASI>
+</annotation>
+<math xmlns="http://www.w3.org/1998/Math/MathML">
+<lambda>
+<bvar>
+<ci> AICAR_Delay </ci>
+</bvar>
+<bvar>
+<ci> AMPK </ci>
+</bvar>
+<bvar>
+<ci> AMPK_phosphorylation_induced_by_AICAR_k1 </ci>
+</bvar>
+<apply>
+<times/>
+<ci> AMPK_phosphorylation_induced_by_AICAR_k1 </ci>
+<ci> AICAR_Delay </ci>
+<ci> AMPK </ci>
+</apply>
+</lambda>
+</math>
+</functionDefinition>
+<functionDefinition metaid="COPASI90" id="Hill_Cooperativity_1_3" name="Hill Cooperativity_1_3">
+<annotation>
+<COPASI xmlns="http://www.copasi.org/static/sbml">
+<rdf:RDF xmlns:dcterms="http://purl.org/dc/terms/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+<rdf:Description rdf:about="#COPASI90">
+<dcterms:created>
+<rdf:Description>
+<dcterms:W3CDTF>2020-01-21T14:43:21Z</dcterms:W3CDTF>
+</rdf:Description>
+</dcterms:created>
+</rdf:Description>
+</rdf:RDF>
+</COPASI>
+</annotation>
+<math xmlns="http://www.w3.org/1998/Math/MathML">
+<lambda>
+<bvar>
+<ci> AICAR_treatment </ci>
+</bvar>
+<bvar>
+<ci> DUMMY_REACTION_Delay_AICAR_stimulus_Shalve </ci>
+</bvar>
+<bvar>
+<ci> DUMMY_REACTION_Delay_AICAR_stimulus_V </ci>
+</bvar>
+<bvar>
+<ci> DUMMY_REACTION_Delay_AICAR_stimulus_h </ci>
+</bvar>
+<apply>
+<divide/>
+<apply>
+<times/>
+<ci> DUMMY_REACTION_Delay_AICAR_stimulus_V </ci>
+<apply>
+<power/>
+<apply>
+<divide/>
+<ci> AICAR_treatment </ci>
+<ci> DUMMY_REACTION_Delay_AICAR_stimulus_Shalve </ci>
+</apply>
+<ci> DUMMY_REACTION_Delay_AICAR_stimulus_h </ci>
+</apply>
+</apply>
+<apply>
+<plus/>
+<cn> 1 </cn>
+<apply>
+<power/>
+<apply>
+<divide/>
+<ci> AICAR_treatment </ci>
+<ci> DUMMY_REACTION_Delay_AICAR_stimulus_Shalve </ci>
+</apply>
+<ci> DUMMY_REACTION_Delay_AICAR_stimulus_h </ci>
+</apply>
+</apply>
+</apply>
+</lambda>
+</math>
+</functionDefinition>
+<functionDefinition metaid="COPASI91" id="Basal_deacetylation_function_1" name="Basal deacetylation function_1">
+<annotation>
+<COPASI xmlns="http://www.copasi.org/static/sbml">
+<rdf:RDF xmlns:dcterms="http://purl.org/dc/terms/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+<rdf:Description rdf:about="#COPASI91">
+<dcterms:created>
+<rdf:Description>
+<dcterms:W3CDTF>2020-01-21T14:43:21Z</dcterms:W3CDTF>
+</rdf:Description>
+</dcterms:created>
+</rdf:Description>
+</rdf:RDF>
+</COPASI>
+</annotation>
+<math xmlns="http://www.w3.org/1998/Math/MathML">
+<lambda>
+<bvar>
+<ci> Basal_PGC1a_deacetylation_v </ci>
+</bvar>
+<bvar>
+<ci> SIRT1_activity </ci>
+</bvar>
+<apply>
+<plus/>
+<ci> Basal_PGC1a_deacetylation_v </ci>
+<apply>
+<times/>
+<ci> SIRT1_activity </ci>
+<cn> 0.75 </cn>
+</apply>
+</apply>
+</lambda>
+</math>
+</functionDefinition>
+<functionDefinition metaid="COPASI92" id="Function_for_Glucose_induced_AMPK_dephosphorylation" name="Function for Glucose-induced AMPK dephosphorylation">
+<annotation>
+<COPASI xmlns="http://www.copasi.org/static/sbml">
+<rdf:RDF xmlns:dcterms="http://purl.org/dc/terms/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+<rdf:Description rdf:about="#COPASI92">
+<dcterms:created>
+<rdf:Description>
+<dcterms:W3CDTF>2020-01-21T14:43:21Z</dcterms:W3CDTF>
+</rdf:Description>
+</dcterms:created>
+</rdf:Description>
+</rdf:RDF>
+</COPASI>
+</annotation>
+<math xmlns="http://www.w3.org/1998/Math/MathML">
+<lambda>
+<bvar>
+<ci> AMPK_P </ci>
+</bvar>
+<bvar>
+<ci> GlucoseDelay </ci>
+</bvar>
+<bvar>
+<ci> Glucose_induced_AMPK_dephosphorylation_k1 </ci>
+</bvar>
+<apply>
+<times/>
+<ci> Glucose_induced_AMPK_dephosphorylation_k1 </ci>
+<ci> GlucoseDelay </ci>
+<ci> AMPK_P </ci>
+</apply>
+</lambda>
+</math>
+</functionDefinition>
+<functionDefinition metaid="COPASI93" id="Hill_Cooperativity_1_4" name="Hill Cooperativity_1_4">
+<annotation>
+<COPASI xmlns="http://www.copasi.org/static/sbml">
+<rdf:RDF xmlns:dcterms="http://purl.org/dc/terms/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+<rdf:Description rdf:about="#COPASI93">
+<dcterms:created>
+<rdf:Description>
+<dcterms:W3CDTF>2020-01-21T14:43:21Z</dcterms:W3CDTF>
+</rdf:Description>
+</dcterms:created>
+</rdf:Description>
+</rdf:RDF>
+</COPASI>
+</annotation>
+<math xmlns="http://www.w3.org/1998/Math/MathML">
+<lambda>
+<bvar>
+<ci> Glucose </ci>
+</bvar>
+<bvar>
+<ci> Glucose_DUMMY_REACTION_delay_Shalve </ci>
+</bvar>
+<bvar>
+<ci> Glucose_DUMMY_REACTION_delay_V </ci>
+</bvar>
+<bvar>
+<ci> Glucose_DUMMY_REACTION_delay_h </ci>
+</bvar>
+<apply>
+<divide/>
+<apply>
+<times/>
+<ci> Glucose_DUMMY_REACTION_delay_V </ci>
+<apply>
+<power/>
+<apply>
+<divide/>
+<ci> Glucose </ci>
+<ci> Glucose_DUMMY_REACTION_delay_Shalve </ci>
+</apply>
+<ci> Glucose_DUMMY_REACTION_delay_h </ci>
+</apply>
+</apply>
+<apply>
+<plus/>
+<cn> 1 </cn>
+<apply>
+<power/>
+<apply>
+<divide/>
+<ci> Glucose </ci>
+<ci> Glucose_DUMMY_REACTION_delay_Shalve </ci>
+</apply>
+<ci> Glucose_DUMMY_REACTION_delay_h </ci>
+</apply>
+</apply>
+</apply>
+</lambda>
+</math>
+</functionDefinition>
+<functionDefinition metaid="COPASI94" id="Hill_Cooperativity_1_5" name="Hill Cooperativity_1_5">
+<annotation>
+<COPASI xmlns="http://www.copasi.org/static/sbml">
+<rdf:RDF xmlns:dcterms="http://purl.org/dc/terms/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+<rdf:Description rdf:about="#COPASI94">
+<dcterms:created>
+<rdf:Description>
+<dcterms:W3CDTF>2020-01-21T14:43:21Z</dcterms:W3CDTF>
+</rdf:Description>
+</dcterms:created>
+</rdf:Description>
+</rdf:RDF>
+</COPASI>
+</annotation>
+<math xmlns="http://www.w3.org/1998/Math/MathML">
+<lambda>
+<bvar>
+<ci> NR_NMN </ci>
+</bvar>
+<bvar>
+<ci> NR_NMN_supplementation_Shalve </ci>
+</bvar>
+<bvar>
+<ci> NR_NMN_supplementation_V </ci>
+</bvar>
+<bvar>
+<ci> NR_NMN_supplementation_h </ci>
+</bvar>
+<apply>
+<divide/>
+<apply>
+<times/>
+<ci> NR_NMN_supplementation_V </ci>
+<apply>
+<power/>
+<apply>
+<divide/>
+<ci> NR_NMN </ci>
+<ci> NR_NMN_supplementation_Shalve </ci>
+</apply>
+<ci> NR_NMN_supplementation_h </ci>
+</apply>
+</apply>
+<apply>
+<plus/>
+<cn> 1 </cn>
+<apply>
+<power/>
+<apply>
+<divide/>
+<ci> NR_NMN </ci>
+<ci> NR_NMN_supplementation_Shalve </ci>
+</apply>
+<ci> NR_NMN_supplementation_h </ci>
+</apply>
+</apply>
+</apply>
+</lambda>
+</math>
+</functionDefinition>
+</listOfFunctionDefinitions>
+<listOfUnitDefinitions>
+<unitDefinition metaid="volume" id="volume" name="volume">
+<listOfUnits>
+<unit metaid="CDMT00095" kind="litre" scale="-3"/>
+</listOfUnits>
+</unitDefinition>
+<unitDefinition metaid="time" id="time" name="time">
+<listOfUnits>
+<unit metaid="CDMT00096" kind="second" multiplier="3600"/>
+</listOfUnits>
+</unitDefinition>
+<unitDefinition metaid="substance" id="substance" name="substance">
+<listOfUnits>
+<unit metaid="CDMT00097" kind="mole" scale="-3"/>
+</listOfUnits>
+</unitDefinition>
+<unitDefinition metaid="area" id="area" name="area">
+<listOfUnits>
+<unit metaid="CDMT00098" kind="metre" exponent="2"/>
+</listOfUnits>
+</unitDefinition>
+<unitDefinition metaid="length" id="length" name="length">
+<listOfUnits>
+<unit metaid="CDMT00099" kind="metre"/>
+</listOfUnits>
+</unitDefinition>
+</listOfUnitDefinitions>
+<listOfCompartments>
+<compartment metaid="default" id="default" size="1" units="volume"/>
+<compartment metaid="COPASI1" id="compartment_" name="compartment_" size="1" units="volume" outside="default">
+<annotation>
+<celldesigner:extension>
+<celldesigner:name>compartment_</celldesigner:name>
+</celldesigner:extension>
+<COPASI xmlns="http://www.copasi.org/static/sbml">
+<rdf:RDF xmlns:dcterms="http://purl.org/dc/terms/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+<rdf:Description rdf:about="#COPASI1">
+<dcterms:created>
+<rdf:Description>
+<dcterms:W3CDTF>2020-01-21T14:43:21Z</dcterms:W3CDTF>
+</rdf:Description>
+</dcterms:created>
+</rdf:Description>
+</rdf:RDF>
+</COPASI>
+</annotation>
+</compartment>
+</listOfCompartments>
+<listOfSpecies>
+<species metaid="COPASI2" id="AMPK" name="AMPK" compartment="compartment_" initialConcentration="10">
+<annotation>
+<celldesigner:extension>
+<celldesigner:positionToCompartment>inside</celldesigner:positionToCompartment>
+<celldesigner:speciesIdentity>
+<celldesigner:class>PROTEIN</celldesigner:class>
+<celldesigner:proteinReference>pr1</celldesigner:proteinReference>
+</celldesigner:speciesIdentity>
+</celldesigner:extension>
+<COPASI xmlns="http://www.copasi.org/static/sbml">
+<rdf:RDF xmlns:dcterms="http://purl.org/dc/terms/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+<rdf:Description rdf:about="#COPASI2">
+<dcterms:created>
+<rdf:Description>
+<dcterms:W3CDTF>2020-01-21T14:43:21Z</dcterms:W3CDTF>
+</rdf:Description>
+</dcterms:created>
+</rdf:Description>
+</rdf:RDF>
+</COPASI>
+</annotation>
+</species>
+<species metaid="COPASI3" id="AMPK_P" name="AMPK-P" compartment="compartment_" initialConcentration="1">
+<annotation>
+<celldesigner:extension>
+<celldesigner:positionToCompartment>inside</celldesigner:positionToCompartment>
+<celldesigner:speciesIdentity>
+<celldesigner:class>PROTEIN</celldesigner:class>
+<celldesigner:proteinReference>pr2</celldesigner:proteinReference>
+</celldesigner:speciesIdentity>
+<celldesigner:listOfCatalyzedReactions>
+<celldesigner:catalyzed reaction="PGC1a_phosphorylation"/>
+<celldesigner:catalyzed reaction="DUMMY_REACTION_Delay_in_NAD_Increase"/>
+</celldesigner:listOfCatalyzedReactions>
+</celldesigner:extension>
+<COPASI xmlns="http://www.copasi.org/static/sbml">
+<rdf:RDF xmlns:dcterms="http://purl.org/dc/terms/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+<rdf:Description rdf:about="#COPASI3">
+<dcterms:created>
+<rdf:Description>
+<dcterms:W3CDTF>2020-01-21T14:43:21Z</dcterms:W3CDTF>
+</rdf:Description>
+</dcterms:created>
+</rdf:Description>
+</rdf:RDF>
+</COPASI>
+</annotation>
+</species>
+<species metaid="COPASI4" id="PGC1a" name="PGC1a" compartment="compartment_" initialConcentration="10">
+<annotation>
+<celldesigner:extension>
+<celldesigner:positionToCompartment>inside</celldesigner:positionToCompartment>
+<celldesigner:speciesIdentity>
+<celldesigner:class>PROTEIN</celldesigner:class>
+<celldesigner:proteinReference>pr3</celldesigner:proteinReference>
+</celldesigner:speciesIdentity>
+</celldesigner:extension>
+<COPASI xmlns="http://www.copasi.org/static/sbml">
+<rdf:RDF xmlns:dcterms="http://purl.org/dc/terms/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+<rdf:Description rdf:about="#COPASI4">
+<dcterms:created>
+<rdf:Description>
+<dcterms:W3CDTF>2020-01-21T14:43:21Z</dcterms:W3CDTF>
+</rdf:Description>
+</dcterms:created>
+</rdf:Description>
+</rdf:RDF>
+</COPASI>
+</annotation>
+</species>
+<species metaid="COPASI5" id="PGC1a_P" name="PGC1a-P" compartment="compartment_" initialConcentration="1">
+<annotation>
+<celldesigner:extension>
+<celldesigner:positionToCompartment>inside</celldesigner:positionToCompartment>
+<celldesigner:speciesIdentity>
+<celldesigner:class>PROTEIN</celldesigner:class>
+<celldesigner:proteinReference>pr4</celldesigner:proteinReference>
+</celldesigner:speciesIdentity>
+</celldesigner:extension>
+<COPASI xmlns="http://www.copasi.org/static/sbml">
+<rdf:RDF xmlns:dcterms="http://purl.org/dc/terms/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+<rdf:Description rdf:about="#COPASI5">
+<dcterms:created>
+<rdf:Description>
+<dcterms:W3CDTF>2020-01-21T14:43:21Z</dcterms:W3CDTF>
+</rdf:Description>
+</dcterms:created>
+</rdf:Description>
+</rdf:RDF>
+</COPASI>
+</annotation>
+</species>
+<species metaid="COPASI6" id="PGC1a_deacet" name="PGC1a_deacet" compartment="compartment_" initialConcentration="1">
+<annotation>
+<celldesigner:extension>
+<celldesigner:positionToCompartment>inside</celldesigner:positionToCompartment>
+<celldesigner:speciesIdentity>
+<celldesigner:class>PROTEIN</celldesigner:class>
+<celldesigner:proteinReference>pr5</celldesigner:proteinReference>
+</celldesigner:speciesIdentity>
+</celldesigner:extension>
+<COPASI xmlns="http://www.copasi.org/static/sbml">
+<rdf:RDF xmlns:dcterms="http://purl.org/dc/terms/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+<rdf:Description rdf:about="#COPASI6">
+<dcterms:created>
+<rdf:Description>
+<dcterms:W3CDTF>2020-01-21T14:43:21Z</dcterms:W3CDTF>
+</rdf:Description>
+</dcterms:created>
+</rdf:Description>
+</rdf:RDF>
+</COPASI>
+</annotation>
+</species>
+<species metaid="COPASI7" id="SIRT1_activity" name="SIRT1_activity" compartment="compartment_" initialConcentration="1" boundaryCondition="true">
+<annotation>
+<celldesigner:extension>
+<celldesigner:positionToCompartment>inside</celldesigner:positionToCompartment>
+<celldesigner:speciesIdentity>
+<celldesigner:class>PROTEIN</celldesigner:class>
+<celldesigner:proteinReference>pr6</celldesigner:proteinReference>
+</celldesigner:speciesIdentity>
+<celldesigner:listOfCatalyzedReactions>
+<celldesigner:catalyzed reaction="Deacetylation_activity"/>
+<celldesigner:catalyzed reaction="Basal_PGC1a_deacetylation"/>
+</celldesigner:listOfCatalyzedReactions>
+</celldesigner:extension>
+<COPASI xmlns="http://www.copasi.org/static/sbml">
+<rdf:RDF xmlns:dcterms="http://purl.org/dc/terms/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+<rdf:Description rdf:about="#COPASI7">
+<dcterms:created>
+<rdf:Description>
+<dcterms:W3CDTF>2020-01-21T14:43:21Z</dcterms:W3CDTF>
+</rdf:Description>
+</dcterms:created>
+</rdf:Description>
+</rdf:RDF>
+</COPASI>
+</annotation>
+</species>
+<species metaid="COPASI9" id="NAD" name="NAD" compartment="compartment_" initialConcentration="1">
+<annotation>
+<celldesigner:extension>
+<celldesigner:positionToCompartment>inside</celldesigner:positionToCompartment>
+<celldesigner:speciesIdentity>
+<celldesigner:class>PROTEIN</celldesigner:class>
+<celldesigner:proteinReference>pr8</celldesigner:proteinReference>
+</celldesigner:speciesIdentity>
+</celldesigner:extension>
+<COPASI xmlns="http://www.copasi.org/static/sbml">
+<rdf:RDF xmlns:dcterms="http://purl.org/dc/terms/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+<rdf:Description rdf:about="#COPASI9">
+<dcterms:created>
+<rdf:Description>
+<dcterms:W3CDTF>2020-01-21T14:43:21Z</dcterms:W3CDTF>
+</rdf:Description>
+</dcterms:created>
+</rdf:Description>
+</rdf:RDF>
+</COPASI>
+</annotation>
+</species>
+<species metaid="COPASI10" id="Delay_in_NAD_increase" name="Delay_in_NAD_increase" compartment="compartment_" initialConcentration="1">
+<annotation>
+<celldesigner:extension>
+<celldesigner:positionToCompartment>inside</celldesigner:positionToCompartment>
+<celldesigner:speciesIdentity>
+<celldesigner:class>PROTEIN</celldesigner:class>
+<celldesigner:proteinReference>pr9</celldesigner:proteinReference>
+</celldesigner:speciesIdentity>
+<celldesigner:listOfCatalyzedReactions>
+<celldesigner:catalyzed reaction="NAD_increase_by_AMPK"/>
+</celldesigner:listOfCatalyzedReactions>
+</celldesigner:extension>
+<COPASI xmlns="http://www.copasi.org/static/sbml">
+<rdf:RDF xmlns:dcterms="http://purl.org/dc/terms/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+<rdf:Description rdf:about="#COPASI10">
+<dcterms:created>
+<rdf:Description>
+<dcterms:W3CDTF>2020-01-21T14:43:21Z</dcterms:W3CDTF>
+</rdf:Description>
+</dcterms:created>
+</rdf:Description>
+</rdf:RDF>
+</COPASI>
+</annotation>
+</species>
+<species metaid="COPASI11" id="PARP" name="PARP1" compartment="compartment_" initialConcentration="1">
+<annotation>
+<celldesigner:extension>
+<celldesigner:positionToCompartment>inside</celldesigner:positionToCompartment>
+<celldesigner:speciesIdentity>
+<celldesigner:class>PROTEIN</celldesigner:class>
+<celldesigner:proteinReference>pr10</celldesigner:proteinReference>
+</celldesigner:speciesIdentity>
+<celldesigner:listOfCatalyzedReactions>
+<celldesigner:catalyzed reaction="NAD_utilisation_by_PARP"/>
+</celldesigner:listOfCatalyzedReactions>
+</celldesigner:extension>
+<COPASI xmlns="http://www.copasi.org/static/sbml">
+<rdf:RDF xmlns:dcterms="http://purl.org/dc/terms/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+<rdf:Description rdf:about="#COPASI11">
+<dcterms:created>
+<rdf:Description>
+<dcterms:W3CDTF>2020-01-21T14:43:21Z</dcterms:W3CDTF>
+</rdf:Description>
+</dcterms:created>
+</rdf:Description>
+</rdf:RDF>
+</COPASI>
+</annotation>
+</species>
+<species metaid="COPASI12" id="PGC1a_Deacetylation_Activity" name="Deacetylation_Delay" compartment="compartment_" initialConcentration="0">
+<annotation>
+<celldesigner:extension>
+<celldesigner:positionToCompartment>inside</celldesigner:positionToCompartment>
+<celldesigner:speciesIdentity>
+<celldesigner:class>PROTEIN</celldesigner:class>
+<celldesigner:proteinReference>pr11</celldesigner:proteinReference>
+</celldesigner:speciesIdentity>
+<celldesigner:listOfCatalyzedReactions>
+<celldesigner:catalyzed reaction="Induced_PGC1a_deacetylation"/>
+</celldesigner:listOfCatalyzedReactions>
+</celldesigner:extension>
+<COPASI xmlns="http://www.copasi.org/static/sbml">
+<rdf:RDF xmlns:dcterms="http://purl.org/dc/terms/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+<rdf:Description rdf:about="#COPASI12">
+<dcterms:created>
+<rdf:Description>
+<dcterms:W3CDTF>2020-01-21T14:43:21Z</dcterms:W3CDTF>
+</rdf:Description>
+</dcterms:created>
+</rdf:Description>
+</rdf:RDF>
+</COPASI>
+</annotation>
+</species>
+<species metaid="COPASI13" id="AICAR_Delay" name="AICAR_Delay" compartment="compartment_" initialConcentration="0">
+<annotation>
+<celldesigner:extension>
+<celldesigner:positionToCompartment>inside</celldesigner:positionToCompartment>
+<celldesigner:speciesIdentity>
+<celldesigner:class>PROTEIN</celldesigner:class>
+<celldesigner:proteinReference>pr12</celldesigner:proteinReference>
+</celldesigner:speciesIdentity>
+<celldesigner:listOfCatalyzedReactions>
+<celldesigner:catalyzed reaction="AMPK_phosphorylation_induced_by_AICAR"/>
+</celldesigner:listOfCatalyzedReactions>
+</celldesigner:extension>
+<COPASI xmlns="http://www.copasi.org/static/sbml">
+<rdf:RDF xmlns:dcterms="http://purl.org/dc/terms/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+<rdf:Description rdf:about="#COPASI13">
+<dcterms:created>
+<rdf:Description>
+<dcterms:W3CDTF>2020-01-21T14:43:21Z</dcterms:W3CDTF>
+</rdf:Description>
+</dcterms:created>
+</rdf:Description>
+</rdf:RDF>
+</COPASI>
+</annotation>
+</species>
+<species metaid="COPASI14" id="AICAR_treatment" name="AICAR" compartment="compartment_" initialConcentration="0">
+<annotation>
+<celldesigner:extension>
+<celldesigner:positionToCompartment>inside</celldesigner:positionToCompartment>
+<celldesigner:speciesIdentity>
+<celldesigner:class>PROTEIN</celldesigner:class>
+<celldesigner:proteinReference>pr13</celldesigner:proteinReference>
+</celldesigner:speciesIdentity>
+<celldesigner:listOfCatalyzedReactions>
+<celldesigner:catalyzed reaction="DUMMY_REACTION_Delay_AICAR_stimulus"/>
+</celldesigner:listOfCatalyzedReactions>
+</celldesigner:extension>
+<COPASI xmlns="http://www.copasi.org/static/sbml">
+<rdf:RDF xmlns:dcterms="http://purl.org/dc/terms/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+<rdf:Description rdf:about="#COPASI14">
+<dcterms:created>
+<rdf:Description>
+<dcterms:W3CDTF>2020-01-21T14:43:21Z</dcterms:W3CDTF>
+</rdf:Description>
+</dcterms:created>
+</rdf:Description>
+</rdf:RDF>
+</COPASI>
+</annotation>
+</species>
+<species metaid="COPASI15" id="Glucose" name="Glucose" compartment="compartment_" initialConcentration="25">
+<annotation>
+<celldesigner:extension>
+<celldesigner:positionToCompartment>inside</celldesigner:positionToCompartment>
+<celldesigner:speciesIdentity>
+<celldesigner:class>PROTEIN</celldesigner:class>
+<celldesigner:proteinReference>pr14</celldesigner:proteinReference>
+</celldesigner:speciesIdentity>
+<celldesigner:listOfCatalyzedReactions>
+<celldesigner:catalyzed reaction="Glucose_DUMMY_REACTION_delay"/>
+</celldesigner:listOfCatalyzedReactions>
+</celldesigner:extension>
+<COPASI xmlns="http://www.copasi.org/static/sbml">
+<rdf:RDF xmlns:dcterms="http://purl.org/dc/terms/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+<rdf:Description rdf:about="#COPASI15">
+<dcterms:created>
+<rdf:Description>
+<dcterms:W3CDTF>2020-01-21T14:43:21Z</dcterms:W3CDTF>
+</rdf:Description>
+</dcterms:created>
+</rdf:Description>
+</rdf:RDF>
+</COPASI>
+</annotation>
+</species>
+<species metaid="COPASI16" id="GlucoseDelay" name="GlucoseDelay" compartment="compartment_" initialConcentration="1">
+<annotation>
+<celldesigner:extension>
+<celldesigner:positionToCompartment>inside</celldesigner:positionToCompartment>
+<celldesigner:speciesIdentity>
+<celldesigner:class>PROTEIN</celldesigner:class>
+<celldesigner:proteinReference>pr15</celldesigner:proteinReference>
+</celldesigner:speciesIdentity>
+<celldesigner:listOfCatalyzedReactions>
+<celldesigner:catalyzed reaction="Glucose_induced_AMPK_dephosphorylation"/>
+</celldesigner:listOfCatalyzedReactions>
+</celldesigner:extension>
+<COPASI xmlns="http://www.copasi.org/static/sbml">
+<rdf:RDF xmlns:dcterms="http://purl.org/dc/terms/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+<rdf:Description rdf:about="#COPASI16">
+<dcterms:created>
+<rdf:Description>
+<dcterms:W3CDTF>2020-01-21T14:43:21Z</dcterms:W3CDTF>
+</rdf:Description>
+</dcterms:created>
+</rdf:Description>
+</rdf:RDF>
+</COPASI>
+</annotation>
+</species>
+<species metaid="COPASI17" id="NAD_NegReg" name="NAD_NegReg" compartment="compartment_" initialConcentration="0">
+<annotation>
+<celldesigner:extension>
+<celldesigner:positionToCompartment>inside</celldesigner:positionToCompartment>
+<celldesigner:speciesIdentity>
+<celldesigner:class>PROTEIN</celldesigner:class>
+<celldesigner:proteinReference>pr16</celldesigner:proteinReference>
+</celldesigner:speciesIdentity>
+</celldesigner:extension>
+<COPASI xmlns="http://www.copasi.org/static/sbml">
+<rdf:RDF xmlns:dcterms="http://purl.org/dc/terms/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+<rdf:Description rdf:about="#COPASI17">
+<dcterms:created>
+<rdf:Description>
+<dcterms:W3CDTF>2020-01-21T14:43:21Z</dcterms:W3CDTF>
+</rdf:Description>
+</dcterms:created>
+</rdf:Description>
+</rdf:RDF>
+</COPASI>
+</annotation>
+</species>
+<species metaid="COPASI18" id="NR_NMN" name="NR-NMN" compartment="compartment_" initialConcentration="0">
+<annotation>
+<celldesigner:extension>
+<celldesigner:positionToCompartment>inside</celldesigner:positionToCompartment>
+<celldesigner:speciesIdentity>
+<celldesigner:class>PROTEIN</celldesigner:class>
+<celldesigner:proteinReference>pr17</celldesigner:proteinReference>
+</celldesigner:speciesIdentity>
+</celldesigner:extension>
+<COPASI xmlns="http://www.copasi.org/static/sbml">
+<rdf:RDF xmlns:dcterms="http://purl.org/dc/terms/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+<rdf:Description rdf:about="#COPASI18">
+<dcterms:created>
+<rdf:Description>
+<dcterms:W3CDTF>2020-01-21T14:43:21Z</dcterms:W3CDTF>
+</rdf:Description>
+</dcterms:created>
+</rdf:Description>
+</rdf:RDF>
+</COPASI>
+</annotation>
+</species>
+<species metaid="s1" id="s1" name="s1" compartment="compartment_" initialAmount="0">
+<annotation>
+<celldesigner:extension>
+<celldesigner:positionToCompartment>inside</celldesigner:positionToCompartment>
+<celldesigner:speciesIdentity>
+<celldesigner:class>DEGRADED</celldesigner:class>
+<celldesigner:name>s1</celldesigner:name>
+</celldesigner:speciesIdentity>
+</celldesigner:extension>
+</annotation>
+</species>
+<species metaid="s2" id="s2" name="s2" compartment="compartment_" initialAmount="0">
+<annotation>
+<celldesigner:extension>
+<celldesigner:positionToCompartment>inside</celldesigner:positionToCompartment>
+<celldesigner:speciesIdentity>
+<celldesigner:class>DEGRADED</celldesigner:class>
+<celldesigner:name>s2</celldesigner:name>
+</celldesigner:speciesIdentity>
+</celldesigner:extension>
+</annotation>
+</species>
+<species metaid="s3" id="s3" name="s3" compartment="compartment_" initialAmount="0">
+<annotation>
+<celldesigner:extension>
+<celldesigner:positionToCompartment>inside</celldesigner:positionToCompartment>
+<celldesigner:speciesIdentity>
+<celldesigner:class>DEGRADED</celldesigner:class>
+<celldesigner:name>s3</celldesigner:name>
+</celldesigner:speciesIdentity>
+</celldesigner:extension>
+</annotation>
+</species>
+<species metaid="s4" id="s4" name="s4" compartment="compartment_" initialAmount="0">
+<annotation>
+<celldesigner:extension>
+<celldesigner:positionToCompartment>inside</celldesigner:positionToCompartment>
+<celldesigner:speciesIdentity>
+<celldesigner:class>DEGRADED</celldesigner:class>
+<celldesigner:name>s4</celldesigner:name>
+</celldesigner:speciesIdentity>
+</celldesigner:extension>
+</annotation>
+</species>
+<species metaid="s5" id="s5" name="s5" compartment="compartment_" initialAmount="0">
+<annotation>
+<celldesigner:extension>
+<celldesigner:positionToCompartment>inside</celldesigner:positionToCompartment>
+<celldesigner:speciesIdentity>
+<celldesigner:class>DEGRADED</celldesigner:class>
+<celldesigner:name>s5</celldesigner:name>
+</celldesigner:speciesIdentity>
+</celldesigner:extension>
+</annotation>
+</species>
+<species metaid="s6" id="s6" name="s6" compartment="compartment_" initialAmount="0">
+<annotation>
+<celldesigner:extension>
+<celldesigner:positionToCompartment>inside</celldesigner:positionToCompartment>
+<celldesigner:speciesIdentity>
+<celldesigner:class>DEGRADED</celldesigner:class>
+<celldesigner:name>s6</celldesigner:name>
+</celldesigner:speciesIdentity>
+</celldesigner:extension>
+</annotation>
+</species>
+<species metaid="s7" id="s7" name="s7" compartment="compartment_" initialAmount="0">
+<annotation>
+<celldesigner:extension>
+<celldesigner:positionToCompartment>inside</celldesigner:positionToCompartment>
+<celldesigner:speciesIdentity>
+<celldesigner:class>DEGRADED</celldesigner:class>
+<celldesigner:name>s7</celldesigner:name>
+</celldesigner:speciesIdentity>
+</celldesigner:extension>
+</annotation>
+</species>
+<species metaid="s8" id="s8" name="s8" compartment="compartment_" initialAmount="0">
+<annotation>
+<celldesigner:extension>
+<celldesigner:positionToCompartment>inside</celldesigner:positionToCompartment>
+<celldesigner:speciesIdentity>
+<celldesigner:class>DEGRADED</celldesigner:class>
+<celldesigner:name>s8</celldesigner:name>
+</celldesigner:speciesIdentity>
+</celldesigner:extension>
+</annotation>
+</species>
+<species metaid="s9" id="s9" name="s9" compartment="compartment_" initialAmount="0">
+<annotation>
+<celldesigner:extension>
+<celldesigner:positionToCompartment>inside</celldesigner:positionToCompartment>
+<celldesigner:speciesIdentity>
+<celldesigner:class>DEGRADED</celldesigner:class>
+<celldesigner:name>s9</celldesigner:name>
+</celldesigner:speciesIdentity>
+</celldesigner:extension>
+</annotation>
+</species>
+<species metaid="s10" id="s10" name="s10" compartment="compartment_" initialAmount="0">
+<annotation>
+<celldesigner:extension>
+<celldesigner:positionToCompartment>inside</celldesigner:positionToCompartment>
+<celldesigner:speciesIdentity>
+<celldesigner:class>DEGRADED</celldesigner:class>
+<celldesigner:name>s10</celldesigner:name>
+</celldesigner:speciesIdentity>
+</celldesigner:extension>
+</annotation>
+</species>
+<species metaid="s11" id="s11" name="s11" compartment="compartment_" initialAmount="0">
+<annotation>
+<celldesigner:extension>
+<celldesigner:positionToCompartment>inside</celldesigner:positionToCompartment>
+<celldesigner:speciesIdentity>
+<celldesigner:class>DEGRADED</celldesigner:class>
+<celldesigner:name>s11</celldesigner:name>
+</celldesigner:speciesIdentity>
+</celldesigner:extension>
+</annotation>
+</species>
+<species metaid="s12" id="s12" name="s12" compartment="compartment_" initialAmount="0">
+<annotation>
+<celldesigner:extension>
+<celldesigner:positionToCompartment>inside</celldesigner:positionToCompartment>
+<celldesigner:speciesIdentity>
+<celldesigner:class>DEGRADED</celldesigner:class>
+<celldesigner:name>s12</celldesigner:name>
+</celldesigner:speciesIdentity>
+</celldesigner:extension>
+</annotation>
+</species>
+<species metaid="s13" id="s13" name="s13" compartment="compartment_" initialAmount="0">
+<annotation>
+<celldesigner:extension>
+<celldesigner:positionToCompartment>inside</celldesigner:positionToCompartment>
+<celldesigner:speciesIdentity>
+<celldesigner:class>DEGRADED</celldesigner:class>
+<celldesigner:name>s13</celldesigner:name>
+</celldesigner:speciesIdentity>
+</celldesigner:extension>
+</annotation>
+</species>
+<species metaid="s14" id="s14" name="s14" compartment="compartment_" initialAmount="0">
+<annotation>
+<celldesigner:extension>
+<celldesigner:positionToCompartment>inside</celldesigner:positionToCompartment>
+<celldesigner:speciesIdentity>
+<celldesigner:class>DEGRADED</celldesigner:class>
+<celldesigner:name>s14</celldesigner:name>
+</celldesigner:speciesIdentity>
+</celldesigner:extension>
+</annotation>
+</species>
+<species metaid="s15" id="s15" name="s15" compartment="compartment_" initialAmount="0">
+<annotation>
+<celldesigner:extension>
+<celldesigner:positionToCompartment>inside</celldesigner:positionToCompartment>
+<celldesigner:speciesIdentity>
+<celldesigner:class>DEGRADED</celldesigner:class>
+<celldesigner:name>s15</celldesigner:name>
+</celldesigner:speciesIdentity>
+</celldesigner:extension>
+</annotation>
+</species>
+<species metaid="s16" id="s16" name="s16" compartment="compartment_" initialAmount="0">
+<annotation>
+<celldesigner:extension>
+<celldesigner:positionToCompartment>inside</celldesigner:positionToCompartment>
+<celldesigner:speciesIdentity>
+<celldesigner:class>DEGRADED</celldesigner:class>
+<celldesigner:name>s16</celldesigner:name>
+</celldesigner:speciesIdentity>
+</celldesigner:extension>
+</annotation>
+</species>
+<species metaid="s35" id="s35" name="SIRT" compartment="compartment_" initialAmount="0">
+<annotation>
+<celldesigner:extension>
+<celldesigner:positionToCompartment>inside</celldesigner:positionToCompartment>
+<celldesigner:speciesIdentity>
+<celldesigner:class>PROTEIN</celldesigner:class>
+<celldesigner:proteinReference>pr18</celldesigner:proteinReference>
+</celldesigner:speciesIdentity>
+</celldesigner:extension>
+</annotation>
+</species>
+</listOfSpecies>
+<listOfParameters>
+<parameter metaid="COPASI19" id="quantity_to_number_factor" name="quantity to number factor" value="1">
+<annotation>
+<COPASI xmlns="http://www.copasi.org/static/sbml">
+<rdf:RDF xmlns:dcterms="http://purl.org/dc/terms/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+<rdf:Description rdf:about="#COPASI19">
+<dcterms:created>
+<rdf:Description>
+<dcterms:W3CDTF>2020-01-21T14:43:21Z</dcterms:W3CDTF>
+</rdf:Description>
+</dcterms:created>
+</rdf:Description>
+</rdf:RDF>
+</COPASI>
+</annotation>
+</parameter>
+<parameter metaid="COPASI20" id="AMPK_phosphorylation_k1" name="AMPK_phosphorylation_k1" value="1">
+<annotation>
+<COPASI xmlns="http://www.copasi.org/static/sbml">
+<rdf:RDF xmlns:dcterms="http://purl.org/dc/terms/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+<rdf:Description rdf:about="#COPASI20">
+<dcterms:created>
+<rdf:Description>
+<dcterms:W3CDTF>2020-01-21T14:43:21Z</dcterms:W3CDTF>
+</rdf:Description>
+</dcterms:created>
+</rdf:Description>
+</rdf:RDF>
+</COPASI>
+</annotation>
+</parameter>
+<parameter metaid="COPASI21" id="AMPK_dephosphorylation_k1" name="AMPK_dephosphorylation_k1" value="5">
+<annotation>
+<COPASI xmlns="http://www.copasi.org/static/sbml">
+<rdf:RDF xmlns:dcterms="http://purl.org/dc/terms/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+<rdf:Description rdf:about="#COPASI21">
+<dcterms:created>
+<rdf:Description>
+<dcterms:W3CDTF>2020-01-21T14:43:21Z</dcterms:W3CDTF>
+</rdf:Description>
+</dcterms:created>
+</rdf:Description>
+</rdf:RDF>
+</COPASI>
+</annotation>
+</parameter>
+<parameter metaid="COPASI22" id="PGC1a_phosphorylation_k1" name="PGC1a_phosphorylation_k1" value="1">
+<annotation>
+<COPASI xmlns="http://www.copasi.org/static/sbml">
+<rdf:RDF xmlns:dcterms="http://purl.org/dc/terms/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+<rdf:Description rdf:about="#COPASI22">
+<dcterms:created>
+<rdf:Description>
+<dcterms:W3CDTF>2020-01-21T14:43:21Z</dcterms:W3CDTF>
+</rdf:Description>
+</dcterms:created>
+</rdf:Description>
+</rdf:RDF>
+</COPASI>
+</annotation>
+</parameter>
+<parameter metaid="COPASI23" id="PGC1a_dephosphorylation_k1" name="PGC1a_dephosphorylation_k1" value="10">
+<annotation>
+<COPASI xmlns="http://www.copasi.org/static/sbml">
+<rdf:RDF xmlns:dcterms="http://purl.org/dc/terms/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+<rdf:Description rdf:about="#COPASI23">
+<dcterms:created>
+<rdf:Description>
+<dcterms:W3CDTF>2020-01-21T14:43:21Z</dcterms:W3CDTF>
+</rdf:Description>
+</dcterms:created>
+</rdf:Description>
+</rdf:RDF>
+</COPASI>
+</annotation>
+</parameter>
+<parameter metaid="COPASI24" id="Induced_PGC1a_deacetylation_k1" name="Induced_PGC1a_deacetylation_k1" value="1.913">
+<annotation>
+<COPASI xmlns="http://www.copasi.org/static/sbml">
+<rdf:RDF xmlns:dcterms="http://purl.org/dc/terms/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+<rdf:Description rdf:about="#COPASI24">
+<dcterms:created>
+<rdf:Description>
+<dcterms:W3CDTF>2020-01-21T14:43:21Z</dcterms:W3CDTF>
+</rdf:Description>
+</dcterms:created>
+</rdf:Description>
+</rdf:RDF>
+</COPASI>
+</annotation>
+</parameter>
+<parameter metaid="COPASI25" id="PGC1a_acetylation_k1" name="PGC1a_acetylation_k1" value="1">
+<annotation>
+<COPASI xmlns="http://www.copasi.org/static/sbml">
+<rdf:RDF xmlns:dcterms="http://purl.org/dc/terms/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+<rdf:Description rdf:about="#COPASI25">
+<dcterms:created>
+<rdf:Description>
+<dcterms:W3CDTF>2020-01-21T14:43:21Z</dcterms:W3CDTF>
+</rdf:Description>
+</dcterms:created>
+</rdf:Description>
+</rdf:RDF>
+</COPASI>
+</annotation>
+</parameter>
+<parameter metaid="COPASI26" id="DUMMY_REACTION_Delay_in_NAD_Increase_k1" name="DUMMY_REACTION_Delay_in_NAD_Increase_k1" value="10">
+<annotation>
+<COPASI xmlns="http://www.copasi.org/static/sbml">
+<rdf:RDF xmlns:dcterms="http://purl.org/dc/terms/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+<rdf:Description rdf:about="#COPASI26">
+<dcterms:created>
+<rdf:Description>
+<dcterms:W3CDTF>2020-01-21T14:43:21Z</dcterms:W3CDTF>
+</rdf:Description>
+</dcterms:created>
+</rdf:Description>
+</rdf:RDF>
+</COPASI>
+</annotation>
+</parameter>
+<parameter metaid="COPASI27" id="DUMMY_REACTION_Delay_in_NAD_Increase_2_k1" name="DUMMY_REACTION_Delay_in_NAD_Increase_2_k1" value="10">
+<annotation>
+<COPASI xmlns="http://www.copasi.org/static/sbml">
+<rdf:RDF xmlns:dcterms="http://purl.org/dc/terms/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+<rdf:Description rdf:about="#COPASI27">
+<dcterms:created>
+<rdf:Description>
+<dcterms:W3CDTF>2020-01-21T14:43:21Z</dcterms:W3CDTF>
+</rdf:Description>
+</dcterms:created>
+</rdf:Description>
+</rdf:RDF>
+</COPASI>
+</annotation>
+</parameter>
+<parameter metaid="COPASI28" id="NAD_synthesis_v" name="NAD_synthesis_v" value="0.12">
+<annotation>
+<COPASI xmlns="http://www.copasi.org/static/sbml">
+<rdf:RDF xmlns:dcterms="http://purl.org/dc/terms/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+<rdf:Description rdf:about="#COPASI28">
+<dcterms:created>
+<rdf:Description>
+<dcterms:W3CDTF>2020-01-21T14:43:21Z</dcterms:W3CDTF>
+</rdf:Description>
+</dcterms:created>
+</rdf:Description>
+</rdf:RDF>
+</COPASI>
+</annotation>
+</parameter>
+<parameter metaid="COPASI29" id="NAD_utilisation_k1" name="NAD_utilisation_k1" value="0.045">
+<annotation>
+<COPASI xmlns="http://www.copasi.org/static/sbml">
+<rdf:RDF xmlns:dcterms="http://purl.org/dc/terms/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+<rdf:Description rdf:about="#COPASI29">
+<dcterms:created>
+<rdf:Description>
+<dcterms:W3CDTF>2020-01-21T14:43:21Z</dcterms:W3CDTF>
+</rdf:Description>
+</dcterms:created>
+</rdf:Description>
+</rdf:RDF>
+</COPASI>
+</annotation>
+</parameter>
+<parameter metaid="COPASI30" id="NAD_utilisation_by_PARP_k1" name="NAD_utilisation_by_PARP_k1" value="0.075">
+<annotation>
+<COPASI xmlns="http://www.copasi.org/static/sbml">
+<rdf:RDF xmlns:dcterms="http://purl.org/dc/terms/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+<rdf:Description rdf:about="#COPASI30">
+<dcterms:created>
+<rdf:Description>
+<dcterms:W3CDTF>2020-01-21T14:43:21Z</dcterms:W3CDTF>
+</rdf:Description>
+</dcterms:created>
+</rdf:Description>
+</rdf:RDF>
+</COPASI>
+</annotation>
+</parameter>
+<parameter metaid="COPASI31" id="NAD_increase_by_AMPK_Shalve" name="NAD_increase_by_AMPK_Shalve" value="1.45">
+<annotation>
+<COPASI xmlns="http://www.copasi.org/static/sbml">
+<rdf:RDF xmlns:dcterms="http://purl.org/dc/terms/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+<rdf:Description rdf:about="#COPASI31">
+<dcterms:created>
+<rdf:Description>
+<dcterms:W3CDTF>2020-01-21T14:43:21Z</dcterms:W3CDTF>
+</rdf:Description>
+</dcterms:created>
+</rdf:Description>
+</rdf:RDF>
+</COPASI>
+</annotation>
+</parameter>
+<parameter metaid="COPASI32" id="NAD_increase_by_AMPK_V" name="NAD_increase_by_AMPK_V" value="0.316228">
+<annotation>
+<COPASI xmlns="http://www.copasi.org/static/sbml">
+<rdf:RDF xmlns:dcterms="http://purl.org/dc/terms/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+<rdf:Description rdf:about="#COPASI32">
+<dcterms:created>
+<rdf:Description>
+<dcterms:W3CDTF>2020-01-21T14:43:21Z</dcterms:W3CDTF>
+</rdf:Description>
+</dcterms:created>
+</rdf:Description>
+</rdf:RDF>
+</COPASI>
+</annotation>
+</parameter>
+<parameter metaid="COPASI33" id="NAD_increase_by_AMPK_h" name="NAD_increase_by_AMPK_h" value="100">
+<annotation>
+<COPASI xmlns="http://www.copasi.org/static/sbml">
+<rdf:RDF xmlns:dcterms="http://purl.org/dc/terms/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+<rdf:Description rdf:about="#COPASI33">
+<dcterms:created>
+<rdf:Description>
+<dcterms:W3CDTF>2020-01-21T14:43:21Z</dcterms:W3CDTF>
+</rdf:Description>
+</dcterms:created>
+</rdf:Description>
+</rdf:RDF>
+</COPASI>
+</annotation>
+</parameter>
+<parameter metaid="COPASI34" id="Deacetylation_activity_Shalve" name="Deacetylation_activity_Shalve" value="3">
+<annotation>
+<COPASI xmlns="http://www.copasi.org/static/sbml">
+<rdf:RDF xmlns:dcterms="http://purl.org/dc/terms/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+<rdf:Description rdf:about="#COPASI34">
+<dcterms:created>
+<rdf:Description>
+<dcterms:W3CDTF>2020-01-21T14:43:21Z</dcterms:W3CDTF>
+</rdf:Description>
+</dcterms:created>
+</rdf:Description>
+</rdf:RDF>
+</COPASI>
+</annotation>
+</parameter>
+<parameter metaid="COPASI35" id="Deacetylation_activity_V" name="Deacetylation_activity_V" value="0.01">
+<annotation>
+<COPASI xmlns="http://www.copasi.org/static/sbml">
+<rdf:RDF xmlns:dcterms="http://purl.org/dc/terms/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+<rdf:Description rdf:about="#COPASI35">
+<dcterms:created>
+<rdf:Description>
+<dcterms:W3CDTF>2020-01-21T14:43:21Z</dcterms:W3CDTF>
+</rdf:Description>
+</dcterms:created>
+</rdf:Description>
+</rdf:RDF>
+</COPASI>
+</annotation>
+</parameter>
+<parameter metaid="COPASI36" id="Deacetylation_activity_h" name="Deacetylation_activity_h" value="30">
+<annotation>
+<COPASI xmlns="http://www.copasi.org/static/sbml">
+<rdf:RDF xmlns:dcterms="http://purl.org/dc/terms/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+<rdf:Description rdf:about="#COPASI36">
+<dcterms:created>
+<rdf:Description>
+<dcterms:W3CDTF>2020-01-21T14:43:21Z</dcterms:W3CDTF>
+</rdf:Description>
+</dcterms:created>
+</rdf:Description>
+</rdf:RDF>
+</COPASI>
+</annotation>
+</parameter>
+<parameter metaid="COPASI37" id="DUMMY_REACTION_AICAR_stimulus_removal_k1" name="DUMMY_REACTION_AICAR_stimulus_removal_k1" value="0.293095">
+<annotation>
+<COPASI xmlns="http://www.copasi.org/static/sbml">
+<rdf:RDF xmlns:dcterms="http://purl.org/dc/terms/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+<rdf:Description rdf:about="#COPASI37">
+<dcterms:created>
+<rdf:Description>
+<dcterms:W3CDTF>2020-01-21T14:43:21Z</dcterms:W3CDTF>
+</rdf:Description>
+</dcterms:created>
+</rdf:Description>
+</rdf:RDF>
+</COPASI>
+</annotation>
+</parameter>
+<parameter metaid="COPASI38" id="AMPK_phosphorylation_induced_by_AICAR_k1" name="AMPK_phosphorylation_induced_by_AICAR_k1" value="3.98586">
+<annotation>
+<COPASI xmlns="http://www.copasi.org/static/sbml">
+<rdf:RDF xmlns:dcterms="http://purl.org/dc/terms/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+<rdf:Description rdf:about="#COPASI38">
+<dcterms:created>
+<rdf:Description>
+<dcterms:W3CDTF>2020-01-21T14:43:21Z</dcterms:W3CDTF>
+</rdf:Description>
+</dcterms:created>
+</rdf:Description>
+</rdf:RDF>
+</COPASI>
+</annotation>
+</parameter>
+<parameter metaid="COPASI39" id="DUMMY_REACTION_Delay_AICAR_stimulus_Shalve" name="DUMMY_REACTION_Delay_AICAR_stimulus_Shalve" value="0.6672">
+<annotation>
+<COPASI xmlns="http://www.copasi.org/static/sbml">
+<rdf:RDF xmlns:dcterms="http://purl.org/dc/terms/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+<rdf:Description rdf:about="#COPASI39">
+<dcterms:created>
+<rdf:Description>
+<dcterms:W3CDTF>2020-01-21T14:43:21Z</dcterms:W3CDTF>
+</rdf:Description>
+</dcterms:created>
+</rdf:Description>
+</rdf:RDF>
+</COPASI>
+</annotation>
+</parameter>
+<parameter metaid="COPASI40" id="DUMMY_REACTION_Delay_AICAR_stimulus_V" name="DUMMY_REACTION_Delay_AICAR_stimulus_V" value="0.167159">
+<annotation>
+<COPASI xmlns="http://www.copasi.org/static/sbml">
+<rdf:RDF xmlns:dcterms="http://purl.org/dc/terms/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+<rdf:Description rdf:about="#COPASI40">
+<dcterms:created>
+<rdf:Description>
+<dcterms:W3CDTF>2020-01-21T14:43:21Z</dcterms:W3CDTF>
+</rdf:Description>
+</dcterms:created>
+</rdf:Description>
+</rdf:RDF>
+</COPASI>
+</annotation>
+</parameter>
+<parameter metaid="COPASI41" id="DUMMY_REACTION_Delay_AICAR_stimulus_h" name="DUMMY_REACTION_Delay_AICAR_stimulus_h" value="9.23537">
+<annotation>
+<COPASI xmlns="http://www.copasi.org/static/sbml">
+<rdf:RDF xmlns:dcterms="http://purl.org/dc/terms/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+<rdf:Description rdf:about="#COPASI41">
+<dcterms:created>
+<rdf:Description>
+<dcterms:W3CDTF>2020-01-21T14:43:21Z</dcterms:W3CDTF>
+</rdf:Description>
+</dcterms:created>
+</rdf:Description>
+</rdf:RDF>
+</COPASI>
+</annotation>
+</parameter>
+<parameter metaid="COPASI42" id="Basal_PGC1a_deacetylation_v" name="Basal_PGC1a_deacetylation_v" value="0.25">
+<annotation>
+<COPASI xmlns="http://www.copasi.org/static/sbml">
+<rdf:RDF xmlns:dcterms="http://purl.org/dc/terms/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+<rdf:Description rdf:about="#COPASI42">
+<dcterms:created>
+<rdf:Description>
+<dcterms:W3CDTF>2020-01-21T14:43:21Z</dcterms:W3CDTF>
+</rdf:Description>
+</dcterms:created>
+</rdf:Description>
+</rdf:RDF>
+</COPASI>
+</annotation>
+</parameter>
+<parameter metaid="COPASI43" id="DUMMY_REACTION_PGC1a_Deacetylation_Limiter_k1" name="DUMMY_REACTION_PGC1a_Deacetylation_Limiter_k1" value="0.56472">
+<annotation>
+<COPASI xmlns="http://www.copasi.org/static/sbml">
+<rdf:RDF xmlns:dcterms="http://purl.org/dc/terms/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+<rdf:Description rdf:about="#COPASI43">
+<dcterms:created>
+<rdf:Description>
+<dcterms:W3CDTF>2020-01-21T14:43:21Z</dcterms:W3CDTF>
+</rdf:Description>
+</dcterms:created>
+</rdf:Description>
+</rdf:RDF>
+</COPASI>
+</annotation>
+</parameter>
+<parameter metaid="COPASI44" id="Glucose_induced_AMPK_dephosphorylation_k1" name="Glucose_induced_AMPK_dephosphorylation_k1" value="5">
+<annotation>
+<COPASI xmlns="http://www.copasi.org/static/sbml">
+<rdf:RDF xmlns:dcterms="http://purl.org/dc/terms/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+<rdf:Description rdf:about="#COPASI44">
+<dcterms:created>
+<rdf:Description>
+<dcterms:W3CDTF>2020-01-21T14:43:21Z</dcterms:W3CDTF>
+</rdf:Description>
+</dcterms:created>
+</rdf:Description>
+</rdf:RDF>
+</COPASI>
+</annotation>
+</parameter>
+<parameter metaid="COPASI45" id="Glucose_input_v" name="Glucose_input_v" value="25">
+<annotation>
+<COPASI xmlns="http://www.copasi.org/static/sbml">
+<rdf:RDF xmlns:dcterms="http://purl.org/dc/terms/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+<rdf:Description rdf:about="#COPASI45">
+<dcterms:created>
+<rdf:Description>
+<dcterms:W3CDTF>2020-01-21T14:43:21Z</dcterms:W3CDTF>
+</rdf:Description>
+</dcterms:created>
+</rdf:Description>
+</rdf:RDF>
+</COPASI>
+</annotation>
+</parameter>
+<parameter metaid="COPASI46" id="Glucose_utilisation_k1" name="Glucose_utilisation_k1" value="1">
+<annotation>
+<COPASI xmlns="http://www.copasi.org/static/sbml">
+<rdf:RDF xmlns:dcterms="http://purl.org/dc/terms/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+<rdf:Description rdf:about="#COPASI46">
+<dcterms:created>
+<rdf:Description>
+<dcterms:W3CDTF>2020-01-21T14:43:21Z</dcterms:W3CDTF>
+</rdf:Description>
+</dcterms:created>
+</rdf:Description>
+</rdf:RDF>
+</COPASI>
+</annotation>
+</parameter>
+<parameter metaid="COPASI47" id="Glucose_DUMMY_REACTION_delay_Shalve" name="Glucose_DUMMY_REACTION_delay_Shalve" value="5.36174">
+<annotation>
+<COPASI xmlns="http://www.copasi.org/static/sbml">
+<rdf:RDF xmlns:dcterms="http://purl.org/dc/terms/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+<rdf:Description rdf:about="#COPASI47">
+<dcterms:created>
+<rdf:Description>
+<dcterms:W3CDTF>2020-01-21T14:43:21Z</dcterms:W3CDTF>
+</rdf:Description>
+</dcterms:created>
+</rdf:Description>
+</rdf:RDF>
+</COPASI>
+</annotation>
+</parameter>
+<parameter metaid="COPASI48" id="Glucose_DUMMY_REACTION_delay_V" name="Glucose_DUMMY_REACTION_delay_V" value="0.1013">
+<annotation>
+<COPASI xmlns="http://www.copasi.org/static/sbml">
+<rdf:RDF xmlns:dcterms="http://purl.org/dc/terms/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+<rdf:Description rdf:about="#COPASI48">
+<dcterms:created>
+<rdf:Description>
+<dcterms:W3CDTF>2020-01-21T14:43:21Z</dcterms:W3CDTF>
+</rdf:Description>
+</dcterms:created>
+</rdf:Description>
+</rdf:RDF>
+</COPASI>
+</annotation>
+</parameter>
+<parameter metaid="COPASI49" id="Glucose_DUMMY_REACTION_delay_h" name="Glucose_DUMMY_REACTION_delay_h" value="15.04">
+<annotation>
+<COPASI xmlns="http://www.copasi.org/static/sbml">
+<rdf:RDF xmlns:dcterms="http://purl.org/dc/terms/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+<rdf:Description rdf:about="#COPASI49">
+<dcterms:created>
+<rdf:Description>
+<dcterms:W3CDTF>2020-01-21T14:43:21Z</dcterms:W3CDTF>
+</rdf:Description>
+</dcterms:created>
+</rdf:Description>
+</rdf:RDF>
+</COPASI>
+</annotation>
+</parameter>
+<parameter metaid="COPASI50" id="Glucose_DUMMY_REACTION_delay_limiter_k1" name="Glucose_DUMMY_REACTION_delay_limiter_k1" value="0.1">
+<annotation>
+<COPASI xmlns="http://www.copasi.org/static/sbml">
+<rdf:RDF xmlns:dcterms="http://purl.org/dc/terms/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+<rdf:Description rdf:about="#COPASI50">
+<dcterms:created>
+<rdf:Description>
+<dcterms:W3CDTF>2020-01-21T14:43:21Z</dcterms:W3CDTF>
+</rdf:Description>
+</dcterms:created>
+</rdf:Description>
+</rdf:RDF>
+</COPASI>
+</annotation>
+</parameter>
+<parameter metaid="COPASI51" id="NAD_negative_regulation_k1" name="NAD_negative_regulation_k1" value="0.0609264">
+<annotation>
+<COPASI xmlns="http://www.copasi.org/static/sbml">
+<rdf:RDF xmlns:dcterms="http://purl.org/dc/terms/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+<rdf:Description rdf:about="#COPASI51">
+<dcterms:created>
+<rdf:Description>
+<dcterms:W3CDTF>2020-01-21T14:43:21Z</dcterms:W3CDTF>
+</rdf:Description>
+</dcterms:created>
+</rdf:Description>
+</rdf:RDF>
+</COPASI>
+</annotation>
+</parameter>
+<parameter metaid="COPASI52" id="DUMMY_REACTION_NegReg_disappearance_k1" name="DUMMY_REACTION_NegReg_disappearance_k1" value="0.1">
+<annotation>
+<COPASI xmlns="http://www.copasi.org/static/sbml">
+<rdf:RDF xmlns:dcterms="http://purl.org/dc/terms/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+<rdf:Description rdf:about="#COPASI52">
+<dcterms:created>
+<rdf:Description>
+<dcterms:W3CDTF>2020-01-21T14:43:21Z</dcterms:W3CDTF>
+</rdf:Description>
+</dcterms:created>
+</rdf:Description>
+</rdf:RDF>
+</COPASI>
+</annotation>
+</parameter>
+<parameter metaid="COPASI53" id="NR_NMN_supplementation_Shalve" name="NR_NMN_supplementation_Shalve" value="100">
+<annotation>
+<COPASI xmlns="http://www.copasi.org/static/sbml">
+<rdf:RDF xmlns:dcterms="http://purl.org/dc/terms/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+<rdf:Description rdf:about="#COPASI53">
+<dcterms:created>
+<rdf:Description>
+<dcterms:W3CDTF>2020-01-21T14:43:21Z</dcterms:W3CDTF>
+</rdf:Description>
+</dcterms:created>
+</rdf:Description>
+</rdf:RDF>
+</COPASI>
+</annotation>
+</parameter>
+<parameter metaid="COPASI54" id="NR_NMN_supplementation_V" name="NR_NMN_supplementation_V" value="0.10829">
+<annotation>
+<COPASI xmlns="http://www.copasi.org/static/sbml">
+<rdf:RDF xmlns:dcterms="http://purl.org/dc/terms/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+<rdf:Description rdf:about="#COPASI54">
+<dcterms:created>
+<rdf:Description>
+<dcterms:W3CDTF>2020-01-21T14:43:21Z</dcterms:W3CDTF>
+</rdf:Description>
+</dcterms:created>
+</rdf:Description>
+</rdf:RDF>
+</COPASI>
+</annotation>
+</parameter>
+<parameter metaid="COPASI55" id="NR_NMN_supplementation_h" name="NR_NMN_supplementation_h" value="1.5">
+<annotation>
+<COPASI xmlns="http://www.copasi.org/static/sbml">
+<rdf:RDF xmlns:dcterms="http://purl.org/dc/terms/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+<rdf:Description rdf:about="#COPASI55">
+<dcterms:created>
+<rdf:Description>
+<dcterms:W3CDTF>2020-01-21T14:43:21Z</dcterms:W3CDTF>
+</rdf:Description>
+</dcterms:created>
+</rdf:Description>
+</rdf:RDF>
+</COPASI>
+</annotation>
+</parameter>
+</listOfParameters>
+<listOfReactions>
+<reaction metaid="COPASI56" id="AMPK_phosphorylation" name="AMPK basal phosphorylation" reversible="false">
+<annotation>
+<celldesigner:extension>
+<celldesigner:name>AMPK basal phosphorylation</celldesigner:name>
+<celldesigner:reactionType>STATE_TRANSITION</celldesigner:reactionType>
+<celldesigner:baseReactants>
+<celldesigner:baseReactant species="AMPK" alias="sa0">
+<celldesigner:linkAnchor position="SSE"/>
+</celldesigner:baseReactant>
+</celldesigner:baseReactants>
+<celldesigner:baseProducts>
+<celldesigner:baseProduct species="AMPK_P" alias="sa1">
+<celldesigner:linkAnchor position="NNE"/>
+</celldesigner:baseProduct>
+</celldesigner:baseProducts>
+<celldesigner:connectScheme connectPolicy="direct" rectangleIndex="0">
+<celldesigner:listOfLineDirection>
+<celldesigner:lineDirection index="0" value="unknown"/>
+</celldesigner:listOfLineDirection>
+</celldesigner:connectScheme>
+<celldesigner:line width="1.0" color="ff000000"/>
+</celldesigner:extension>
+<COPASI xmlns="http://www.copasi.org/static/sbml">
+<rdf:RDF xmlns:dcterms="http://purl.org/dc/terms/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+<rdf:Description rdf:about="#COPASI56">
+<dcterms:created>
+<rdf:Description>
+<dcterms:W3CDTF>2020-01-21T14:43:21Z</dcterms:W3CDTF>
+</rdf:Description>
+</dcterms:created>
+</rdf:Description>
+</rdf:RDF>
+</COPASI>
+</annotation>
+<listOfReactants>
+<speciesReference metaid="CDMT00001" species="AMPK">
+<annotation>
+<celldesigner:extension>
+<celldesigner:alias>sa0</celldesigner:alias>
+</celldesigner:extension>
+</annotation>
+</speciesReference>
+</listOfReactants>
+<listOfProducts>
+<speciesReference metaid="CDMT00002" species="AMPK_P">
+<annotation>
+<celldesigner:extension>
+<celldesigner:alias>sa1</celldesigner:alias>
+</celldesigner:extension>
+</annotation>
+</speciesReference>
+</listOfProducts>
+<kineticLaw metaid="CDMT00003">
+<math xmlns="http://www.w3.org/1998/Math/MathML">
+<apply>
+<times/>
+<ci> compartment_ </ci>
+<ci> AMPK_phosphorylation_k1 </ci>
+<ci> AMPK </ci>
+</apply>
+</math>
+</kineticLaw>
+</reaction>
+<reaction metaid="COPASI57" id="AMPK_dephosphorylation" name="AMPK basal dephosphorylation" reversible="false">
+<annotation>
+<celldesigner:extension>
+<celldesigner:name>AMPK basal dephosphorylation</celldesigner:name>
+<celldesigner:reactionType>STATE_TRANSITION</celldesigner:reactionType>
+<celldesigner:baseReactants>
+<celldesigner:baseReactant species="AMPK_P" alias="sa1">
+<celldesigner:linkAnchor position="NNW"/>
+</celldesigner:baseReactant>
+</celldesigner:baseReactants>
+<celldesigner:baseProducts>
+<celldesigner:baseProduct species="AMPK" alias="sa0">
+<celldesigner:linkAnchor position="SSW"/>
+</celldesigner:baseProduct>
+</celldesigner:baseProducts>
+<celldesigner:connectScheme connectPolicy="direct" rectangleIndex="0">
+<celldesigner:listOfLineDirection>
+<celldesigner:lineDirection index="0" value="unknown"/>
+</celldesigner:listOfLineDirection>
+</celldesigner:connectScheme>
+<celldesigner:line width="1.0" color="ff000000"/>
+</celldesigner:extension>
+<COPASI xmlns="http://www.copasi.org/static/sbml">
+<rdf:RDF xmlns:dcterms="http://purl.org/dc/terms/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+<rdf:Description rdf:about="#COPASI57">
+<dcterms:created>
+<rdf:Description>
+<dcterms:W3CDTF>2020-01-21T14:43:21Z</dcterms:W3CDTF>
+</rdf:Description>
+</dcterms:created>
+</rdf:Description>
+</rdf:RDF>
+</COPASI>
+</annotation>
+<listOfReactants>
+<speciesReference metaid="CDMT00004" species="AMPK_P">
+<annotation>
+<celldesigner:extension>
+<celldesigner:alias>sa1</celldesigner:alias>
+</celldesigner:extension>
+</annotation>
+</speciesReference>
+</listOfReactants>
+<listOfProducts>
+<speciesReference metaid="CDMT00005" species="AMPK">
+<annotation>
+<celldesigner:extension>
+<celldesigner:alias>sa0</celldesigner:alias>
+</celldesigner:extension>
+</annotation>
+</speciesReference>
+</listOfProducts>
+<kineticLaw metaid="CDMT00006">
+<math xmlns="http://www.w3.org/1998/Math/MathML">
+<apply>
+<times/>
+<ci> compartment_ </ci>
+<ci> AMPK_dephosphorylation_k1 </ci>
+<ci> AMPK_P </ci>
+</apply>
+</math>
+</kineticLaw>
+</reaction>
+<reaction metaid="COPASI58" id="PGC1a_phosphorylation" name="PGC1a phosphorylation" reversible="false">
+<annotation>
+<celldesigner:extension>
+<celldesigner:name>PGC1a phosphorylation</celldesigner:name>
+<celldesigner:reactionType>STATE_TRANSITION</celldesigner:reactionType>
+<celldesigner:baseReactants>
+<celldesigner:baseReactant species="PGC1a" alias="sa2">
+<celldesigner:linkAnchor position="SSW"/>
+</celldesigner:baseReactant>
+</celldesigner:baseReactants>
+<celldesigner:baseProducts>
+<celldesigner:baseProduct species="PGC1a_P" alias="sa3">
+<celldesigner:linkAnchor position="NNW"/>
+</celldesigner:baseProduct>
+</celldesigner:baseProducts>
+<celldesigner:connectScheme connectPolicy="direct" rectangleIndex="0">
+<celldesigner:listOfLineDirection>
+<celldesigner:lineDirection index="0" value="unknown"/>
+</celldesigner:listOfLineDirection>
+</celldesigner:connectScheme>
+<celldesigner:line width="1.0" color="ff000000"/>
+<celldesigner:listOfModification>
+<celldesigner:modification type="CATALYSIS" modifiers="AMPK_P" aliases="sa1" targetLineIndex="-1,3">
+<celldesigner:connectScheme connectPolicy="direct">
+<celldesigner:listOfLineDirection>
+<celldesigner:lineDirection index="0" value="unknown"/>
+</celldesigner:listOfLineDirection>
+</celldesigner:connectScheme>
+<celldesigner:linkTarget species="AMPK_P" alias="sa1">
+<celldesigner:linkAnchor position="E"/>
+</celldesigner:linkTarget>
+<celldesigner:line width="1.0" color="ff000000"/>
+</celldesigner:modification>
+</celldesigner:listOfModification>
+</celldesigner:extension>
+<COPASI xmlns="http://www.copasi.org/static/sbml">
+<rdf:RDF xmlns:dcterms="http://purl.org/dc/terms/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+<rdf:Description rdf:about="#COPASI58">
+<dcterms:created>
+<rdf:Description>
+<dcterms:W3CDTF>2020-01-21T14:43:21Z</dcterms:W3CDTF>
+</rdf:Description>
+</dcterms:created>
+</rdf:Description>
+</rdf:RDF>
+</COPASI>
+</annotation>
+<listOfReactants>
+<speciesReference metaid="CDMT00007" species="PGC1a">
+<annotation>
+<celldesigner:extension>
+<celldesigner:alias>sa2</celldesigner:alias>
+</celldesigner:extension>
+</annotation>
+</speciesReference>
+</listOfReactants>
+<listOfProducts>
+<speciesReference metaid="CDMT00008" species="PGC1a_P">
+<annotation>
+<celldesigner:extension>
+<celldesigner:alias>sa3</celldesigner:alias>
+</celldesigner:extension>
+</annotation>
+</speciesReference>
+</listOfProducts>
+<listOfModifiers>
+<modifierSpeciesReference metaid="CDMT00009" species="AMPK_P">
+<annotation>
+<celldesigner:extension>
+<celldesigner:alias>sa1</celldesigner:alias>
+</celldesigner:extension>
+</annotation>
+</modifierSpeciesReference>
+</listOfModifiers>
+<kineticLaw metaid="CDMT00010">
+<math xmlns="http://www.w3.org/1998/Math/MathML">
+<apply>
+<times/>
+<ci> compartment_ </ci>
+<apply>
+<ci> Function_for_PGC1a_phosphorylation </ci>
+<ci> AMPK_P </ci>
+<ci> PGC1a </ci>
+<ci> PGC1a_phosphorylation_k1 </ci>
+</apply>
+</apply>
+</math>
+</kineticLaw>
+</reaction>
+<reaction metaid="COPASI59" id="PGC1a_dephosphorylation" name="PGC1a dephosphorylation" reversible="false">
+<annotation>
+<celldesigner:extension>
+<celldesigner:name>PGC1a dephosphorylation</celldesigner:name>
+<celldesigner:reactionType>STATE_TRANSITION</celldesigner:reactionType>
+<celldesigner:baseReactants>
+<celldesigner:baseReactant species="PGC1a_P" alias="sa3">
+<celldesigner:linkAnchor position="NNE"/>
+</celldesigner:baseReactant>
+</celldesigner:baseReactants>
+<celldesigner:baseProducts>
+<celldesigner:baseProduct species="PGC1a" alias="sa2">
+<celldesigner:linkAnchor position="SSE"/>
+</celldesigner:baseProduct>
+</celldesigner:baseProducts>
+<celldesigner:connectScheme connectPolicy="direct" rectangleIndex="0">
+<celldesigner:listOfLineDirection>
+<celldesigner:lineDirection index="0" value="unknown"/>
+</celldesigner:listOfLineDirection>
+</celldesigner:connectScheme>
+<celldesigner:line width="1.0" color="ff000000"/>
+</celldesigner:extension>
+<COPASI xmlns="http://www.copasi.org/static/sbml">
+<rdf:RDF xmlns:dcterms="http://purl.org/dc/terms/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+<rdf:Description rdf:about="#COPASI59">
+<dcterms:created>
+<rdf:Description>
+<dcterms:W3CDTF>2020-01-21T14:43:21Z</dcterms:W3CDTF>
+</rdf:Description>
+</dcterms:created>
+</rdf:Description>
+</rdf:RDF>
+</COPASI>
+</annotation>
+<listOfReactants>
+<speciesReference metaid="CDMT00011" species="PGC1a_P">
+<annotation>
+<celldesigner:extension>
+<celldesigner:alias>sa3</celldesigner:alias>
+</celldesigner:extension>
+</annotation>
+</speciesReference>
+</listOfReactants>
+<listOfProducts>
+<speciesReference metaid="CDMT00012" species="PGC1a">
+<annotation>
+<celldesigner:extension>
+<celldesigner:alias>sa2</celldesigner:alias>
+</celldesigner:extension>
+</annotation>
+</speciesReference>
+</listOfProducts>
+<kineticLaw metaid="CDMT00013">
+<math xmlns="http://www.w3.org/1998/Math/MathML">
+<apply>
+<times/>
+<ci> compartment_ </ci>
+<ci> PGC1a_dephosphorylation_k1 </ci>
+<ci> PGC1a_P </ci>
+</apply>
+</math>
+</kineticLaw>
+</reaction>
+<reaction metaid="COPASI60" id="Induced_PGC1a_deacetylation" name="PGC1a induced deacetylation" reversible="false">
+<annotation>
+<celldesigner:extension>
+<celldesigner:name>PGC1a induced deacetylation</celldesigner:name>
+<celldesigner:reactionType>STATE_TRANSITION</celldesigner:reactionType>
+<celldesigner:baseReactants>
+<celldesigner:baseReactant species="PGC1a_P" alias="sa3">
+<celldesigner:linkAnchor position="SSW"/>
+</celldesigner:baseReactant>
+</celldesigner:baseReactants>
+<celldesigner:baseProducts>
+<celldesigner:baseProduct species="PGC1a_deacet" alias="sa4">
+<celldesigner:linkAnchor position="NNW"/>
+</celldesigner:baseProduct>
+</celldesigner:baseProducts>
+<celldesigner:connectScheme connectPolicy="direct" rectangleIndex="0">
+<celldesigner:listOfLineDirection>
+<celldesigner:lineDirection index="0" value="unknown"/>
+</celldesigner:listOfLineDirection>
+</celldesigner:connectScheme>
+<celldesigner:line width="1.0" color="ff000000"/>
+<celldesigner:listOfModification>
+<celldesigner:modification type="CATALYSIS" modifiers="PGC1a_Deacetylation_Activity" aliases="sa10" targetLineIndex="-1,3" editPoints="0.029362754598114105,-0.168821157561859">
+<celldesigner:connectScheme connectPolicy="direct">
+<celldesigner:listOfLineDirection>
+<celldesigner:lineDirection index="0" value="unknown"/>
+<celldesigner:lineDirection index="1" value="unknown"/>
+</celldesigner:listOfLineDirection>
+</celldesigner:connectScheme>
+<celldesigner:linkTarget species="PGC1a_Deacetylation_Activity" alias="sa10">
+<celldesigner:linkAnchor position="N"/>
+</celldesigner:linkTarget>
+<celldesigner:line width="1.0" color="ff000000"/>
+</celldesigner:modification>
+</celldesigner:listOfModification>
+</celldesigner:extension>
+<COPASI xmlns="http://www.copasi.org/static/sbml">
+<rdf:RDF xmlns:dcterms="http://purl.org/dc/terms/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+<rdf:Description rdf:about="#COPASI60">
+<dcterms:created>
+<rdf:Description>
+<dcterms:W3CDTF>2020-01-21T14:43:21Z</dcterms:W3CDTF>
+</rdf:Description>
+</dcterms:created>
+</rdf:Description>
+</rdf:RDF>
+</COPASI>
+</annotation>
+<listOfReactants>
+<speciesReference metaid="CDMT00014" species="PGC1a_P">
+<annotation>
+<celldesigner:extension>
+<celldesigner:alias>sa3</celldesigner:alias>
+</celldesigner:extension>
+</annotation>
+</speciesReference>
+</listOfReactants>
+<listOfProducts>
+<speciesReference metaid="CDMT00015" species="PGC1a_deacet">
+<annotation>
+<celldesigner:extension>
+<celldesigner:alias>sa4</celldesigner:alias>
+</celldesigner:extension>
+</annotation>
+</speciesReference>
+</listOfProducts>
+<listOfModifiers>
+<modifierSpeciesReference metaid="CDMT00016" species="PGC1a_Deacetylation_Activity">
+<annotation>
+<celldesigner:extension>
+<celldesigner:alias>sa10</celldesigner:alias>
+</celldesigner:extension>
+</annotation>
+</modifierSpeciesReference>
+</listOfModifiers>
+<kineticLaw metaid="CDMT00017">
+<math xmlns="http://www.w3.org/1998/Math/MathML">
+<apply>
+<times/>
+<ci> compartment_ </ci>
+<apply>
+<ci> Function_for_PGC1a_induced_deacetylation </ci>
+<ci> Induced_PGC1a_deacetylation_k1 </ci>
+<ci> PGC1a_Deacetylation_Activity </ci>
+<ci> PGC1a_P </ci>
+</apply>
+</apply>
+</math>
+</kineticLaw>
+</reaction>
+<reaction metaid="COPASI61" id="PGC1a_acetylation" name="PGC1a basal acetylation" reversible="false">
+<annotation>
+<celldesigner:extension>
+<celldesigner:name>PGC1a basal acetylation</celldesigner:name>
+<celldesigner:reactionType>STATE_TRANSITION</celldesigner:reactionType>
+<celldesigner:baseReactants>
+<celldesigner:baseReactant species="PGC1a_deacet" alias="sa4">
+<celldesigner:linkAnchor position="N"/>
+</celldesigner:baseReactant>
+</celldesigner:baseReactants>
+<celldesigner:baseProducts>
+<celldesigner:baseProduct species="PGC1a_P" alias="sa3">
+<celldesigner:linkAnchor position="S"/>
+</celldesigner:baseProduct>
+</celldesigner:baseProducts>
+<celldesigner:connectScheme connectPolicy="direct" rectangleIndex="0">
+<celldesigner:listOfLineDirection>
+<celldesigner:lineDirection index="0" value="unknown"/>
+</celldesigner:listOfLineDirection>
+</celldesigner:connectScheme>
+<celldesigner:line width="1.0" color="ff000000"/>
+</celldesigner:extension>
+<COPASI xmlns="http://www.copasi.org/static/sbml">
+<rdf:RDF xmlns:dcterms="http://purl.org/dc/terms/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+<rdf:Description rdf:about="#COPASI61">
+<dcterms:created>
+<rdf:Description>
+<dcterms:W3CDTF>2020-01-21T14:43:21Z</dcterms:W3CDTF>
+</rdf:Description>
+</dcterms:created>
+</rdf:Description>
+</rdf:RDF>
+</COPASI>
+</annotation>
+<listOfReactants>
+<speciesReference metaid="CDMT00018" species="PGC1a_deacet">
+<annotation>
+<celldesigner:extension>
+<celldesigner:alias>sa4</celldesigner:alias>
+</celldesigner:extension>
+</annotation>
+</speciesReference>
+</listOfReactants>
+<listOfProducts>
+<speciesReference metaid="CDMT00019" species="PGC1a_P">
+<annotation>
+<celldesigner:extension>
+<celldesigner:alias>sa3</celldesigner:alias>
+</celldesigner:extension>
+</annotation>
+</speciesReference>
+</listOfProducts>
+<kineticLaw metaid="CDMT00020">
+<math xmlns="http://www.w3.org/1998/Math/MathML">
+<apply>
+<times/>
+<ci> compartment_ </ci>
+<ci> PGC1a_acetylation_k1 </ci>
+<ci> PGC1a_deacet </ci>
+</apply>
+</math>
+</kineticLaw>
+</reaction>
+<reaction metaid="COPASI62" id="DUMMY_REACTION_Delay_in_NAD_Increase" name="Delay Reaction NAD increase by AMPK" reversible="false">
+<annotation>
+<celldesigner:extension>
+<celldesigner:name>Delay Reaction NAD increase by AMPK</celldesigner:name>
+<celldesigner:reactionType>STATE_TRANSITION</celldesigner:reactionType>
+<celldesigner:baseReactants>
+<celldesigner:baseReactant species="s1" alias="sa17">
+<celldesigner:linkAnchor position="N"/>
+</celldesigner:baseReactant>
+</celldesigner:baseReactants>
+<celldesigner:baseProducts>
+<celldesigner:baseProduct species="Delay_in_NAD_increase" alias="sa8">
+<celldesigner:linkAnchor position="SSW"/>
+</celldesigner:baseProduct>
+</celldesigner:baseProducts>
+<celldesigner:connectScheme connectPolicy="direct" rectangleIndex="0">
+<celldesigner:listOfLineDirection>
+<celldesigner:lineDirection index="0" value="unknown"/>
+</celldesigner:listOfLineDirection>
+</celldesigner:connectScheme>
+<celldesigner:line width="1.0" color="ff000000"/>
+<celldesigner:listOfModification>
+<celldesigner:modification type="CATALYSIS" modifiers="AMPK_P" aliases="sa1" targetLineIndex="-1,2" editPoints="0.1616026825487673,0.024617045603597454 0.6271520029297084,-0.3178470467593719">
+<celldesigner:connectScheme connectPolicy="direct">
+<celldesigner:listOfLineDirection>
+<celldesigner:lineDirection index="0" value="unknown"/>
+<celldesigner:lineDirection index="1" value="unknown"/>
+<celldesigner:lineDirection index="2" value="unknown"/>
+</celldesigner:listOfLineDirection>
+</celldesigner:connectScheme>
+<celldesigner:linkTarget species="AMPK_P" alias="sa1">
+<celldesigner:linkAnchor position="ENE"/>
+</celldesigner:linkTarget>
+<celldesigner:line width="1.0" color="ff000000"/>
+</celldesigner:modification>
+</celldesigner:listOfModification>
+</celldesigner:extension>
+<COPASI xmlns="http://www.copasi.org/static/sbml">
+<rdf:RDF xmlns:dcterms="http://purl.org/dc/terms/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+<rdf:Description rdf:about="#COPASI62">
+<dcterms:created>
+<rdf:Description>
+<dcterms:W3CDTF>2020-01-21T14:43:21Z</dcterms:W3CDTF>
+</rdf:Description>
+</dcterms:created>
+</rdf:Description>
+</rdf:RDF>
+</COPASI>
+</annotation>
+<listOfReactants>
+<speciesReference metaid="CDMT00021" species="s1">
+<annotation>
+<celldesigner:extension>
+<celldesigner:alias>sa17</celldesigner:alias>
+</celldesigner:extension>
+</annotation>
+</speciesReference>
+</listOfReactants>
+<listOfProducts>
+<speciesReference metaid="CDMT00022" species="Delay_in_NAD_increase">
+<annotation>
+<celldesigner:extension>
+<celldesigner:alias>sa8</celldesigner:alias>
+</celldesigner:extension>
+</annotation>
+</speciesReference>
+</listOfProducts>
+<listOfModifiers>
+<modifierSpeciesReference metaid="CDMT00023" species="AMPK_P">
+<annotation>
+<celldesigner:extension>
+<celldesigner:alias>sa1</celldesigner:alias>
+</celldesigner:extension>
+</annotation>
+</modifierSpeciesReference>
+</listOfModifiers>
+<kineticLaw metaid="CDMT00024">
+<math xmlns="http://www.w3.org/1998/Math/MathML">
+<apply>
+<times/>
+<ci> compartment_ </ci>
+<apply>
+<ci> Function_for_Delay_Reaction_NAD_increase_by_AMPK </ci>
+<ci> AMPK_P </ci>
+<ci> DUMMY_REACTION_Delay_in_NAD_Increase_k1 </ci>
+</apply>
+</apply>
+</math>
+</kineticLaw>
+</reaction>
+<reaction metaid="COPASI63" id="DUMMY_REACTION_Delay_in_NAD_Increase_2" name="Dummy Reaction Delay_in_NAD_Increase Removal" reversible="false">
+<annotation>
+<celldesigner:extension>
+<celldesigner:name>Dummy Reaction Delay_in_NAD_Increase Removal</celldesigner:name>
+<celldesigner:reactionType>STATE_TRANSITION</celldesigner:reactionType>
+<celldesigner:baseReactants>
+<celldesigner:baseReactant species="Delay_in_NAD_increase" alias="sa8">
+<celldesigner:linkAnchor position="SSE"/>
+</celldesigner:baseReactant>
+</celldesigner:baseReactants>
+<celldesigner:baseProducts>
+<celldesigner:baseProduct species="s2" alias="sa18">
+<celldesigner:linkAnchor position="N"/>
+</celldesigner:baseProduct>
+</celldesigner:baseProducts>
+<celldesigner:connectScheme connectPolicy="direct" rectangleIndex="0">
+<celldesigner:listOfLineDirection>
+<celldesigner:lineDirection index="0" value="unknown"/>
+</celldesigner:listOfLineDirection>
+</celldesigner:connectScheme>
+<celldesigner:line width="1.0" color="ff000000"/>
+</celldesigner:extension>
+<COPASI xmlns="http://www.copasi.org/static/sbml">
+<rdf:RDF xmlns:dcterms="http://purl.org/dc/terms/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+<rdf:Description rdf:about="#COPASI63">
+<dcterms:created>
+<rdf:Description>
+<dcterms:W3CDTF>2020-01-21T14:43:21Z</dcterms:W3CDTF>
+</rdf:Description>
+</dcterms:created>
+</rdf:Description>
+</rdf:RDF>
+</COPASI>
+</annotation>
+<listOfReactants>
+<speciesReference metaid="CDMT00025" species="Delay_in_NAD_increase">
+<annotation>
+<celldesigner:extension>
+<celldesigner:alias>sa8</celldesigner:alias>
+</celldesigner:extension>
+</annotation>
+</speciesReference>
+</listOfReactants>
+<listOfProducts>
+<speciesReference metaid="CDMT00026" species="s2">
+<annotation>
+<celldesigner:extension>
+<celldesigner:alias>sa18</celldesigner:alias>
+</celldesigner:extension>
+</annotation>
+</speciesReference>
+</listOfProducts>
+<kineticLaw metaid="CDMT00027">
+<math xmlns="http://www.w3.org/1998/Math/MathML">
+<apply>
+<times/>
+<ci> compartment_ </ci>
+<ci> DUMMY_REACTION_Delay_in_NAD_Increase_2_k1 </ci>
+<ci> Delay_in_NAD_increase </ci>
+</apply>
+</math>
+</kineticLaw>
+</reaction>
+<reaction metaid="COPASI64" id="NAD_synthesis" name="NAD synthesis" reversible="false">
+<annotation>
+<celldesigner:extension>
+<celldesigner:name>NAD synthesis</celldesigner:name>
+<celldesigner:reactionType>STATE_TRANSITION</celldesigner:reactionType>
+<celldesigner:baseReactants>
+<celldesigner:baseReactant species="s3" alias="sa19">
+<celldesigner:linkAnchor position="E"/>
+</celldesigner:baseReactant>
+</celldesigner:baseReactants>
+<celldesigner:baseProducts>
+<celldesigner:baseProduct species="NAD" alias="sa7">
+<celldesigner:linkAnchor position="WNW"/>
+</celldesigner:baseProduct>
+</celldesigner:baseProducts>
+<celldesigner:connectScheme connectPolicy="direct" rectangleIndex="0">
+<celldesigner:listOfLineDirection>
+<celldesigner:lineDirection index="0" value="unknown"/>
+</celldesigner:listOfLineDirection>
+</celldesigner:connectScheme>
+<celldesigner:line width="1.0" color="ff000000"/>
+</celldesigner:extension>
+<COPASI xmlns="http://www.copasi.org/static/sbml">
+<rdf:RDF xmlns:dcterms="http://purl.org/dc/terms/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+<rdf:Description rdf:about="#COPASI64">
+<dcterms:created>
+<rdf:Description>
+<dcterms:W3CDTF>2020-01-21T14:43:21Z</dcterms:W3CDTF>
+</rdf:Description>
+</dcterms:created>
+</rdf:Description>
+</rdf:RDF>
+</COPASI>
+</annotation>
+<listOfReactants>
+<speciesReference metaid="CDMT00028" species="s3">
+<annotation>
+<celldesigner:extension>
+<celldesigner:alias>sa19</celldesigner:alias>
+</celldesigner:extension>
+</annotation>
+</speciesReference>
+</listOfReactants>
+<listOfProducts>
+<speciesReference metaid="CDMT00029" species="NAD">
+<annotation>
+<celldesigner:extension>
+<celldesigner:alias>sa7</celldesigner:alias>
+</celldesigner:extension>
+</annotation>
+</speciesReference>
+</listOfProducts>
+<kineticLaw metaid="CDMT00030">
+<math xmlns="http://www.w3.org/1998/Math/MathML">
+<apply>
+<times/>
+<ci> compartment_ </ci>
+<apply>
+<ci> Constant_flux__irreversible </ci>
+<ci> NAD_synthesis_v </ci>
+</apply>
+</apply>
+</math>
+</kineticLaw>
+</reaction>
+<reaction metaid="COPASI65" id="NAD_utilisation" name="NAD utilisation" reversible="false">
+<annotation>
+<celldesigner:extension>
+<celldesigner:name>NAD utilisation</celldesigner:name>
+<celldesigner:reactionType>STATE_TRANSITION</celldesigner:reactionType>
+<celldesigner:baseReactants>
+<celldesigner:baseReactant species="NAD" alias="sa7">
+<celldesigner:linkAnchor position="WSW"/>
+</celldesigner:baseReactant>
+</celldesigner:baseReactants>
+<celldesigner:baseProducts>
+<celldesigner:baseProduct species="s4" alias="sa20">
+<celldesigner:linkAnchor position="E"/>
+</celldesigner:baseProduct>
+</celldesigner:baseProducts>
+<celldesigner:connectScheme connectPolicy="direct" rectangleIndex="0">
+<celldesigner:listOfLineDirection>
+<celldesigner:lineDirection index="0" value="unknown"/>
+</celldesigner:listOfLineDirection>
+</celldesigner:connectScheme>
+<celldesigner:line width="1.0" color="ff000000"/>
+</celldesigner:extension>
+<COPASI xmlns="http://www.copasi.org/static/sbml">
+<rdf:RDF xmlns:dcterms="http://purl.org/dc/terms/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+<rdf:Description rdf:about="#COPASI65">
+<dcterms:created>
+<rdf:Description>
+<dcterms:W3CDTF>2020-01-21T14:43:21Z</dcterms:W3CDTF>
+</rdf:Description>
+</dcterms:created>
+</rdf:Description>
+</rdf:RDF>
+</COPASI>
+</annotation>
+<listOfReactants>
+<speciesReference metaid="CDMT00031" species="NAD">
+<annotation>
+<celldesigner:extension>
+<celldesigner:alias>sa7</celldesigner:alias>
+</celldesigner:extension>
+</annotation>
+</speciesReference>
+</listOfReactants>
+<listOfProducts>
+<speciesReference metaid="CDMT00032" species="s4">
+<annotation>
+<celldesigner:extension>
+<celldesigner:alias>sa20</celldesigner:alias>
+</celldesigner:extension>
+</annotation>
+</speciesReference>
+</listOfProducts>
+<kineticLaw metaid="CDMT00033">
+<math xmlns="http://www.w3.org/1998/Math/MathML">
+<apply>
+<times/>
+<ci> compartment_ </ci>
+<ci> NAD_utilisation_k1 </ci>
+<ci> NAD </ci>
+</apply>
+</math>
+</kineticLaw>
+</reaction>
+<reaction metaid="COPASI66" id="NAD_utilisation_by_PARP" name="NAD utilisation by PARP" reversible="false">
+<annotation>
+<celldesigner:extension>
+<celldesigner:name>NAD utilisation by PARP</celldesigner:name>
+<celldesigner:reactionType>STATE_TRANSITION</celldesigner:reactionType>
+<celldesigner:baseReactants>
+<celldesigner:baseReactant species="NAD" alias="sa7">
+<celldesigner:linkAnchor position="ESE"/>
+</celldesigner:baseReactant>
+</celldesigner:baseReactants>
+<celldesigner:baseProducts>
+<celldesigner:baseProduct species="s5" alias="sa21">
+<celldesigner:linkAnchor position="W"/>
+</celldesigner:baseProduct>
+</celldesigner:baseProducts>
+<celldesigner:connectScheme connectPolicy="direct" rectangleIndex="0">
+<celldesigner:listOfLineDirection>
+<celldesigner:lineDirection index="0" value="unknown"/>
+</celldesigner:listOfLineDirection>
+</celldesigner:connectScheme>
+<celldesigner:line width="1.0" color="ff000000"/>
+<celldesigner:listOfModification>
+<celldesigner:modification type="CATALYSIS" modifiers="PARP" aliases="sa9" targetLineIndex="-1,2">
+<celldesigner:connectScheme connectPolicy="direct">
+<celldesigner:listOfLineDirection>
+<celldesigner:lineDirection index="0" value="unknown"/>
+</celldesigner:listOfLineDirection>
+</celldesigner:connectScheme>
+<celldesigner:linkTarget species="PARP" alias="sa9">
+<celldesigner:linkAnchor position="S"/>
+</celldesigner:linkTarget>
+<celldesigner:line width="1.0" color="ff000000"/>
+</celldesigner:modification>
+</celldesigner:listOfModification>
+</celldesigner:extension>
+<COPASI xmlns="http://www.copasi.org/static/sbml">
+<rdf:RDF xmlns:dcterms="http://purl.org/dc/terms/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+<rdf:Description rdf:about="#COPASI66">
+<dcterms:created>
+<rdf:Description>
+<dcterms:W3CDTF>2020-01-21T14:43:21Z</dcterms:W3CDTF>
+</rdf:Description>
+</dcterms:created>
+</rdf:Description>
+</rdf:RDF>
+</COPASI>
+</annotation>
+<listOfReactants>
+<speciesReference metaid="CDMT00034" species="NAD">
+<annotation>
+<celldesigner:extension>
+<celldesigner:alias>sa7</celldesigner:alias>
+</celldesigner:extension>
+</annotation>
+</speciesReference>
+</listOfReactants>
+<listOfProducts>
+<speciesReference metaid="CDMT00035" species="s5">
+<annotation>
+<celldesigner:extension>
+<celldesigner:alias>sa21</celldesigner:alias>
+</celldesigner:extension>
+</annotation>
+</speciesReference>
+</listOfProducts>
+<listOfModifiers>
+<modifierSpeciesReference metaid="CDMT00036" species="PARP">
+<annotation>
+<celldesigner:extension>
+<celldesigner:alias>sa9</celldesigner:alias>
+</celldesigner:extension>
+</annotation>
+</modifierSpeciesReference>
+</listOfModifiers>
+<kineticLaw metaid="CDMT00037">
+<math xmlns="http://www.w3.org/1998/Math/MathML">
+<apply>
+<times/>
+<ci> compartment_ </ci>
+<apply>
+<ci> Function_for_NAD_utilisation_by_PARP </ci>
+<ci> NAD </ci>
+<ci> NAD_utilisation_by_PARP_k1 </ci>
+<ci> PARP </ci>
+</apply>
+</apply>
+</math>
+</kineticLaw>
+</reaction>
+<reaction metaid="COPASI67" id="NAD_increase_by_AMPK" name="NAD increase by AMPK" reversible="false">
+<annotation>
+<celldesigner:extension>
+<celldesigner:name>NAD increase by AMPK</celldesigner:name>
+<celldesigner:reactionType>STATE_TRANSITION</celldesigner:reactionType>
+<celldesigner:baseReactants>
+<celldesigner:baseReactant species="s6" alias="sa22">
+<celldesigner:linkAnchor position="S"/>
+</celldesigner:baseReactant>
+</celldesigner:baseReactants>
+<celldesigner:baseProducts>
+<celldesigner:baseProduct species="NAD" alias="sa7">
+<celldesigner:linkAnchor position="NNW"/>
+</celldesigner:baseProduct>
+</celldesigner:baseProducts>
+<celldesigner:listOfProductLinks>
+<celldesigner:productLink product="NAD_NegReg" alias="sa15" targetLineIndex="-1,1">
+<celldesigner:linkAnchor position="W"/>
+<celldesigner:connectScheme connectPolicy="direct">
+<celldesigner:listOfLineDirection>
+<celldesigner:lineDirection index="0" value="unknown"/>
+</celldesigner:listOfLineDirection>
+</celldesigner:connectScheme>
+<celldesigner:line width="1.0" color="ff000000" type="Straight"/>
+</celldesigner:productLink>
+</celldesigner:listOfProductLinks>
+<celldesigner:connectScheme connectPolicy="direct" rectangleIndex="0">
+<celldesigner:listOfLineDirection>
+<celldesigner:lineDirection index="0" value="unknown"/>
+<celldesigner:lineDirection index="1" value="unknown"/>
+<celldesigner:lineDirection index="2" value="unknown"/>
+</celldesigner:listOfLineDirection>
+</celldesigner:connectScheme>
+<celldesigner:editPoints>0.42150170648464025,0.33276450511945543 0.8054607508532423,-0.15358361774744012</celldesigner:editPoints>
+<celldesigner:line width="1.0" color="ff000000"/>
+<celldesigner:listOfModification>
+<celldesigner:modification type="CATALYSIS" modifiers="Delay_in_NAD_increase" aliases="sa8" targetLineIndex="-1,3">
+<celldesigner:connectScheme connectPolicy="direct">
+<celldesigner:listOfLineDirection>
+<celldesigner:lineDirection index="0" value="unknown"/>
+</celldesigner:listOfLineDirection>
+</celldesigner:connectScheme>
+<celldesigner:linkTarget species="Delay_in_NAD_increase" alias="sa8">
+<celldesigner:linkAnchor position="E"/>
+</celldesigner:linkTarget>
+<celldesigner:line width="1.0" color="ff000000"/>
+</celldesigner:modification>
+</celldesigner:listOfModification>
+</celldesigner:extension>
+<COPASI xmlns="http://www.copasi.org/static/sbml">
+<rdf:RDF xmlns:dcterms="http://purl.org/dc/terms/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+<rdf:Description rdf:about="#COPASI67">
+<dcterms:created>
+<rdf:Description>
+<dcterms:W3CDTF>2020-01-21T14:43:21Z</dcterms:W3CDTF>
+</rdf:Description>
+</dcterms:created>
+</rdf:Description>
+</rdf:RDF>
+</COPASI>
+</annotation>
+<listOfReactants>
+<speciesReference metaid="CDMT00038" species="s6">
+<annotation>
+<celldesigner:extension>
+<celldesigner:alias>sa22</celldesigner:alias>
+</celldesigner:extension>
+</annotation>
+</speciesReference>
+</listOfReactants>
+<listOfProducts>
+<speciesReference metaid="CDMT00039" species="NAD">
+<annotation>
+<celldesigner:extension>
+<celldesigner:alias>sa7</celldesigner:alias>
+</celldesigner:extension>
+</annotation>
+</speciesReference>
+<speciesReference metaid="CDMT00040" species="NAD_NegReg">
+<annotation>
+<celldesigner:extension>
+<celldesigner:alias>sa15</celldesigner:alias>
+</celldesigner:extension>
+</annotation>
+</speciesReference>
+</listOfProducts>
+<listOfModifiers>
+<modifierSpeciesReference metaid="CDMT00041" species="Delay_in_NAD_increase">
+<annotation>
+<celldesigner:extension>
+<celldesigner:alias>sa8</celldesigner:alias>
+</celldesigner:extension>
+</annotation>
+</modifierSpeciesReference>
+</listOfModifiers>
+<kineticLaw metaid="CDMT00042">
+<math xmlns="http://www.w3.org/1998/Math/MathML">
+<apply>
+<times/>
+<ci> compartment_ </ci>
+<apply>
+<ci> Hill_Cooperativity_1_1 </ci>
+<ci> Delay_in_NAD_increase </ci>
+<ci> NAD_increase_by_AMPK_Shalve </ci>
+<ci> NAD_increase_by_AMPK_V </ci>
+<ci> NAD_increase_by_AMPK_h </ci>
+</apply>
+</apply>
+</math>
+</kineticLaw>
+</reaction>
+<reaction metaid="COPASI68" id="Deacetylation_activity" name="Delay Reaction Induced Deacetylation" reversible="false">
+<annotation>
+<celldesigner:extension>
+<celldesigner:name>Delay Reaction Induced Deacetylation</celldesigner:name>
+<celldesigner:reactionType>STATE_TRANSITION</celldesigner:reactionType>
+<celldesigner:baseReactants>
+<celldesigner:baseReactant species="s7" alias="sa23">
+<celldesigner:linkAnchor position="N"/>
+</celldesigner:baseReactant>
+</celldesigner:baseReactants>
+<celldesigner:baseProducts>
+<celldesigner:baseProduct species="PGC1a_Deacetylation_Activity" alias="sa10">
+<celldesigner:linkAnchor position="SSE"/>
+</celldesigner:baseProduct>
+</celldesigner:baseProducts>
+<celldesigner:connectScheme connectPolicy="direct" rectangleIndex="0">
+<celldesigner:listOfLineDirection>
+<celldesigner:lineDirection index="0" value="unknown"/>
+</celldesigner:listOfLineDirection>
+</celldesigner:connectScheme>
+<celldesigner:line width="1.0" color="ff000000"/>
+<celldesigner:listOfModification>
+<celldesigner:modification type="CATALYSIS" modifiers="SIRT1_activity" aliases="sa5" targetLineIndex="-1,3" editPoints="0.02793922050602049,-0.1576420416717923">
+<celldesigner:connectScheme connectPolicy="direct">
+<celldesigner:listOfLineDirection>
+<celldesigner:lineDirection index="0" value="unknown"/>
+<celldesigner:lineDirection index="1" value="unknown"/>
+</celldesigner:listOfLineDirection>
+</celldesigner:connectScheme>
+<celldesigner:linkTarget species="SIRT1_activity" alias="sa5">
+<celldesigner:linkAnchor position="S"/>
+</celldesigner:linkTarget>
+<celldesigner:line width="1.0" color="ff000000"/>
+</celldesigner:modification>
+</celldesigner:listOfModification>
+</celldesigner:extension>
+<COPASI xmlns="http://www.copasi.org/static/sbml">
+<rdf:RDF xmlns:dcterms="http://purl.org/dc/terms/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+<rdf:Description rdf:about="#COPASI68">
+<dcterms:created>
+<rdf:Description>
+<dcterms:W3CDTF>2020-01-21T14:43:21Z</dcterms:W3CDTF>
+</rdf:Description>
+</dcterms:created>
+</rdf:Description>
+</rdf:RDF>
+</COPASI>
+</annotation>
+<listOfReactants>
+<speciesReference metaid="CDMT00043" species="s7">
+<annotation>
+<celldesigner:extension>
+<celldesigner:alias>sa23</celldesigner:alias>
+</celldesigner:extension>
+</annotation>
+</speciesReference>
+</listOfReactants>
+<listOfProducts>
+<speciesReference metaid="CDMT00044" species="PGC1a_Deacetylation_Activity">
+<annotation>
+<celldesigner:extension>
+<celldesigner:alias>sa10</celldesigner:alias>
+</celldesigner:extension>
+</annotation>
+</speciesReference>
+</listOfProducts>
+<listOfModifiers>
+<modifierSpeciesReference metaid="CDMT00045" species="SIRT1_activity">
+<annotation>
+<celldesigner:extension>
+<celldesigner:alias>sa5</celldesigner:alias>
+</celldesigner:extension>
+</annotation>
+</modifierSpeciesReference>
+</listOfModifiers>
+<kineticLaw metaid="CDMT00046">
+<math xmlns="http://www.w3.org/1998/Math/MathML">
+<apply>
+<times/>
+<ci> compartment_ </ci>
+<apply>
+<ci> Hill_Cooperativity_1_2 </ci>
+<ci> Deacetylation_activity_Shalve </ci>
+<ci> Deacetylation_activity_V </ci>
+<ci> Deacetylation_activity_h </ci>
+<ci> SIRT1_activity </ci>
+</apply>
+</apply>
+</math>
+</kineticLaw>
+</reaction>
+<reaction metaid="COPASI69" id="DUMMY_REACTION_AICAR_stimulus_removal" name="Dummy Reaction AICAR Stimulus Removal" reversible="false">
+<annotation>
+<celldesigner:extension>
+<celldesigner:name>Dummy Reaction AICAR Stimulus Removal</celldesigner:name>
+<celldesigner:reactionType>STATE_TRANSITION</celldesigner:reactionType>
+<celldesigner:baseReactants>
+<celldesigner:baseReactant species="AICAR_Delay" alias="sa11">
+<celldesigner:linkAnchor position="WSW"/>
+</celldesigner:baseReactant>
+</celldesigner:baseReactants>
+<celldesigner:baseProducts>
+<celldesigner:baseProduct species="s8" alias="sa24">
+<celldesigner:linkAnchor position="E"/>
+</celldesigner:baseProduct>
+</celldesigner:baseProducts>
+<celldesigner:connectScheme connectPolicy="direct" rectangleIndex="0">
+<celldesigner:listOfLineDirection>
+<celldesigner:lineDirection index="0" value="unknown"/>
+</celldesigner:listOfLineDirection>
+</celldesigner:connectScheme>
+<celldesigner:line width="1.0" color="ff000000"/>
+</celldesigner:extension>
+<COPASI xmlns="http://www.copasi.org/static/sbml">
+<rdf:RDF xmlns:dcterms="http://purl.org/dc/terms/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+<rdf:Description rdf:about="#COPASI69">
+<dcterms:created>
+<rdf:Description>
+<dcterms:W3CDTF>2020-01-21T14:43:21Z</dcterms:W3CDTF>
+</rdf:Description>
+</dcterms:created>
+</rdf:Description>
+</rdf:RDF>
+</COPASI>
+</annotation>
+<listOfReactants>
+<speciesReference metaid="CDMT00047" species="AICAR_Delay">
+<annotation>
+<celldesigner:extension>
+<celldesigner:alias>sa11</celldesigner:alias>
+</celldesigner:extension>
+</annotation>
+</speciesReference>
+</listOfReactants>
+<listOfProducts>
+<speciesReference metaid="CDMT00048" species="s8">
+<annotation>
+<celldesigner:extension>
+<celldesigner:alias>sa24</celldesigner:alias>
+</celldesigner:extension>
+</annotation>
+</speciesReference>
+</listOfProducts>
+<kineticLaw metaid="CDMT00049">
+<math xmlns="http://www.w3.org/1998/Math/MathML">
+<apply>
+<times/>
+<ci> compartment_ </ci>
+<ci> DUMMY_REACTION_AICAR_stimulus_removal_k1 </ci>
+<ci> AICAR_Delay </ci>
+</apply>
+</math>
+</kineticLaw>
+</reaction>
+<reaction metaid="COPASI70" id="AMPK_phosphorylation_induced_by_AICAR" name="AMPK induced phosphorylation by AICAR" reversible="false">
+<annotation>
+<celldesigner:extension>
+<celldesigner:name>AMPK induced phosphorylation by AICAR</celldesigner:name>
+<celldesigner:reactionType>STATE_TRANSITION</celldesigner:reactionType>
+<celldesigner:baseReactants>
+<celldesigner:baseReactant species="AMPK" alias="sa0">
+<celldesigner:linkAnchor position="SE"/>
+</celldesigner:baseReactant>
+</celldesigner:baseReactants>
+<celldesigner:baseProducts>
+<celldesigner:baseProduct species="AMPK_P" alias="sa1">
+<celldesigner:linkAnchor position="NE"/>
+</celldesigner:baseProduct>
+</celldesigner:baseProducts>
+<celldesigner:connectScheme connectPolicy="direct" rectangleIndex="0">
+<celldesigner:listOfLineDirection>
+<celldesigner:lineDirection index="0" value="unknown"/>
+</celldesigner:listOfLineDirection>
+</celldesigner:connectScheme>
+<celldesigner:line width="1.0" color="ff000000"/>
+<celldesigner:listOfModification>
+<celldesigner:modification type="CATALYSIS" modifiers="AICAR_Delay" aliases="sa11" targetLineIndex="-1,2" editPoints="0.8871423453462142,-0.039362834434250704">
+<celldesigner:connectScheme connectPolicy="direct">
+<celldesigner:listOfLineDirection>
+<celldesigner:lineDirection index="0" value="unknown"/>
+<celldesigner:lineDirection index="1" value="unknown"/>
+</celldesigner:listOfLineDirection>
+</celldesigner:connectScheme>
+<celldesigner:linkTarget species="AICAR_Delay" alias="sa11">
+<celldesigner:linkAnchor position="S"/>
+</celldesigner:linkTarget>
+<celldesigner:line width="1.0" color="ff000000"/>
+</celldesigner:modification>
+</celldesigner:listOfModification>
+</celldesigner:extension>
+<COPASI xmlns="http://www.copasi.org/static/sbml">
+<rdf:RDF xmlns:dcterms="http://purl.org/dc/terms/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+<rdf:Description rdf:about="#COPASI70">
+<dcterms:created>
+<rdf:Description>
+<dcterms:W3CDTF>2020-01-21T14:43:21Z</dcterms:W3CDTF>
+</rdf:Description>
+</dcterms:created>
+</rdf:Description>
+</rdf:RDF>
+</COPASI>
+</annotation>
+<listOfReactants>
+<speciesReference metaid="CDMT00050" species="AMPK">
+<annotation>
+<celldesigner:extension>
+<celldesigner:alias>sa0</celldesigner:alias>
+</celldesigner:extension>
+</annotation>
+</speciesReference>
+</listOfReactants>
+<listOfProducts>
+<speciesReference metaid="CDMT00051" species="AMPK_P">
+<annotation>
+<celldesigner:extension>
+<celldesigner:alias>sa1</celldesigner:alias>
+</celldesigner:extension>
+</annotation>
+</speciesReference>
+</listOfProducts>
+<listOfModifiers>
+<modifierSpeciesReference metaid="CDMT00052" species="AICAR_Delay">
+<annotation>
+<celldesigner:extension>
+<celldesigner:alias>sa11</celldesigner:alias>
+</celldesigner:extension>
+</annotation>
+</modifierSpeciesReference>
+</listOfModifiers>
+<kineticLaw metaid="CDMT00053">
+<math xmlns="http://www.w3.org/1998/Math/MathML">
+<apply>
+<times/>
+<ci> compartment_ </ci>
+<apply>
+<ci> Function_for_AMPK_induced_phosphorylation_by_AICAR </ci>
+<ci> AICAR_Delay </ci>
+<ci> AMPK </ci>
+<ci> AMPK_phosphorylation_induced_by_AICAR_k1 </ci>
+</apply>
+</apply>
+</math>
+</kineticLaw>
+</reaction>
+<reaction metaid="COPASI71" id="DUMMY_REACTION_Delay_AICAR_stimulus" name="Delay Reaction AICAR Stimulus" reversible="false">
+<annotation>
+<celldesigner:extension>
+<celldesigner:name>Delay Reaction AICAR Stimulus</celldesigner:name>
+<celldesigner:reactionType>STATE_TRANSITION</celldesigner:reactionType>
+<celldesigner:baseReactants>
+<celldesigner:baseReactant species="s9" alias="sa25">
+<celldesigner:linkAnchor position="E"/>
+</celldesigner:baseReactant>
+</celldesigner:baseReactants>
+<celldesigner:baseProducts>
+<celldesigner:baseProduct species="AICAR_Delay" alias="sa11">
+<celldesigner:linkAnchor position="WNW"/>
+</celldesigner:baseProduct>
+</celldesigner:baseProducts>
+<celldesigner:connectScheme connectPolicy="direct" rectangleIndex="0">
+<celldesigner:listOfLineDirection>
+<celldesigner:lineDirection index="0" value="unknown"/>
+</celldesigner:listOfLineDirection>
+</celldesigner:connectScheme>
+<celldesigner:line width="1.0" color="ff000000"/>
+<celldesigner:listOfModification>
+<celldesigner:modification type="CATALYSIS" modifiers="AICAR_treatment" aliases="sa12" targetLineIndex="-1,2">
+<celldesigner:connectScheme connectPolicy="direct">
+<celldesigner:listOfLineDirection>
+<celldesigner:lineDirection index="0" value="unknown"/>
+</celldesigner:listOfLineDirection>
+</celldesigner:connectScheme>
+<celldesigner:linkTarget species="AICAR_treatment" alias="sa12">
+<celldesigner:linkAnchor position="S"/>
+</celldesigner:linkTarget>
+<celldesigner:line width="1.0" color="ff000000"/>
+</celldesigner:modification>
+</celldesigner:listOfModification>
+</celldesigner:extension>
+<COPASI xmlns="http://www.copasi.org/static/sbml">
+<rdf:RDF xmlns:dcterms="http://purl.org/dc/terms/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+<rdf:Description rdf:about="#COPASI71">
+<dcterms:created>
+<rdf:Description>
+<dcterms:W3CDTF>2020-01-21T14:43:21Z</dcterms:W3CDTF>
+</rdf:Description>
+</dcterms:created>
+</rdf:Description>
+</rdf:RDF>
+</COPASI>
+</annotation>
+<listOfReactants>
+<speciesReference metaid="CDMT00054" species="s9">
+<annotation>
+<celldesigner:extension>
+<celldesigner:alias>sa25</celldesigner:alias>
+</celldesigner:extension>
+</annotation>
+</speciesReference>
+</listOfReactants>
+<listOfProducts>
+<speciesReference metaid="CDMT00055" species="AICAR_Delay">
+<annotation>
+<celldesigner:extension>
+<celldesigner:alias>sa11</celldesigner:alias>
+</celldesigner:extension>
+</annotation>
+</speciesReference>
+</listOfProducts>
+<listOfModifiers>
+<modifierSpeciesReference metaid="CDMT00056" species="AICAR_treatment">
+<annotation>
+<celldesigner:extension>
+<celldesigner:alias>sa12</celldesigner:alias>
+</celldesigner:extension>
+</annotation>
+</modifierSpeciesReference>
+</listOfModifiers>
+<kineticLaw metaid="CDMT00057">
+<math xmlns="http://www.w3.org/1998/Math/MathML">
+<apply>
+<times/>
+<ci> compartment_ </ci>
+<apply>
+<ci> Hill_Cooperativity_1_3 </ci>
+<ci> AICAR_treatment </ci>
+<ci> DUMMY_REACTION_Delay_AICAR_stimulus_Shalve </ci>
+<ci> DUMMY_REACTION_Delay_AICAR_stimulus_V </ci>
+<ci> DUMMY_REACTION_Delay_AICAR_stimulus_h </ci>
+</apply>
+</apply>
+</math>
+</kineticLaw>
+</reaction>
+<reaction metaid="COPASI72" id="Basal_PGC1a_deacetylation" name="PGC1a basal deacetylation" reversible="false">
+<annotation>
+<celldesigner:extension>
+<celldesigner:name>PGC1a basal deacetylation</celldesigner:name>
+<celldesigner:reactionType>STATE_TRANSITION</celldesigner:reactionType>
+<celldesigner:baseReactants>
+<celldesigner:baseReactant species="PGC1a_P" alias="sa3">
+<celldesigner:linkAnchor position="SSE"/>
+</celldesigner:baseReactant>
+</celldesigner:baseReactants>
+<celldesigner:baseProducts>
+<celldesigner:baseProduct species="PGC1a_deacet" alias="sa4">
+<celldesigner:linkAnchor position="NNE"/>
+</celldesigner:baseProduct>
+</celldesigner:baseProducts>
+<celldesigner:connectScheme connectPolicy="direct" rectangleIndex="0">
+<celldesigner:listOfLineDirection>
+<celldesigner:lineDirection index="0" value="unknown"/>
+</celldesigner:listOfLineDirection>
+</celldesigner:connectScheme>
+<celldesigner:line width="1.0" color="ff000000"/>
+<celldesigner:listOfModification>
+<celldesigner:modification type="CATALYSIS" modifiers="SIRT1_activity" aliases="sa5" targetLineIndex="-1,2">
+<celldesigner:connectScheme connectPolicy="direct">
+<celldesigner:listOfLineDirection>
+<celldesigner:lineDirection index="0" value="unknown"/>
+</celldesigner:listOfLineDirection>
+</celldesigner:connectScheme>
+<celldesigner:linkTarget species="SIRT1_activity" alias="sa5">
+<celldesigner:linkAnchor position="W"/>
+</celldesigner:linkTarget>
+<celldesigner:line width="1.0" color="ff000000"/>
+</celldesigner:modification>
+</celldesigner:listOfModification>
+</celldesigner:extension>
+<COPASI xmlns="http://www.copasi.org/static/sbml">
+<rdf:RDF xmlns:dcterms="http://purl.org/dc/terms/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+<rdf:Description rdf:about="#COPASI72">
+<dcterms:created>
+<rdf:Description>
+<dcterms:W3CDTF>2020-01-21T14:43:21Z</dcterms:W3CDTF>
+</rdf:Description>
+</dcterms:created>
+</rdf:Description>
+</rdf:RDF>
+</COPASI>
+</annotation>
+<listOfReactants>
+<speciesReference metaid="CDMT00058" species="PGC1a_P">
+<annotation>
+<celldesigner:extension>
+<celldesigner:alias>sa3</celldesigner:alias>
+</celldesigner:extension>
+</annotation>
+</speciesReference>
+</listOfReactants>
+<listOfProducts>
+<speciesReference metaid="CDMT00059" species="PGC1a_deacet">
+<annotation>
+<celldesigner:extension>
+<celldesigner:alias>sa4</celldesigner:alias>
+</celldesigner:extension>
+</annotation>
+</speciesReference>
+</listOfProducts>
+<listOfModifiers>
+<modifierSpeciesReference metaid="CDMT00060" species="SIRT1_activity">
+<annotation>
+<celldesigner:extension>
+<celldesigner:alias>sa5</celldesigner:alias>
+</celldesigner:extension>
+</annotation>
+</modifierSpeciesReference>
+</listOfModifiers>
+<kineticLaw metaid="CDMT00061">
+<math xmlns="http://www.w3.org/1998/Math/MathML">
+<apply>
+<times/>
+<ci> compartment_ </ci>
+<apply>
+<ci> Basal_deacetylation_function_1 </ci>
+<ci> Basal_PGC1a_deacetylation_v </ci>
+<ci> SIRT1_activity </ci>
+</apply>
+</apply>
+</math>
+</kineticLaw>
+</reaction>
+<reaction metaid="COPASI73" id="DUMMY_REACTION_PGC1a_Deacetylation_Limiter" name="Dummy Reaction Induced Deacetylation Delay Removal" reversible="false">
+<annotation>
+<celldesigner:extension>
+<celldesigner:name>Dummy Reaction Induced Deacetylation Delay Removal</celldesigner:name>
+<celldesigner:reactionType>STATE_TRANSITION</celldesigner:reactionType>
+<celldesigner:baseReactants>
+<celldesigner:baseReactant species="PGC1a_Deacetylation_Activity" alias="sa10">
+<celldesigner:linkAnchor position="SSW"/>
+</celldesigner:baseReactant>
+</celldesigner:baseReactants>
+<celldesigner:baseProducts>
+<celldesigner:baseProduct species="s10" alias="sa26">
+<celldesigner:linkAnchor position="N"/>
+</celldesigner:baseProduct>
+</celldesigner:baseProducts>
+<celldesigner:connectScheme connectPolicy="direct" rectangleIndex="0">
+<celldesigner:listOfLineDirection>
+<celldesigner:lineDirection index="0" value="unknown"/>
+</celldesigner:listOfLineDirection>
+</celldesigner:connectScheme>
+<celldesigner:line width="1.0" color="ff000000"/>
+</celldesigner:extension>
+<COPASI xmlns="http://www.copasi.org/static/sbml">
+<rdf:RDF xmlns:dcterms="http://purl.org/dc/terms/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+<rdf:Description rdf:about="#COPASI73">
+<dcterms:created>
+<rdf:Description>
+<dcterms:W3CDTF>2020-01-21T14:43:21Z</dcterms:W3CDTF>
+</rdf:Description>
+</dcterms:created>
+</rdf:Description>
+</rdf:RDF>
+</COPASI>
+</annotation>
+<listOfReactants>
+<speciesReference metaid="CDMT00062" species="PGC1a_Deacetylation_Activity">
+<annotation>
+<celldesigner:extension>
+<celldesigner:alias>sa10</celldesigner:alias>
+</celldesigner:extension>
+</annotation>
+</speciesReference>
+</listOfReactants>
+<listOfProducts>
+<speciesReference metaid="CDMT00063" species="s10">
+<annotation>
+<celldesigner:extension>
+<celldesigner:alias>sa26</celldesigner:alias>
+</celldesigner:extension>
+</annotation>
+</speciesReference>
+</listOfProducts>
+<kineticLaw metaid="CDMT00064">
+<math xmlns="http://www.w3.org/1998/Math/MathML">
+<apply>
+<times/>
+<ci> compartment_ </ci>
+<ci> DUMMY_REACTION_PGC1a_Deacetylation_Limiter_k1 </ci>
+<ci> PGC1a_Deacetylation_Activity </ci>
+</apply>
+</math>
+</kineticLaw>
+</reaction>
+<reaction metaid="COPASI74" id="Glucose_induced_AMPK_dephosphorylation" name="Glucose-induced AMPK dephosphorylation" reversible="false">
+<annotation>
+<celldesigner:extension>
+<celldesigner:name>Glucose-induced AMPK dephosphorylation</celldesigner:name>
+<celldesigner:reactionType>STATE_TRANSITION</celldesigner:reactionType>
+<celldesigner:baseReactants>
+<celldesigner:baseReactant species="AMPK_P" alias="sa1">
+<celldesigner:linkAnchor position="NW"/>
+</celldesigner:baseReactant>
+</celldesigner:baseReactants>
+<celldesigner:baseProducts>
+<celldesigner:baseProduct species="AMPK" alias="sa0">
+<celldesigner:linkAnchor position="SW"/>
+</celldesigner:baseProduct>
+</celldesigner:baseProducts>
+<celldesigner:connectScheme connectPolicy="direct" rectangleIndex="0">
+<celldesigner:listOfLineDirection>
+<celldesigner:lineDirection index="0" value="unknown"/>
+</celldesigner:listOfLineDirection>
+</celldesigner:connectScheme>
+<celldesigner:line width="1.0" color="ff000000"/>
+<celldesigner:listOfModification>
+<celldesigner:modification type="CATALYSIS" modifiers="GlucoseDelay" aliases="sa14" targetLineIndex="-1,2" editPoints="0.7653255087203985,0.4538644172059798">
+<celldesigner:connectScheme connectPolicy="direct">
+<celldesigner:listOfLineDirection>
+<celldesigner:lineDirection index="0" value="unknown"/>
+<celldesigner:lineDirection index="1" value="unknown"/>
+</celldesigner:listOfLineDirection>
+</celldesigner:connectScheme>
+<celldesigner:linkTarget species="GlucoseDelay" alias="sa14">
+<celldesigner:linkAnchor position="SSE"/>
+</celldesigner:linkTarget>
+<celldesigner:line width="1.0" color="ff000000"/>
+</celldesigner:modification>
+</celldesigner:listOfModification>
+</celldesigner:extension>
+<COPASI xmlns="http://www.copasi.org/static/sbml">
+<rdf:RDF xmlns:dcterms="http://purl.org/dc/terms/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+<rdf:Description rdf:about="#COPASI74">
+<dcterms:created>
+<rdf:Description>
+<dcterms:W3CDTF>2020-01-21T14:43:21Z</dcterms:W3CDTF>
+</rdf:Description>
+</dcterms:created>
+</rdf:Description>
+</rdf:RDF>
+</COPASI>
+</annotation>
+<listOfReactants>
+<speciesReference metaid="CDMT00065" species="AMPK_P">
+<annotation>
+<celldesigner:extension>
+<celldesigner:alias>sa1</celldesigner:alias>
+</celldesigner:extension>
+</annotation>
+</speciesReference>
+</listOfReactants>
+<listOfProducts>
+<speciesReference metaid="CDMT00066" species="AMPK">
+<annotation>
+<celldesigner:extension>
+<celldesigner:alias>sa0</celldesigner:alias>
+</celldesigner:extension>
+</annotation>
+</speciesReference>
+</listOfProducts>
+<listOfModifiers>
+<modifierSpeciesReference metaid="CDMT00067" species="GlucoseDelay">
+<annotation>
+<celldesigner:extension>
+<celldesigner:alias>sa14</celldesigner:alias>
+</celldesigner:extension>
+</annotation>
+</modifierSpeciesReference>
+</listOfModifiers>
+<kineticLaw metaid="CDMT00068">
+<math xmlns="http://www.w3.org/1998/Math/MathML">
+<apply>
+<times/>
+<ci> compartment_ </ci>
+<apply>
+<ci> Function_for_Glucose_induced_AMPK_dephosphorylation </ci>
+<ci> AMPK_P </ci>
+<ci> GlucoseDelay </ci>
+<ci> Glucose_induced_AMPK_dephosphorylation_k1 </ci>
+</apply>
+</apply>
+</math>
+</kineticLaw>
+</reaction>
+<reaction metaid="COPASI75" id="Glucose_input" name="Glucose influx" reversible="false">
+<annotation>
+<celldesigner:extension>
+<celldesigner:name>Glucose influx</celldesigner:name>
+<celldesigner:reactionType>STATE_TRANSITION</celldesigner:reactionType>
+<celldesigner:baseReactants>
+<celldesigner:baseReactant species="s11" alias="sa27">
+<celldesigner:linkAnchor position="S"/>
+</celldesigner:baseReactant>
+</celldesigner:baseReactants>
+<celldesigner:baseProducts>
+<celldesigner:baseProduct species="Glucose" alias="sa13">
+<celldesigner:linkAnchor position="NNW"/>
+</celldesigner:baseProduct>
+</celldesigner:baseProducts>
+<celldesigner:connectScheme connectPolicy="direct" rectangleIndex="0">
+<celldesigner:listOfLineDirection>
+<celldesigner:lineDirection index="0" value="unknown"/>
+</celldesigner:listOfLineDirection>
+</celldesigner:connectScheme>
+<celldesigner:line width="1.0" color="ff000000"/>
+</celldesigner:extension>
+<COPASI xmlns="http://www.copasi.org/static/sbml">
+<rdf:RDF xmlns:dcterms="http://purl.org/dc/terms/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+<rdf:Description rdf:about="#COPASI75">
+<dcterms:created>
+<rdf:Description>
+<dcterms:W3CDTF>2020-01-21T14:43:21Z</dcterms:W3CDTF>
+</rdf:Description>
+</dcterms:created>
+</rdf:Description>
+</rdf:RDF>
+</COPASI>
+</annotation>
+<listOfReactants>
+<speciesReference metaid="CDMT00069" species="s11">
+<annotation>
+<celldesigner:extension>
+<celldesigner:alias>sa27</celldesigner:alias>
+</celldesigner:extension>
+</annotation>
+</speciesReference>
+</listOfReactants>
+<listOfProducts>
+<speciesReference metaid="CDMT00070" species="Glucose">
+<annotation>
+<celldesigner:extension>
+<celldesigner:alias>sa13</celldesigner:alias>
+</celldesigner:extension>
+</annotation>
+</speciesReference>
+</listOfProducts>
+<kineticLaw metaid="CDMT00071">
+<math xmlns="http://www.w3.org/1998/Math/MathML">
+<apply>
+<times/>
+<ci> compartment_ </ci>
+<apply>
+<ci> Constant_flux__irreversible </ci>
+<ci> Glucose_input_v </ci>
+</apply>
+</apply>
+</math>
+</kineticLaw>
+</reaction>
+<reaction metaid="COPASI76" id="Glucose_utilisation" name="Glucose utilisation" reversible="false">
+<annotation>
+<celldesigner:extension>
+<celldesigner:name>Glucose utilisation</celldesigner:name>
+<celldesigner:reactionType>STATE_TRANSITION</celldesigner:reactionType>
+<celldesigner:baseReactants>
+<celldesigner:baseReactant species="Glucose" alias="sa13">
+<celldesigner:linkAnchor position="NNE"/>
+</celldesigner:baseReactant>
+</celldesigner:baseReactants>
+<celldesigner:baseProducts>
+<celldesigner:baseProduct species="s12" alias="sa28">
+<celldesigner:linkAnchor position="S"/>
+</celldesigner:baseProduct>
+</celldesigner:baseProducts>
+<celldesigner:connectScheme connectPolicy="direct" rectangleIndex="0">
+<celldesigner:listOfLineDirection>
+<celldesigner:lineDirection index="0" value="unknown"/>
+</celldesigner:listOfLineDirection>
+</celldesigner:connectScheme>
+<celldesigner:line width="1.0" color="ff000000"/>
+</celldesigner:extension>
+<COPASI xmlns="http://www.copasi.org/static/sbml">
+<rdf:RDF xmlns:dcterms="http://purl.org/dc/terms/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+<rdf:Description rdf:about="#COPASI76">
+<dcterms:created>
+<rdf:Description>
+<dcterms:W3CDTF>2020-01-21T14:43:21Z</dcterms:W3CDTF>
+</rdf:Description>
+</dcterms:created>
+</rdf:Description>
+</rdf:RDF>
+</COPASI>
+</annotation>
+<listOfReactants>
+<speciesReference metaid="CDMT00072" species="Glucose">
+<annotation>
+<celldesigner:extension>
+<celldesigner:alias>sa13</celldesigner:alias>
+</celldesigner:extension>
+</annotation>
+</speciesReference>
+</listOfReactants>
+<listOfProducts>
+<speciesReference metaid="CDMT00073" species="s12">
+<annotation>
+<celldesigner:extension>
+<celldesigner:alias>sa28</celldesigner:alias>
+</celldesigner:extension>
+</annotation>
+</speciesReference>
+</listOfProducts>
+<kineticLaw metaid="CDMT00074">
+<math xmlns="http://www.w3.org/1998/Math/MathML">
+<apply>
+<times/>
+<ci> compartment_ </ci>
+<ci> Glucose_utilisation_k1 </ci>
+<ci> Glucose </ci>
+</apply>
+</math>
+</kineticLaw>
+</reaction>
+<reaction metaid="COPASI77" id="Glucose_DUMMY_REACTION_delay" name="Delay Reaction Glucose Stimulus" reversible="false">
+<annotation>
+<celldesigner:extension>
+<celldesigner:name>Delay Reaction Glucose Stimulus</celldesigner:name>
+<celldesigner:reactionType>STATE_TRANSITION</celldesigner:reactionType>
+<celldesigner:baseReactants>
+<celldesigner:baseReactant species="s13" alias="sa29">
+<celldesigner:linkAnchor position="S"/>
+</celldesigner:baseReactant>
+</celldesigner:baseReactants>
+<celldesigner:baseProducts>
+<celldesigner:baseProduct species="GlucoseDelay" alias="sa14">
+<celldesigner:linkAnchor position="NNE"/>
+</celldesigner:baseProduct>
+</celldesigner:baseProducts>
+<celldesigner:connectScheme connectPolicy="direct" rectangleIndex="0">
+<celldesigner:listOfLineDirection>
+<celldesigner:lineDirection index="0" value="unknown"/>
+</celldesigner:listOfLineDirection>
+</celldesigner:connectScheme>
+<celldesigner:line width="1.0" color="ff000000"/>
+<celldesigner:listOfModification>
+<celldesigner:modification type="CATALYSIS" modifiers="Glucose" aliases="sa13" targetLineIndex="-1,3" editPoints="0.7462222343920937,0.4351719330229892">
+<celldesigner:connectScheme connectPolicy="direct">
+<celldesigner:listOfLineDirection>
+<celldesigner:lineDirection index="0" value="unknown"/>
+<celldesigner:lineDirection index="1" value="unknown"/>
+</celldesigner:listOfLineDirection>
+</celldesigner:connectScheme>
+<celldesigner:linkTarget species="Glucose" alias="sa13">
+<celldesigner:linkAnchor position="SSW"/>
+</celldesigner:linkTarget>
+<celldesigner:line width="1.0" color="ff000000"/>
+</celldesigner:modification>
+</celldesigner:listOfModification>
+</celldesigner:extension>
+<COPASI xmlns="http://www.copasi.org/static/sbml">
+<rdf:RDF xmlns:dcterms="http://purl.org/dc/terms/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+<rdf:Description rdf:about="#COPASI77">
+<dcterms:created>
+<rdf:Description>
+<dcterms:W3CDTF>2020-01-21T14:43:21Z</dcterms:W3CDTF>
+</rdf:Description>
+</dcterms:created>
+</rdf:Description>
+</rdf:RDF>
+</COPASI>
+</annotation>
+<listOfReactants>
+<speciesReference metaid="CDMT00075" species="s13">
+<annotation>
+<celldesigner:extension>
+<celldesigner:alias>sa29</celldesigner:alias>
+</celldesigner:extension>
+</annotation>
+</speciesReference>
+</listOfReactants>
+<listOfProducts>
+<speciesReference metaid="CDMT00076" species="GlucoseDelay">
+<annotation>
+<celldesigner:extension>
+<celldesigner:alias>sa14</celldesigner:alias>
+</celldesigner:extension>
+</annotation>
+</speciesReference>
+</listOfProducts>
+<listOfModifiers>
+<modifierSpeciesReference metaid="CDMT00077" species="Glucose">
+<annotation>
+<celldesigner:extension>
+<celldesigner:alias>sa13</celldesigner:alias>
+</celldesigner:extension>
+</annotation>
+</modifierSpeciesReference>
+</listOfModifiers>
+<kineticLaw metaid="CDMT00078">
+<math xmlns="http://www.w3.org/1998/Math/MathML">
+<apply>
+<times/>
+<ci> compartment_ </ci>
+<apply>
+<ci> Hill_Cooperativity_1_4 </ci>
+<ci> Glucose </ci>
+<ci> Glucose_DUMMY_REACTION_delay_Shalve </ci>
+<ci> Glucose_DUMMY_REACTION_delay_V </ci>
+<ci> Glucose_DUMMY_REACTION_delay_h </ci>
+</apply>
+</apply>
+</math>
+</kineticLaw>
+</reaction>
+<reaction metaid="COPASI78" id="Glucose_DUMMY_REACTION_delay_limiter" name="Dummy Reaction Glucose Delay Removal" reversible="false">
+<annotation>
+<celldesigner:extension>
+<celldesigner:name>Dummy Reaction Glucose Delay Removal</celldesigner:name>
+<celldesigner:reactionType>STATE_TRANSITION</celldesigner:reactionType>
+<celldesigner:baseReactants>
+<celldesigner:baseReactant species="GlucoseDelay" alias="sa14">
+<celldesigner:linkAnchor position="SSW"/>
+</celldesigner:baseReactant>
+</celldesigner:baseReactants>
+<celldesigner:baseProducts>
+<celldesigner:baseProduct species="s14" alias="sa30">
+<celldesigner:linkAnchor position="N"/>
+</celldesigner:baseProduct>
+</celldesigner:baseProducts>
+<celldesigner:connectScheme connectPolicy="direct" rectangleIndex="0">
+<celldesigner:listOfLineDirection>
+<celldesigner:lineDirection index="0" value="unknown"/>
+</celldesigner:listOfLineDirection>
+</celldesigner:connectScheme>
+<celldesigner:line width="1.0" color="ff000000"/>
+</celldesigner:extension>
+<COPASI xmlns="http://www.copasi.org/static/sbml">
+<rdf:RDF xmlns:dcterms="http://purl.org/dc/terms/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+<rdf:Description rdf:about="#COPASI78">
+<dcterms:created>
+<rdf:Description>
+<dcterms:W3CDTF>2020-01-21T14:43:21Z</dcterms:W3CDTF>
+</rdf:Description>
+</dcterms:created>
+</rdf:Description>
+</rdf:RDF>
+</COPASI>
+</annotation>
+<listOfReactants>
+<speciesReference metaid="CDMT00079" species="GlucoseDelay">
+<annotation>
+<celldesigner:extension>
+<celldesigner:alias>sa14</celldesigner:alias>
+</celldesigner:extension>
+</annotation>
+</speciesReference>
+</listOfReactants>
+<listOfProducts>
+<speciesReference metaid="CDMT00080" species="s14">
+<annotation>
+<celldesigner:extension>
+<celldesigner:alias>sa30</celldesigner:alias>
+</celldesigner:extension>
+</annotation>
+</speciesReference>
+</listOfProducts>
+<kineticLaw metaid="CDMT00081">
+<math xmlns="http://www.w3.org/1998/Math/MathML">
+<apply>
+<times/>
+<ci> compartment_ </ci>
+<ci> Glucose_DUMMY_REACTION_delay_limiter_k1 </ci>
+<ci> GlucoseDelay </ci>
+</apply>
+</math>
+</kineticLaw>
+</reaction>
+<reaction metaid="COPASI79" id="NAD_negative_regulation" name="NAD negative regulation" reversible="false">
+<annotation>
+<celldesigner:extension>
+<celldesigner:name>NAD negative regulation</celldesigner:name>
+<celldesigner:reactionType>STATE_TRANSITION</celldesigner:reactionType>
+<celldesigner:baseReactants>
+<celldesigner:baseReactant species="NAD_NegReg" alias="sa15">
+<celldesigner:linkAnchor position="E"/>
+</celldesigner:baseReactant>
+</celldesigner:baseReactants>
+<celldesigner:baseProducts>
+<celldesigner:baseProduct species="s15" alias="sa31">
+<celldesigner:linkAnchor position="NW"/>
+</celldesigner:baseProduct>
+</celldesigner:baseProducts>
+<celldesigner:listOfReactantLinks>
+<celldesigner:reactantLink reactant="NAD" alias="sa7" targetLineIndex="-1,0">
+<celldesigner:linkAnchor position="NNE"/>
+<celldesigner:connectScheme connectPolicy="direct">
+<celldesigner:listOfLineDirection>
+<celldesigner:lineDirection index="0" value="unknown"/>
+</celldesigner:listOfLineDirection>
+</celldesigner:connectScheme>
+<celldesigner:line width="1.0" color="ff000000" type="Straight"/>
+</celldesigner:reactantLink>
+</celldesigner:listOfReactantLinks>
+<celldesigner:connectScheme connectPolicy="direct" rectangleIndex="1">
+<celldesigner:listOfLineDirection>
+<celldesigner:lineDirection index="0" value="unknown"/>
+<celldesigner:lineDirection index="1" value="unknown"/>
+</celldesigner:listOfLineDirection>
+</celldesigner:connectScheme>
+<celldesigner:editPoints>0.39956785694353236,-0.3135735713028416</celldesigner:editPoints>
+<celldesigner:line width="1.0" color="ff000000"/>
+</celldesigner:extension>
+<COPASI xmlns="http://www.copasi.org/static/sbml">
+<rdf:RDF xmlns:dcterms="http://purl.org/dc/terms/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+<rdf:Description rdf:about="#COPASI79">
+<dcterms:created>
+<rdf:Description>
+<dcterms:W3CDTF>2020-01-21T14:43:21Z</dcterms:W3CDTF>
+</rdf:Description>
+</dcterms:created>
+</rdf:Description>
+</rdf:RDF>
+</COPASI>
+</annotation>
+<listOfReactants>
+<speciesReference metaid="CDMT00082" species="NAD_NegReg">
+<annotation>
+<celldesigner:extension>
+<celldesigner:alias>sa15</celldesigner:alias>
+</celldesigner:extension>
+</annotation>
+</speciesReference>
+<speciesReference metaid="CDMT00083" species="NAD">
+<annotation>
+<celldesigner:extension>
+<celldesigner:alias>sa7</celldesigner:alias>
+</celldesigner:extension>
+</annotation>
+</speciesReference>
+</listOfReactants>
+<listOfProducts>
+<speciesReference metaid="CDMT00084" species="s15">
+<annotation>
+<celldesigner:extension>
+<celldesigner:alias>sa31</celldesigner:alias>
+</celldesigner:extension>
+</annotation>
+</speciesReference>
+</listOfProducts>
+<kineticLaw metaid="CDMT00085">
+<math xmlns="http://www.w3.org/1998/Math/MathML">
+<apply>
+<times/>
+<ci> compartment_ </ci>
+<ci> NAD_negative_regulation_k1 </ci>
+<ci> NAD_NegReg </ci>
+<ci> NAD </ci>
+</apply>
+</math>
+</kineticLaw>
+</reaction>
+<reaction metaid="COPASI80" id="DUMMY_REACTION_NegReg_disappearance" name="Dummy Reaction NegReg Removal" reversible="false">
+<annotation>
+<celldesigner:extension>
+<celldesigner:name>Dummy Reaction NegReg Removal</celldesigner:name>
+<celldesigner:reactionType>STATE_TRANSITION</celldesigner:reactionType>
+<celldesigner:baseReactants>
+<celldesigner:baseReactant species="NAD_NegReg" alias="sa15">
+<celldesigner:linkAnchor position="NNW"/>
+</celldesigner:baseReactant>
+</celldesigner:baseReactants>
+<celldesigner:baseProducts>
+<celldesigner:baseProduct species="s16" alias="sa32">
+<celldesigner:linkAnchor position="S"/>
+</celldesigner:baseProduct>
+</celldesigner:baseProducts>
+<celldesigner:connectScheme connectPolicy="direct" rectangleIndex="0">
+<celldesigner:listOfLineDirection>
+<celldesigner:lineDirection index="0" value="unknown"/>
+</celldesigner:listOfLineDirection>
+</celldesigner:connectScheme>
+<celldesigner:line width="1.0" color="ff000000"/>
+</celldesigner:extension>
+<COPASI xmlns="http://www.copasi.org/static/sbml">
+<rdf:RDF xmlns:dcterms="http://purl.org/dc/terms/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+<rdf:Description rdf:about="#COPASI80">
+<dcterms:created>
+<rdf:Description>
+<dcterms:W3CDTF>2020-01-21T14:43:21Z</dcterms:W3CDTF>
+</rdf:Description>
+</dcterms:created>
+</rdf:Description>
+</rdf:RDF>
+</COPASI>
+</annotation>
+<listOfReactants>
+<speciesReference metaid="CDMT00086" species="NAD_NegReg">
+<annotation>
+<celldesigner:extension>
+<celldesigner:alias>sa15</celldesigner:alias>
+</celldesigner:extension>
+</annotation>
+</speciesReference>
+</listOfReactants>
+<listOfProducts>
+<speciesReference metaid="CDMT00087" species="s16">
+<annotation>
+<celldesigner:extension>
+<celldesigner:alias>sa32</celldesigner:alias>
+</celldesigner:extension>
+</annotation>
+</speciesReference>
+</listOfProducts>
+<kineticLaw metaid="CDMT00088">
+<math xmlns="http://www.w3.org/1998/Math/MathML">
+<apply>
+<times/>
+<ci> compartment_ </ci>
+<ci> DUMMY_REACTION_NegReg_disappearance_k1 </ci>
+<ci> NAD_NegReg </ci>
+</apply>
+</math>
+</kineticLaw>
+</reaction>
+<reaction metaid="COPASI81" id="NR_NMN_supplementation" name="NR/NMN supplementation" reversible="false">
+<annotation>
+<celldesigner:extension>
+<celldesigner:name>NR/NMN supplementation</celldesigner:name>
+<celldesigner:reactionType>STATE_TRANSITION</celldesigner:reactionType>
+<celldesigner:baseReactants>
+<celldesigner:baseReactant species="NR_NMN" alias="sa16">
+<celldesigner:linkAnchor position="S"/>
+</celldesigner:baseReactant>
+</celldesigner:baseReactants>
+<celldesigner:baseProducts>
+<celldesigner:baseProduct species="NAD" alias="sa7">
+<celldesigner:linkAnchor position="N"/>
+</celldesigner:baseProduct>
+</celldesigner:baseProducts>
+<celldesigner:connectScheme connectPolicy="direct" rectangleIndex="0">
+<celldesigner:listOfLineDirection>
+<celldesigner:lineDirection index="0" value="unknown"/>
+</celldesigner:listOfLineDirection>
+</celldesigner:connectScheme>
+<celldesigner:line width="1.0" color="ff000000"/>
+</celldesigner:extension>
+<COPASI xmlns="http://www.copasi.org/static/sbml">
+<rdf:RDF xmlns:dcterms="http://purl.org/dc/terms/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+<rdf:Description rdf:about="#COPASI81">
+<dcterms:created>
+<rdf:Description>
+<dcterms:W3CDTF>2020-01-21T14:43:21Z</dcterms:W3CDTF>
+</rdf:Description>
+</dcterms:created>
+</rdf:Description>
+</rdf:RDF>
+</COPASI>
+</annotation>
+<listOfReactants>
+<speciesReference metaid="CDMT00089" species="NR_NMN">
+<annotation>
+<celldesigner:extension>
+<celldesigner:alias>sa16</celldesigner:alias>
+</celldesigner:extension>
+</annotation>
+</speciesReference>
+</listOfReactants>
+<listOfProducts>
+<speciesReference metaid="CDMT00090" species="NAD">
+<annotation>
+<celldesigner:extension>
+<celldesigner:alias>sa7</celldesigner:alias>
+</celldesigner:extension>
+</annotation>
+</speciesReference>
+</listOfProducts>
+<kineticLaw metaid="CDMT00091">
+<math xmlns="http://www.w3.org/1998/Math/MathML">
+<apply>
+<times/>
+<ci> compartment_ </ci>
+<apply>
+<ci> Hill_Cooperativity_1_5 </ci>
+<ci> NR_NMN </ci>
+<ci> NR_NMN_supplementation_Shalve </ci>
+<ci> NR_NMN_supplementation_V </ci>
+<ci> NR_NMN_supplementation_h </ci>
+</apply>
+</apply>
+</math>
+</kineticLaw>
+</reaction>
+<reaction metaid="re28" id="re28" reversible="false">
+<annotation>
+<celldesigner:extension>
+<celldesigner:reactionType>BOOLEAN_LOGIC_GATE</celldesigner:reactionType>
+<celldesigner:baseReactants>
+<celldesigner:baseReactant species="NAD" alias="sa7"/>
+<celldesigner:baseReactant species="s35" alias="sa35"/>
+</celldesigner:baseReactants>
+<celldesigner:baseProducts>
+<celldesigner:baseProduct species="SIRT1_activity" alias="sa5"/>
+</celldesigner:baseProducts>
+<celldesigner:connectScheme connectPolicy="direct"/>
+<celldesigner:editPoints>890.0,800.0</celldesigner:editPoints>
+<celldesigner:line width="1.0" color="ff000000"/>
+<celldesigner:listOfGateMember>
+<celldesigner:GateMember type="BOOLEAN_LOGIC_GATE_AND" aliases="sa7,sa35" modificationType="REDUCED_TRIGGER" targetLineIndex="-1,-1" editPoints="890.0,800.0">
+<celldesigner:connectScheme connectPolicy="direct">
+<celldesigner:listOfLineDirection>
+<celldesigner:lineDirection index="0" value="unknown"/>
+</celldesigner:listOfLineDirection>
+</celldesigner:connectScheme>
+<celldesigner:line width="1.0" color="ff000000"/>
+</celldesigner:GateMember>
+<celldesigner:GateMember type="REDUCED_TRIGGER" aliases="sa7">
+<celldesigner:connectScheme connectPolicy="direct">
+<celldesigner:listOfLineDirection>
+<celldesigner:lineDirection index="0" value="unknown"/>
+</celldesigner:listOfLineDirection>
+</celldesigner:connectScheme>
+<celldesigner:linkTarget species="NAD" alias="sa7">
+<celldesigner:linkAnchor position="INACTIVE"/>
+</celldesigner:linkTarget>
+<celldesigner:line width="1.0" color="ff000000"/>
+</celldesigner:GateMember>
+<celldesigner:GateMember type="REDUCED_TRIGGER" aliases="sa35">
+<celldesigner:connectScheme connectPolicy="direct">
+<celldesigner:listOfLineDirection>
+<celldesigner:lineDirection index="0" value="unknown"/>
+</celldesigner:listOfLineDirection>
+</celldesigner:connectScheme>
+<celldesigner:linkTarget species="s35" alias="sa35">
+<celldesigner:linkAnchor position="INACTIVE"/>
+</celldesigner:linkTarget>
+<celldesigner:line width="1.0" color="ff000000"/>
+</celldesigner:GateMember>
+</celldesigner:listOfGateMember>
+</celldesigner:extension>
+</annotation>
+<listOfReactants>
+<speciesReference metaid="CDMT00092" species="NAD">
+<annotation>
+<celldesigner:extension>
+<celldesigner:alias>sa7</celldesigner:alias>
+</celldesigner:extension>
+</annotation>
+</speciesReference>
+<speciesReference metaid="CDMT00093" species="s35">
+<annotation>
+<celldesigner:extension>
+<celldesigner:alias>sa35</celldesigner:alias>
+</celldesigner:extension>
+</annotation>
+</speciesReference>
+</listOfReactants>
+<listOfProducts>
+<speciesReference metaid="CDMT00094" species="SIRT1_activity">
+<annotation>
+<celldesigner:extension>
+<celldesigner:alias>sa5</celldesigner:alias>
+</celldesigner:extension>
+</annotation>
+</speciesReference>
+</listOfProducts>
+</reaction>
+</listOfReactions>
+</model>
+</sbml>

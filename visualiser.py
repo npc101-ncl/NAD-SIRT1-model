@@ -29,46 +29,23 @@ f.close()
 
 oldNames = list(oldParams.columns)
 oldNames.remove('Unnamed: 0')
+oldNames.remove('Glucose_input_v')
+oldNames.remove('quantity to number factor')
 
-newNames = [name.replace("(", "") for name in oldNames]
-newNames = [name.replace(")", "") for name in newNames]
-newNames = [name.replace(".", "_") for name in newNames]
-newNames = [name.replace(" ", "_") for name in newNames]
-newNames = [name.replace("/", "_") for name in newNames]
-newNames = [name.replace("-", "_") for name in newNames]
-newNames = [name.replace("Dummy_Reaction", "DUMMY_REACTION") for 
-            name in newNames]
-newNames = [name.replace("Delay_Reaction", "DUMMY_REACTION_Delay") for 
-            name in newNames]
-newNames = [name.replace("Stimulus", "stimulus") for 
-            name in newNames]
-newNames = [name.replace("_basal_", "_") for 
-            name in newNames]
-newNames = [name.replace("induced_phosphorylation",
-                         "phosphorylation_induced") for name in newNames]
-newNames = [name.replace("PGC1a_induced", "Induced_PGC1a") for
-            name in newNames]
-newNames = [name.replace("DUMMY_REACTION_Delay_Glucose_stimulus",
-                         "Glucose_DUMMY_REACTION_delay") for name in newNames]
-newNames = [name.replace("NegReg_Removal", "NegReg_disappearance") for
-            name in newNames]
-newNames = [name.replace("Removal", "removal") for
-            name in newNames]
-
-convDict = dict(zip(oldNames,newNames))
-
-oldParams = oldParams.filter(items=oldNames)
-oldParams = oldParams.rename(columns=convDict)
-
-diffTable = newParams[next(iter(newParams))]
+compSerise = oldParams.filter(items=oldNames).squeeze()
 
 PEVis = parameterEstimationVisualiser(newParams)
 
-PEVis.waterFall(save=os.path.join(fig_dir,'waterfall.png'))
+PEVis.waterFall(save=os.path.join(fig_dir,'waterfall.png'),
+                indexNames="parameters")
 
-RSScutoff = newParams[next(iter(newParams))]["RSS"].iloc[9]
+PEVis.refPointVsRSS(compSerise, save=os.path.join(fig_dir,'divergence.png'),
+                    indexNames="parameters")
 
-ordering=breakSeriesByScale(newParams[next(iter(newParams))].mean())
+RSScutoff = min(GFID(newParams)["RSS"].iloc[9],
+                RSSClusterEstimation(GFID(newParams))[0]["maxRSS"])
+
+ordering=breakSeriesByScale(GFID(newParams).mean())
 
 for i in range(len(ordering)):
     PEVis.violinPlot(paramSelect=ordering[i],
@@ -76,7 +53,7 @@ for i in range(len(ordering)):
                      RSSSelect=RSScutoff)
 
 showValues = list(timeCourses[0].columns)
-for param in list(newParams[next(iter(newParams))].columns):
+for param in list(GFID(newParams).columns):
     try:
         showValues.remove(param)
     except ValueError:
@@ -96,3 +73,10 @@ TCVis = timeCourseVisualiser(timeCourses)
 for i in range(len(maxes)):
     TCVis.multiPlot(indexSelect=list(range(10)),varSelect=maxes[i],
                     save=os.path.join(fig_dir,'timeCourse'+str(i)+'.png'))
+    
+suspPar = pd.Series(data={key:value for key, value in
+                          zip(compSerise.index,compSerise.values) if
+                          math.modf(value)[0]==0.0})
+    
+suspPar.to_csv(path_or_buf=os.path.join(working_dir,
+                                        'suspiciousParamiters.csv'))

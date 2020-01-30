@@ -11,3 +11,4 @@ copasiRuns/*
 *.cps
 *.sbml
 *.out
+*.csv

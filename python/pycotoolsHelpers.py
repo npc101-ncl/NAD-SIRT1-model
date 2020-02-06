@@ -182,7 +182,7 @@ class modelRunner:
                 "particle_swarm_aggressive":{
                         "method":"particle_swarm",
                         "swarm_size":200,
-                        "iteration_limit":4000}}
+                        "iteration_limit":6000}}
             
     def genPathCopasi(self,nameBase,suffix=".cps"):
         """generates a copasi path that isn't being used yet
@@ -248,7 +248,15 @@ class modelRunner:
         for name in estimatedVar:
             self.prefixAntString = replaceVariable(self.prefixAntString,
                                                    name,prefix+name)
-
+    
+    def genRefCopasiFile(self, filePath = None):
+        if filePath is None:
+            copasi_filename = self.genPathCopasi("refFile")
+        else:
+            copasi_filename = filePath
+        self.recentModel = model.loada(self.antString, copasi_filename)
+        
+    
     # if you reuse the same PEName twise the results get over writen by
     # the first
     def runParamiterEstimation(self,expDataFP,PEName=None,
@@ -337,6 +345,16 @@ class modelRunner:
                 return_data[key].rename(columns=colRenameDict, inplace=True)
         return return_data
     
+    def preProcessParamEnsam(self,Params):
+        copasi_filename = self.genPathCopasi("adjuster")
+        self.recentModel = model.loada(self.antString, copasi_filename)
+        adjust = {}
+        for colName in list(Params.columns):
+            baseVal = self.recentModel.get('metabolite', colName, by='name')
+            baseVal = baseVal.to_df()
+            adjust[colName] = baseVal["Value"]["concentration"]
+        return Params.fillna(value=adjust)
+    
     def runTimeCourse(self,duration,stepSize=0.01,intervals=100,
                       TCName=None,adjustParams=None,subSet=None,
                       rocket=False):
@@ -386,7 +404,8 @@ class modelRunner:
                 self.recentModel = model.loada(self.antString,
                                                copasi_filename)
                 for setIndex in subSet:
-                    model.InsertParameters(self.recentModel,df=adjustParams,
+                    model.InsertParameters(self.recentModel,
+                                           df=adjustParams,
                                            index=setIndex,inplace=True)
                     self.recentTimeCourse = tasks.TimeCourse(
                             self.recentModel,end=duration,

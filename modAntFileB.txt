@@ -30,6 +30,7 @@ model *Mitonuclear_communication_model()
   species GlucoseDelay in compartment_, NAD_NegReg in compartment_, NR_NMN in compartment_;
   species $AMPK_driven_NAD_source in compartment_, $AMPK_driven_NegReg_source in compartment_;
   species $Glucose_source in compartment_;
+  species $delayBypass in compartment_;
 
   // Assignment Rules:
   SIRT1_activity := SIRT1*quantity_to_number_factor*compartment_*NAD*quantity_to_number_factor*compartment_;
@@ -59,7 +60,7 @@ model *Mitonuclear_communication_model()
   Basal_PGC1a_deacetylation: PGC1a_P => PGC1a_deacet; compartment_*Basal_deacetylation_function(Basal_PGC1a_deacetylation_v, SIRT1_activity);
   DUMMY_REACTION_PGC1a_Deacetylation_Limiter: PGC1a_Deacetylation_Activity => ; compartment_*DUMMY_REACTION_PGC1a_Deacetylation_Limiter_k1*PGC1a_Deacetylation_Activity;
 
-  Glucose_induced_AMPK_dephosphorylation: AMPK_P => AMPK; compartment_*Glucose_induced_AMPK_dephosphorylation_k1*GlucoseDelay*AMPK_P;
+  Glucose_induced_AMPK_dephosphorylation: AMPK_P => AMPK; compartment_*Glucose_induced_AMPK_dephosphorylation_k1*(GlucoseDelay*(1-delayBypass)+ delayBypass*Glucose_source)*AMPK_P;
   
   Glucose_input: $Glucose_source => Glucose; compartment_*Glucose_source;
 
@@ -90,6 +91,7 @@ model *Mitonuclear_communication_model()
   AMPK_driven_NAD_source = 1;
   AMPK_driven_NegReg_source = 1;
   initial_NAD = NAD;
+  delayBypass = 0;
 
   // Compartment initializations:
   compartment_ = 1;

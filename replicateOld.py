@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
-Created on Sun Jan 12 18:13:35 2020
+Created on Mon Feb  3 11:26:06 2020
 
 @author: peter
 """
@@ -19,19 +19,14 @@ data_dir = os.path.join(working_directory,"oldModel","NAD_model_files",
 run_dir = os.path.join(working_directory,'copasiRuns', 'reparam')
 if not os.path.isdir(run_dir):
     os.makedirs(run_dir)
-    
-secondsToRun = 60*60*47
-endTime = time.time()+secondsToRun
 
 data_names = ["PE_0.5mM_AICAR_AMPK-P.txt",
               "PE_0.5mM_AICAR_NAD_and_PGC1aDeacet.txt",
               "PE_5mM_GlucRestric_NAD.txt",
               "PE_PARP_Inhib_PJ34_NAD.txt"]
 
-indep_cond = [{"AICAR":1, "Glucose_source":0, "Glucose":0,
-               "GlucoseDelay":0}, 
-              {"AICAR":1, "Glucose_source":0, "Glucose":0,
-               "GlucoseDelay":0}, 
+indep_cond = [{"AICAR":1, "Glucose_source":1, "delayBypass":1}, 
+              {"AICAR":1, "Glucose_source":1, "delayBypass":1}, 
               {"Glucose_source":5},
               {"PARP1":0, "AMPK_driven_NAD_source":0,
                "AMPK_driven_NegReg_source":0}]
@@ -91,14 +86,11 @@ NR_data["NR-NMN"] = NR_data.index # /1000 my inclination would be to convert
 # his suplimental materials so for now I wont either.
 NR_data["NAD_fold_increase"] = NR_data["Fold change"]
 
-myUpperBound=1000
-myCopyNum=100
-mySuperComputer=True
-removeHardCoded=True
+mySuperComputer=False
 if not mySuperComputer:
     addCopasiPath("/Applications/copasi")
     
-antFile = open(os.path.join(working_directory,"modAntFile.txt"), "r")
+antFile = open(os.path.join(working_directory,"modAntFileB.txt"), "r")
 antimony_string = antFile.read()
 antFile.close()
 
@@ -127,56 +119,20 @@ if __name__ == "__main__":
     myModel = modelRunner(antimony_string, run_dir)
     
     df = pd.DataFrame(indep_cond)
+    
     df = myModel.preProcessParamEnsam(df)
-    timeCourse = myModel.runTimeCourse(24, adjustParams=df,
+    
+    timeCourse = myModel.runTimeCourse(36, adjustParams=df,
                                        stepSize=0.25)
     file = open(os.path.join(working_directory,'old-timeCourses.p'),'wb')
     pickle.dump(timeCourse, file)
     file.close()
-    myModel.clearRunDirectory()
+    #myModel.clearRunDirectory()
     
     timeCourse = myModel.runTimeCourse(24,stepSize=0.25) 
     
     file = open(os.path.join(working_directory,'old-timeCoursesN.p'),'wb')
     pickle.dump(timeCourse, file)
     file.close()
-    myModel.clearRunDirectory()
+    #myModel.clearRunDirectory()
     
-    if removeHardCoded:
-        estVars = [var for var in myKVars if var not in hardCodeSuspects]
-    else:
-        estVars = myKVars
-    
-    params = myModel.runParamiterEstimation(calPaths,copyNum=myCopyNum,
-                                            rocket=mySuperComputer,
-                                            estimatedVar=estVars,
-                                            upperParamBound=myUpperBound,
-                                            method=
-                                            "particle_swarm_aggressive",
-                                            indepToAdd=indep_cond,
-                                            endTime=endTime)   
-    
-    file = open(os.path.join(working_directory,'new-params.p'),'wb')
-    pickle.dump(params, file)
-    file.close()
-    
-    timeCourse = myModel.runTimeCourse(24,
-                                       adjustParams=params[
-                                               next(iter(params))],
-                                               stepSize=0.25) 
-    
-    file = open(os.path.join(working_directory,'new-timeCourses.p'),'wb')
-    pickle.dump(timeCourse, file)
-    file.close()
-    
-    for i in range(len(indep_cond)):
-        myModel.clearRunDirectory()
-        df=params[next(iter(params))].copy()
-        for myVar, myVal in indep_cond[i]:
-            df[myVar] = myVal
-        timeCourse = myModel.runTimeCourse(24, adjustParams=df,
-                                           stepSize=0.25)
-        file = open(os.path.join(working_directory,
-                                 'new-timeCourses'+str(i)+'.p'),'wb')
-        pickle.dump(timeCourse, file)
-        file.close()

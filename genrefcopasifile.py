@@ -16,7 +16,7 @@ if not os.path.isdir(run_dir):
     
 addCopasiPath("/Applications/copasi")
     
-antFile = open(os.path.join(working_directory,"modAntFile.txt"), "r")
+antFile = open(os.path.join(working_directory,"modAntFileB.txt"), "r")
 antimony_string = antFile.read()
 antFile.close()
     

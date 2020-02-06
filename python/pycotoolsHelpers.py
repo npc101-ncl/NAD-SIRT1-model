@@ -362,9 +362,13 @@ class modelRunner:
             if subSet is None:
                 subSet = range(len(adjustParams.index))
             results = []
+            if not isinstance(duration,list):
+                duration = [duration for i in subSet]
+            if len(duration)!=len(subSet):
+                return False
             if rocket:
                 timeCourses = []
-                for setIndex in subSet:
+                for setIndex, myDur in zip(subSet,duration):
                     copasi_filename = self.genPathCopasi("timeCourse")
                     self.recentModel = model.loada(self.antString,
                                                    copasi_filename)
@@ -372,7 +376,7 @@ class modelRunner:
                                            df=adjustParams,
                                            index=setIndex,inplace=True)
                     self.recentTimeCourse = tasks.TimeCourse(
-                            self.recentModel,end=duration,
+                            self.recentModel,end=myDur,
                             step_size=stepSize,intervals=intervals,
                             run=False)
                     timeCourses.append(self.recentTimeCourse)
@@ -403,12 +407,12 @@ class modelRunner:
                     copasi_filename = os.path.join(self.run_dir, TCName)
                 self.recentModel = model.loada(self.antString,
                                                copasi_filename)
-                for setIndex in subSet:
+                for setIndex, myDur in zip(subSet,duration):
                     model.InsertParameters(self.recentModel,
                                            df=adjustParams,
                                            index=setIndex,inplace=True)
                     self.recentTimeCourse = tasks.TimeCourse(
-                            self.recentModel,end=duration,
+                            self.recentModel,end=myDur,
                             step_size=stepSize,intervals=intervals)
                     results.append(viz.Parse(
                             self.recentTimeCourse).data.copy())

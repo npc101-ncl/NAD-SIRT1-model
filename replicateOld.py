@@ -25,11 +25,13 @@ data_names = ["PE_0.5mM_AICAR_AMPK-P.txt",
               "PE_5mM_GlucRestric_NAD.txt",
               "PE_PARP_Inhib_PJ34_NAD.txt"]
 
-indep_cond = [{"AICAR":1, "Glucose_source":1, "delayBypass":1}, 
-              {"AICAR":1, "Glucose_source":1, "delayBypass":1}, 
+indep_cond = [{"AICAR":1, "Glucose_source":0}, 
+              {"AICAR":1, "Glucose_source":0}, 
               {"Glucose_source":5},
               {"PARP1":0, "AMPK_driven_NAD_source":0,
                "AMPK_driven_NegReg_source":0}]
+    
+duration = [24,12,36,24]
 
 NR_file = os.path.join(working_directory,"oldModel","NAD_model_files",
                        "AMPK-NAD-PGC1a-SIRT1-manuscript",
@@ -90,7 +92,7 @@ mySuperComputer=False
 if not mySuperComputer:
     addCopasiPath("/Applications/copasi")
     
-antFile = open(os.path.join(working_directory,"modAntFileB.txt"), "r")
+antFile = open(os.path.join(working_directory,"modAntFile.txt"), "r")
 antimony_string = antFile.read()
 antFile.close()
 
@@ -114,6 +116,7 @@ if __name__ == "__main__":
         pathRef = os.path.join(run_dir, "NR_effects"+str(index)+".csv")
         df.to_csv(path_or_buf = pathRef)
         indep_cond.append({"NR-NMN":row["NR-NMN"]})
+        duration.append(24)
         calPaths.append(pathRef)
     
     myModel = modelRunner(antimony_string, run_dir)
@@ -122,7 +125,7 @@ if __name__ == "__main__":
     
     df = myModel.preProcessParamEnsam(df)
     
-    timeCourse = myModel.runTimeCourse(36, adjustParams=df,
+    timeCourse = myModel.runTimeCourse(duration, adjustParams=df,
                                        stepSize=0.25)
     file = open(os.path.join(working_directory,'old-timeCourses.p'),'wb')
     pickle.dump(timeCourse, file)

@@ -30,8 +30,13 @@ indep_cond = [{"AICAR":1, "Glucose_source":0},
               {"Glucose_source":5},
               {"PARP1":0, "AMPK_driven_NAD_source":0,
                "AMPK_driven_NegReg_source":0}]
-    
+
 duration = [24,12,36,24]
+
+Fakouri_file = os.path.join(working_directory,"oldModel","NAD_model_files",
+                       "AMPK-NAD-PGC1a-SIRT1-manuscript",
+                       "Raw_Literature_Data",
+                       "SupplFig_21_Fakouri_et_al_2017.xlsx")
 
 NR_file = os.path.join(working_directory,"oldModel","NAD_model_files",
                        "AMPK-NAD-PGC1a-SIRT1-manuscript",
@@ -88,6 +93,11 @@ NR_data["NR-NMN"] = NR_data.index # /1000 my inclination would be to convert
 # his suplimental materials so for now I wont either.
 NR_data["NAD_fold_increase"] = NR_data["Fold change"]
 
+Fakouri_data = [pd.read_excel(Fakouri_file,sheet_name='Hoja1',skiprows=4*n,
+                              usecols=[1,2],nrows=2) for n in range(6)]
+Fakouri_data = {list(i.columns)[0]:i["Fold change"].iloc[1] for
+                i in Fakouri_data}
+
 mySuperComputer=False
 if not mySuperComputer:
     addCopasiPath("/Applications/copasi")
@@ -121,6 +131,40 @@ if __name__ == "__main__":
     
     myModel = modelRunner(antimony_string, run_dir)
     
+    tempParams = myModel.extractModelParam()
+    Fakouri_data["AMPK total"] = (tempParams["AMPK-P"]+
+                 tempParams["AMPK"])*Fakouri_data["AMPK total"]
+    Fakouri_data["AMPK ratio"] = (Fakouri_data["AMPK-P"]*
+                tempParams["AMPK-P"]/(tempParams["AMPK"]+
+                          tempParams["AMPK-P"]))
+    Fakouri_data["AMPK_P"] = (Fakouri_data["AMPK ratio"]*
+                Fakouri_data["AMPK total"])
+    Fakouri_data["AMPK"] = (Fakouri_data["AMPK total"] - 
+                Fakouri_data["AMPK-P"])
+    Fakouri_data["SIRT1"] = tempParams["SIRT1"]*Fakouri_data["SIRT1"]
+    Fakouri_data["PGC1a_deacet"] = (tempParams["PGC1a_deacet"]*
+                Fakouri_data["PGC1a"])
+    Fakouri_data["PGC1a_P"] = (tempParams["PGC1a-P"]*
+                Fakouri_data["PGC1a"])
+    Fakouri_data["PGC1a"] = (tempParams["PGC1a"]*
+                Fakouri_data["PGC1a"])
+    Fakouri_data["PARP"] = (tempParams["PARP1"]*
+                Fakouri_data["PARP1"])
+    Fakouri_data["NAD"] = (tempParams["NAD"]*
+                Fakouri_data["NAD"])
+    Fakouri_data.pop("AMPK total", None) 
+    Fakouri_data.pop("AMPK ratio", None)
+    Fakouri_data.pop("PARP1", None)
+    Fakouri_data.pop("AMPK-P", None)
+    
+    Fakouri_sim = myModel.runSteadyStateFinder(params=Fakouri_data)
+    
+    file = open(os.path.join(working_directory,'old-Fakouri.p'),'wb')
+    pickle.dump({"modParams":tempParams,
+                 "data":Fakouri_data,
+                 "sim":Fakouri_sim}, file)
+    file.close()
+    
     df = pd.DataFrame(indep_cond)
     
     df = myModel.preProcessParamEnsam(df)
@@ -130,12 +174,12 @@ if __name__ == "__main__":
     file = open(os.path.join(working_directory,'old-timeCourses.p'),'wb')
     pickle.dump(timeCourse, file)
     file.close()
-    #myModel.clearRunDirectory()
+    myModel.clearRunDirectory()
     
     timeCourse = myModel.runTimeCourse(24,stepSize=0.25) 
     
     file = open(os.path.join(working_directory,'old-timeCoursesN.p'),'wb')
     pickle.dump(timeCourse, file)
     file.close()
-    #myModel.clearRunDirectory()
+    myModel.clearRunDirectory()
     

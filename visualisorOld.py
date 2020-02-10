@@ -12,6 +12,8 @@ import os, re
 import pandas as pd
 import pickle
 from  reparamerteriser import data_names, indep_cond
+import seaborn as sns
+import matplotlib.pyplot as plt
 
 working_dir = os.path.abspath('')
 data_dir = os.path.join(working_dir,"oldModel","NAD_model_files",
@@ -68,8 +70,6 @@ for myData, i in zip(calDF,range(len(calDF))):
                                       str(i)+'.png'),
                                       xlim=[None,max(myData["Time"])])
 
-import seaborn as sns
-
 df = []
 for i in range(4,len(timeCourses)):
     NRval = indep_cond[i]["NR-NMN"]
@@ -79,7 +79,9 @@ for i in range(4,len(timeCourses)):
     df.extend([{"NR":NRval, "variable":"experiment", "NAD":expEndVal},
                {"NR":NRval, "variable":"simulation", "NAD":simEndVal}])
 df = pd.DataFrame(df)
-sns.barplot(x="NR", y="NAD", hue="variable", data=df)
+plt.figure()
+bp = sns.barplot(x="NR", y="NAD", hue="variable", data=df)
+bp.get_figure().savefig(os.path.join(fig_dir,'NR_NAD_old.png'))
     
 f = open(os.path.join(working_dir,'old-timeCoursesN.p'),'rb')
 timeCourse = pickle.load(f)
@@ -92,3 +94,22 @@ for subVars, i in zip(myVars,range(len(myVars))):
     TCVis.multiPlot(save=os.path.join(fig_dir,
                                       "timeCourseOldN"+str(i)+".png"),
         varSelect = subVars)
+
+f = open(os.path.join(working_dir,'old-Fakouri.p'),'rb')
+Fakouri = pickle.load(f)
+f.close()
+    
+Fakouri_table = pd.DataFrame([{"Index":"WT", "catagory":"Simulation",
+                               "NAD":Fakouri["modParams"]["NAD"]},
+                              {"Index":"WT", "catagory":"Experament",
+                               "NAD":1},
+                              {"Index":"Rev1 -/-",
+                               "catagory":"Simulation",
+                               "NAD":Fakouri["sim"]["NAD"]},
+                              {"Index":"Rev1 -/-",
+                               "catagory":"Experament",
+                               "NAD":Fakouri["data"]["NAD"]}])
+
+plt.figure()
+bp = sns.barplot(x="Index", y="NAD", hue="catagory", data=Fakouri_table)
+bp.get_figure().savefig(os.path.join(fig_dir,'Fakouri_old.png'))

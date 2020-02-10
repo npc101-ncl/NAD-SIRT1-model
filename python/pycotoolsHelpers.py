@@ -8,6 +8,7 @@ Created on Thu Dec 12 14:00:40 2019
 
 import site, os, time, re
 from pycotools3 import model, tasks, viz
+import tellurium as te
 import pandas as pd
 import logging
 
@@ -183,6 +184,11 @@ class modelRunner:
                         "method":"particle_swarm",
                         "swarm_size":200,
                         "iteration_limit":6000}}
+                
+    def extractModelParam(self):
+        copasi_filename = self.genPathCopasi("extractor")
+        self.recentModel = model.loada(self.antString, copasi_filename)
+        return self.recentModel.parameters.copy().squeeze().to_dict()
             
     def genPathCopasi(self,nameBase,suffix=".cps"):
         """generates a copasi path that isn't being used yet
@@ -256,6 +262,22 @@ class modelRunner:
             copasi_filename = filePath
         self.recentModel = model.loada(self.antString, copasi_filename)
         
+    def runSteadyStateFinder(self,params=None):
+        r = te.loada(self.antString)
+        outValues = r.getFloatingSpeciesIds()
+        boundValues = r.getBoundarySpeciesIds()
+        outValues.extend(boundValues)
+        r.conservedMoietyAnalysis = True
+        r.setSteadyStateSolver('nleq1')
+        if params is not None:
+            for key, value in params.items():
+                temp = r[key]
+                r[key] = value
+                print(key,": ",temp," -> ",r[key])
+        
+        r.steadyState()
+        rState = {key:r[key] for key in outValues}
+        return rState
     
     # if you reuse the same PEName twise the results get over writen by
     # the first

@@ -141,44 +141,6 @@ model *Mitonuclear_communication_model()
   unit time_unit = 3600 second;
   unit substance = 1e-3 mole;
 
-  // Display Names:
-  time_unit is "time";
-  AMPK_P is "AMPK-P";
-  PGC1a_P is "PGC1a-P";
-  quantity_to_number_factor is "quantity to number factor";
-  PARP is "PARP1";
-  PGC1a_Deacetylation_Activity is "Deacetylation_Delay";
-  AICAR_treatment is "AICAR";
-  NR_NMN is "NR-NMN";
-  AMPK_phosphorylation is "AMPK basal phosphorylation";
-  AMPK_dephosphorylation is "AMPK basal dephosphorylation";
-  PGC1a_phosphorylation is "PGC1a phosphorylation";
-  PGC1a_dephosphorylation is "PGC1a dephosphorylation";
-  Induced_PGC1a_deacetylation is "PGC1a induced deacetylation";
-  PGC1a_acetylation is "PGC1a basal acetylation";
-  DUMMY_REACTION_Delay_in_NAD_Increase is "Delay Reaction NAD increase by AMPK";
-  DUMMY_REACTION_Delay_in_NAD_Increase_2 is "Dummy Reaction Delay_in_NAD_Increase Removal";
-  NAD_synthesis is "NAD synthesis";
-  NAD_utilisation is "NAD utilisation";
-  NAD_utilisation_by_PARP is "NAD utilisation by PARP";
-
-  NAD_increase_by_AMPK is "NAD increase by AMPK";
-  NAD_decrease_by_AMPK is "NAD decrease by AMPK";
-
-  Deacetylation_activity is "Delay Reaction Induced Deacetylation";
-  DUMMY_REACTION_AICAR_stimulus_removal is "Dummy Reaction AICAR Stimulus Removal";
-  AMPK_phosphorylation_induced_by_AICAR is "AMPK induced phosphorylation by AICAR";
-  DUMMY_REACTION_Delay_AICAR_stimulus is "Delay Reaction AICAR Stimulus";
-  Basal_PGC1a_deacetylation is "PGC1a basal deacetylation";
-  DUMMY_REACTION_PGC1a_Deacetylation_Limiter is "Dummy Reaction Induced Deacetylation Delay Removal";
-  Glucose_induced_AMPK_dephosphorylation is "Glucose-induced AMPK dephosphorylation";
-  Glucose_input is "Glucose influx";
-  Glucose_utilisation is "Glucose utilisation";
-  Glucose_DUMMY_REACTION_delay is "Delay Reaction Glucose Stimulus";
-  Glucose_DUMMY_REACTION_delay_limiter is "Dummy Reaction Glucose Delay Removal";
-  NAD_negative_regulation is "NAD negative regulation";
-  DUMMY_REACTION_NegReg_disappearance is "Dummy Reaction NegReg Removal";
-  NR_NMN_supplementation is "NR/NMN supplementation";
 end
 
 Mitonuclear_communication_model is "Mitonuclear communication model"

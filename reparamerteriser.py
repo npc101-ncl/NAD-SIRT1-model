@@ -126,22 +126,6 @@ if __name__ == "__main__":
     
     myModel = modelRunner(antimony_string, run_dir)
     
-    df = pd.DataFrame(indep_cond)
-    df = myModel.preProcessParamEnsam(df)
-    timeCourse = myModel.runTimeCourse(24, adjustParams=df,
-                                       stepSize=0.25)
-    file = open(os.path.join(working_directory,'old-timeCourses.p'),'wb')
-    pickle.dump(timeCourse, file)
-    file.close()
-    myModel.clearRunDirectory()
-    
-    timeCourse = myModel.runTimeCourse(24,stepSize=0.25) 
-    
-    file = open(os.path.join(working_directory,'old-timeCoursesN.p'),'wb')
-    pickle.dump(timeCourse, file)
-    file.close()
-    myModel.clearRunDirectory()
-    
     if removeHardCoded:
         estVars = [var for var in myKVars if var not in hardCodeSuspects]
     else:

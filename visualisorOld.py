@@ -113,3 +113,56 @@ Fakouri_table = pd.DataFrame([{"Index":"WT", "catagory":"Simulation",
 plt.figure()
 bp = sns.barplot(x="Index", y="NAD", hue="catagory", data=Fakouri_table)
 bp.get_figure().savefig(os.path.join(fig_dir,'Fakouri_old.png'))
+
+f = open(os.path.join(working_dir,'old-S27fig.p'),'rb')
+s27fig = pickle.load(f)
+f.close()
+
+s27table = pd.DataFrame([{"catagory":"WT", "Index":"ctrl",
+                          "AMPK-P":float(s27fig["ctrl-wt"]["AMPK-P"])},
+                         {"catagory":"Genomic instability", "Index":"ctrl",
+                          "AMPK-P":float(s27fig["ctrl-gi"]["AMPK-P"])},
+                         {"catagory":"WT", "Index":"AIC",
+                          "AMPK-P":float(s27fig["aic-wt"]["AMPK-P"])},
+                         {"catagory":"Genomic instability", "Index":"AIC",
+                          "AMPK-P":float(s27fig["aic-gi"]["AMPK-P"])},
+                         {"catagory":"Genomic instability", "Index":"NR+AIC",
+                          "AMPK-P":float(s27fig["nr+aic-gi"]["AMPK-P"])},
+                         {"catagory":"Genomic instability",
+                          "Index":"PJ34+AIC",
+                          "AMPK-P":float(s27fig["pj34+aic-gi"]["AMPK-P"])}])
+    
+plt.figure()
+bp = sns.barplot(x="Index", y="AMPK-P", hue="catagory", data=s27table)
+bp.get_figure().savefig(os.path.join(fig_dir,'s27_old.png'))
+
+s27tableN = pd.DataFrame([{"catagory":"WT", "Index":"ctrl",
+                           "NAD":float(s27fig["ctrl-wt"]["NAD"])},
+                          {"catagory":"Genomic instability", "Index":"ctrl",
+                           "NAD":float(s27fig["ctrl-gi"]["NAD"])},
+                          {"catagory":"WT", "Index":"AIC",
+                           "NAD":float(s27fig["aic-wt"]["NAD"])},
+                          {"catagory":"Genomic instability", "Index":"AIC",
+                           "NAD":float(s27fig["aic-gi"]["NAD"])},
+                          {"catagory":"Genomic instability",
+                           "Index":"NR+AIC",
+                           "NAD":float(s27fig["nr+aic-gi"]["NAD"])},
+                          {"catagory":"Genomic instability",
+                           "Index":"PJ34+AIC",
+                           "NAD":float(s27fig["pj34+aic-gi"]["NAD"])}])
+    
+plt.figure()
+bp = sns.barplot(x="Index", y="NAD", hue="catagory", data=s27tableN)
+bp.get_figure().savefig(os.path.join(fig_dir,'s27N_old.png'))
+
+f = open(os.path.join(working_dir,'old-timeCoursesGI.p'),'rb')
+timeCourseGI = pickle.load(f)
+f.close()
+
+GICompTC = [timeCourse[timeCourse["Time"]<=12],
+            timeCourseGI[0][timeCourseGI[0]["Time"]<=12]]
+
+TCVis = timeCourseVisualiser(GICompTC)
+
+TCVis.multiPlot(save=os.path.join(fig_dir,"GItimeCourseOld.png"),
+                varSelect = ["AMPK-P","NAD","PGC1a_deacet"])

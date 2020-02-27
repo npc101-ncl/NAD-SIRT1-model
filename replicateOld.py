@@ -183,3 +183,86 @@ if __name__ == "__main__":
     file.close()
     myModel.clearRunDirectory()
     
+    # replicating figure s27 branched time serise
+    
+    timeCourseGI = myModel.runTimeCourse(24,stepSize=0.25,
+                                         adjustParams=pd.DataFrame([{
+                                                 "PARP1":2.5}]))
+    
+    file = open(os.path.join(working_directory,'old-timeCoursesGI.p'),'wb')
+    pickle.dump(timeCourseGI, file)
+    file.close()
+    
+    timeCourseGINR = myModel.runTimeCourse(24,stepSize=0.25,
+                                           adjustParams=pd.DataFrame([{
+                                                   "PARP1":2.5,
+                                                   "NR-NMN":500}]))
+    
+    timeCourseGIPJ = myModel.runTimeCourse(24,stepSize=0.25,
+                                           adjustParams=pd.DataFrame([{
+                                                   "PARP1":0}]))
+    
+    df = myModel.TCendState(timeCourseGINR, variables = "metabolites")
+    df["PARP1"] = 2.5
+    df["NR-NMN"] = 0
+    df["AICAR"] = 1
+    df = df.drop(columns=["SIRT1_activity"])
+    print(df.squeeze())
+    
+    timeCourseGINR = myModel.runTimeCourse(12,stepSize=0.25,
+                                           adjustParams=df)
+    
+    df = myModel.TCendState(timeCourseGI, variables = "metabolites")
+    df["AICAR"] = 1
+    df["PARP1"] = 2.5
+    df = df.drop(columns=["SIRT1_activity"])
+    print(df.squeeze())
+    
+    timeCourseGIA = myModel.runTimeCourse(12,stepSize=0.25,
+                                          adjustParams=df)
+    
+    df = myModel.TCendState(timeCourseGIPJ, variables = "metabolites")
+    df["AICAR"] = 1
+    df["PARP1"] = 2.5
+    df = df.drop(columns=["SIRT1_activity"])
+    print(df.squeeze())
+    
+    timeCourseGIPJ = myModel.runTimeCourse(12,stepSize=0.25,
+                                           adjustParams=df)
+    
+    df = myModel.TCendState(timeCourse, variables = "metabolites")
+    df["AICAR"] = 1
+    df = df.drop(columns=["SIRT1_activity"])
+    print(df.squeeze())
+    
+    timeCourseA = myModel.runTimeCourse(12,stepSize=0.25, adjustParams=df)
+    
+    df = myModel.TCendState(timeCourse, variables = "metabolites")
+    df = df.drop(columns=["SIRT1_activity"])
+    print(df.squeeze())
+    
+    timeCourse = myModel.runTimeCourse(12,stepSize=0.25, adjustParams=df)
+    
+    df = myModel.TCendState(timeCourseGI, variables = "metabolites")
+    df["PARP1"] = 2.5
+    df = df.drop(columns=["SIRT1_activity"])
+    print(df.squeeze())
+    
+    timeCourseGI = myModel.runTimeCourse(12,stepSize=0.25, adjustParams=df)
+    
+    s27fig = {"ctrl-wt":myModel.TCendState(timeCourse,
+                                           variables = "metabolites"),
+              "ctrl-gi":myModel.TCendState(timeCourseGI,
+                                           variables = "metabolites"),
+              "aic-wt":myModel.TCendState(timeCourseA,
+                                          variables = "metabolites"),
+              "aic-gi":myModel.TCendState(timeCourseGIA,
+                                          variables = "metabolites"),
+              "nr+aic-gi":myModel.TCendState(timeCourseGINR,
+                                             variables = "metabolites"),
+              "pj34+aic-gi":myModel.TCendState(timeCourseGIPJ,
+                                               variables = "metabolites")}
+              
+    file = open(os.path.join(working_directory,'old-S27fig.p'),'wb')
+    pickle.dump(s27fig, file)
+    file.close()

@@ -12,3 +12,6 @@ copasiRuns/*
 *.sbml
 *.out
 *.csv
+*.key
+*.pdf
+*.jpg

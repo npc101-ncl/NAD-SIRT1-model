@@ -9,4 +9,4 @@
 #SBATCH --mail-user=peter.clark@ncl.ac.uk
 #
 
-python reparamerteriser.py name:reConf3 ant:modAntFile2.txt slurm meth:particle_swarm_heroic removeHardCoded2
+python validator2.py name:reConf4B ant:modAntFile2B.txt slurm

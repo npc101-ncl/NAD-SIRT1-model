@@ -1,0 +1,91 @@
+Validation
+
+S6 no glucose, 1-12h 2mM-ACAIR=4
+PARK, S., SCHEFFLER, T. L. & GERRARD, D. E. 2011. Chronic high cytosolic calcium decreases AICAR-induced AMPK activity via calcium/calmodulin activated protein kinase II signaling cascade. Cell Calcium, 50, 73-83.
+
+S7
+OUCHI, N., SHIBATA, R. & WALSH, K. 2005. AMP-activated protein kinase signaling stimulates VEGF expression and angiogenesis in skeletal muscle. Circ Res, 96, 838-46.
+
+S8
+EGAWA, T., OHNO, Y., GOTO, A., IKUTA, A., SUZUKI, M., OHIRA, T., YOKOYAMA, S., SUGIURA, T., OHIRA, Y., YOSHIOKA, T. & GOTO, K. 2014. AICAR-induced activation of AMPK negatively regulates myotube hypertrophy through the HSP72-mediated pathway in C2C12 skeletal muscle cells. Am J Physiol Endocrinol Metab, 306, E344-54.
+
+S9
+HALL, D. T., GRISS, T., MA, J. F., SANCHEZ, B. J., SADEK, J., TREMBLAY, A. M. K., MUBAID, S., OMER, A., FORD, R. J., BEDARD, N., PAUSE, A., WING, S. S., DI MARCO, S., STEINBERG, G. R., JONES, R. G. & GALLOUZI, I. E. 2018. The AMPK agonist 5-aminoimidazole-4-carboxamide ribonucleotide (AICAR), but not metformin, prevents inflammation-associated cachectic muscle wasting. EMBO Mol Med, 10.
+
+S10
+CANTO, C., GERHART-HINES, Z., FEIGE, J. N., LAGOUGE, M., NORIEGA, L., MILNE, J. C., ELLIOTT, P. J., PUIGSERVER, P. & AUWERX, J. 2009. AMPK regulates energy expenditure by modulating NAD+ metabolism and SIRT1 activity. Nature, 458, 1056-60.
+
+S11
+FULCO, M., CEN, Y., ZHAO, P., HOFFMAN, E. P., MCBURNEY, M. W., SAUVE, A. A. & SARTORELLI, V. 2008. Glucose restriction inhibits skeletal myoblast differentiation by activating SIRT1 through AMPK-mediated regulation of Nampt. Dev Cell, 14, 661-73.
+
+S12
+CANTO, C., GERHART-HINES, Z., FEIGE, J. N., LAGOUGE, M., NORIEGA, L., MILNE, J. C., ELLIOTT, P. J., PUIGSERVER, P. & AUWERX, J. 2009. AMPK regulates energy expenditure by modulating NAD+ metabolism and SIRT1 activity. Nature, 458, 1056-60.
+
+S13
+PARK, C.-S., KIM, J.-H., OH, Y.-K., KIM, K., CHOI, C.-W., CHO, E.-S., JEONG, Y.-D. & PARK, S.-K. 2012. AICAR (5-aminoimidazole-4-carboxamide-1-?-D-ribonucleoside) Decreases Protein Synthesis in C2C12 Myotubes Cultured in High Glucose Media.
+
+S14
+GERHART-HINES, Z., RODGERS, J. T., BARE, O., LERIN, C., KIM, S. H., MOSTOSLAVSKY, R., ALT, F. W., WU, Z. & PUIGSERVER, P. 2007. Metabolic control of muscle mitochondrial function and fatty acid oxidation through SIRT1/PGC-1alpha. EMBO J, 26, 1913-23.
+
+S15
+FULCO, M., CEN, Y., ZHAO, P., HOFFMAN, E. P., MCBURNEY, M. W., SAUVE, A. A. & SARTORELLI, V. 2008. Glucose restriction inhibits skeletal myoblast differentiation by activating SIRT1 through AMPK-mediated regulation of Nampt. Dev Cell, 14, 661-73.
+
+S16
+CANTO, C., HOUTKOOPER, R. H., PIRINEN, E., YOUN, D. Y., OOSTERVEER, M. H., CEN, Y., FERNANDEZ-MARCOS, P. J., YAMAMOTO, H., ANDREUX, P. A., CETTOUR-ROSE, P., GADEMANN, K., RINSCH, C., SCHOONJANS, K., SAUVE, A. A. & AUWERX, J. 2012. The NAD(+) precursor nicotinamide riboside enhances oxidative metabolism and protects against high-fat diet-induced obesity. Cell Metab, 15, 838-47.
+
+S17
+RYU, D., ZHANG, H., ROPELLE, E. R., SORRENTINO, V., MAZALA, D. A., MOUCHIROUD, L., MARSHALL, P. L., CAMPBELL, M. D., ALI, A. S., KNOWELS, G. M., BELLEMIN, S., IYER, S. R., WANG, X., GARIANI, K., SAUVE, A. A., CANTO, C., CONLEY, K. E., WALTER, L., LOVERING, R. M., CHIN, E. R., JASMIN, B. J., MARCINEK, D. J., MENZIES, K. J. & AUWERX, J. 2016. NAD+ repletion improves muscle function in muscular dystrophy and counters global PARylation. Sci Transl Med, 8, 361ra139.
+
+S18
+FLETCHER, R. S., RATAJCZAK, J., DOIG, C. L., OAKEY, L. A., CALLINGHAM, R., DA SILVA XAVIER, G., GARTEN, A., ELHASSAN, Y. S., REDPATH, P., MIGAUD, M. E., PHILP, A., BRENNER, C., CANTO, C. & LAVERY, G. G. 2017. Nicotinamide riboside kinases display redundancy in mediating nicotinamide mononucleotide and nicotinamide riboside metabolism in skeletal muscle cells. Mol Metab, 6, 819-832.
+
+S19
+HSU, C. G. & BURKHOLDER, T. J. 2016. Independent AMP and NAD signaling regulates C2C12 differentiation and metabolic adaptation. J Physiol Biochem, 72, 689-697.
+
+S20
+HIGASHIDA, K., KIM, S. H., JUNG, S. R., ASAKA, M., HOLLOSZY, J. O. & HAN, D. H. 2013. Effects of resveratrol and SIRT1 on PGC-1alpha activity and mitochondrial biogenesis: a reevaluation. PLoS Biol, 11, e1001603.
+
+S21
+FAKOURI, N. B., DURHUUS, J. A., REGNELL, C. E., ANGLEYS, M., DESLER, C., HASAN-OLIVE, M. M., MARTIN-PARDILLOS, A., TSAALBI-SHTYLIK, A., THOMSEN, K., LAURITZEN, M., BOHR, V. A., DE WIND, N., BERGERSEN, L. H. & RASMUSSEN, L. J. 2017. Rev1 contributes to proper mitochondrial function via the PARP-NAD(+)-SIRT1-PGC1alpha axis. Sci Rep, 7, 12480.
+
+S22
+HIGASHIDA, K., KIM, S. H., JUNG, S. R., ASAKA, M., HOLLOSZY, J. O. & HAN, D. H. 2013. Effects of resveratrol and SIRT1 on PGC-1alpha activity and mitochondrial biogenesis: a reevaluation. PLoS Biol, 11, e1001603.
+
+S23
+FANG, E. F., KASSAHUN, H., CROTEAU, D. L., SCHEIBYE-KNUDSEN, M., MAROSI, K., LU, H., SHAMANNA, R. A., KALYANASUNDARAM, S., BOLLINENI, R. C., WILSON, M. A., ISER, W. B., WOLLMAN, B. N., MOREVATI, M., LI, J., KERR, J. S., LU, Q., WALTZ, T. B., TIAN, J., SINCLAIR, D. A., MATTSON, M. P., NILSEN, H. & BOHR, V. A. 2016. NAD(+) Replenishment Improves Lifespan and Healthspan in Ataxia Telangiectasia Models via Mitophagy and DNA Repair. Cell Metab, 24, 566-581.
+
+S24
+FANG, E. F., KASSAHUN, H., CROTEAU, D. L., SCHEIBYE-KNUDSEN, M., MAROSI, K., LU, H., SHAMANNA, R. A., KALYANASUNDARAM, S., BOLLINENI, R. C., WILSON, M. A., ISER, W. B., WOLLMAN, B. N., MOREVATI, M., LI, J., KERR, J. S., LU, Q., WALTZ, T. B., TIAN, J., SINCLAIR, D. A., MATTSON, M. P., NILSEN, H. & BOHR, V. A. 2016. NAD(+) Replenishment Improves Lifespan and Healthspan in Ataxia Telangiectasia Models via Mitophagy and DNA Repair. Cell Metab, 24, 566-581.
+
+
+Calibration
+
+S1
+BAI, P., CANTO, C., OUDART, H., BRUNYANSZKI, A., CEN, Y., THOMAS, C., YAMAMOTO, H., HUBER, A., KISS, B., HOUTKOOPER, R. H., SCHOONJANS, K., SCHREIBER, V., SAUVE, A. A., MENISSIER-DE MURCIA, J. & AUWERX, J. 2011. PARP-1 inhibition increases mitochondrial metabolism through SIRT1 activation. Cell Metab, 13, 461-468.
+
+S2
+CANTO, C., GERHART-HINES, Z., FEIGE, J. N., LAGOUGE, M., NORIEGA, L., MILNE, J. C., ELLIOTT, P. J., PUIGSERVER, P. & AUWERX, J. 2009. AMPK regulates energy expenditure by modulating NAD+ metabolism and SIRT1 activity. Nature, 458, 1056-60.
+
+S3
+EGAWA, T., OHNO, Y., GOTO, A., IKUTA, A., SUZUKI, M., OHIRA, T., YOKOYAMA, S., SUGIURA, T., OHIRA, Y., YOSHIOKA, T. & GOTO, K. 2014. AICAR-induced activation of AMPK negatively regulates myotube hypertrophy through the HSP72-mediated pathway in C2C12 skeletal muscle cells. Am J Physiol Endocrinol Metab, 306, E344-54.
+
+S4
+CANTO, C., JIANG, L. Q., DESHMUKH, A. S., MATAKI, C., COSTE, A., LAGOUGE, M., ZIERATH, J. R. & AUWERX, J. 2010. Interdependence of AMPK and SIRT1 for metabolic adaptation to fasting and exercise in skeletal muscle. Cell Metab, 11, 213-9.
+
+S5
+CANTO, C., HOUTKOOPER, R. H., PIRINEN, E., YOUN, D. Y., OOSTERVEER, M. H., CEN, Y., FERNANDEZ-MARCOS, P. J., YAMAMOTO, H., ANDREUX, P. A., CETTOUR-ROSE, P., GADEMANN, K., RINSCH, C., SCHOONJANS, K., SAUVE, A. A. & AUWERX, J. 2012. The NAD(+) precursor nicotinamide riboside enhances oxidative metabolism and protects against high-fat diet-induced obesity. Cell Metab, 15, 838-47.
+
+
+
+
+
+
+
+
+
+
+JACKSON, M. F., HOVERSTEN, K. E., POWERS, J. M., TROBRIDGE, G. D. & RODGERS, B. D. 2013. Genetic manipulation of myoblasts and a novel primary myosatellite cell culture system: comparing and optimizing approaches. FEBS J, 280, 827-39.
+
+
+
+YANG, N. C., SONG, T. Y., CHANG, Y. Z., CHEN, M. Y. & HU, M. L. 2015. Up-regulation of nicotinamide phosphoribosyltransferase and increase of NAD+ levels by glucose restriction extend replicative lifespan of human fibroblast Hs68 cells. Biogerontology, 16, 31-42.

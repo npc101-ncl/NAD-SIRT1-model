@@ -1,10 +1,4 @@
 // Created by libAntimony v2.11.0
-function Basal_deacetylation_function(v, SIRT1_activity)
-  v + SIRT1_activity*0.75;
-end
-
-Basal_deacetylation_function is "Basal deacetylation function"
-
 function Constant_flux__irreversible(v)
   v;
 end
@@ -17,6 +11,12 @@ end
 
 Hill_Cooperativity is "Hill Cooperativity"
 
+function Basal_deacetylation_function(v, SIRT1_activity)
+  v + SIRT1_activity*0.75;
+end
+
+Basal_deacetylation_function is "Basal deacetylation function"
+
 
 model *Mitonuclear_communication_model()
 
@@ -28,6 +28,8 @@ model *Mitonuclear_communication_model()
   species PARP in compartment_, PGC1a_Deacetylation_Activity in compartment_;
   species AICAR_Delay in compartment_, AICAR_treatment in compartment_, Glucose in compartment_;
   species GlucoseDelay in compartment_, NAD_NegReg in compartment_, NR_NMN in compartment_;
+  species Damage in compartment_, Mito_old in compartment_, Mitophagy in compartment_;
+  species Mito_new in compartment_, Mito_turnover in compartment_;
 
   // Assignment Rules:
   SIRT1_activity := SIRT1*quantity_to_number_factor*compartment_*NAD*quantity_to_number_factor*compartment_;
@@ -59,6 +61,15 @@ model *Mitonuclear_communication_model()
   NAD_negative_regulation: NAD + NAD_NegReg => ; compartment_*NAD_negative_regulation_k1*NAD*NAD_NegReg;
   DUMMY_REACTION_NegReg_disappearance: NAD_NegReg => ; compartment_*DUMMY_REACTION_NegReg_disappearance_k1*NAD_NegReg;
   NR_NMN_supplementation: NR_NMN => NAD; compartment_*Hill_Cooperativity(NR_NMN, NR_NMN_supplementation_Shalve, NR_NMN_supplementation_V, NR_NMN_supplementation_h);
+  Damage_propagation: Mito_old => 2 Damage + Mito_old; compartment_*Damage_propagation_k1*Mito_old;
+  Delay_Reaction_Mitophagy: PGC1a_deacet => Mitophagy + PGC1a_deacet; compartment_*Delay_Reaction_Mitophagy_k1*PGC1a_deacet;
+  Dummy_Reaction_Mitophagy_Removal: Mitophagy => ; compartment_*Dummy_Reaction_Mitophagy_Removal_k1*Mitophagy;
+  Mitochondrial_dysfunction: Mito_new + Damage => Mito_old + Damage; compartment_*Mitochondrial_dysfunction_k1*Mito_new*Damage;
+  Mitogenesis: Mito_turnover => Mito_new; compartment_*Mitogenesis_k1*Mito_turnover;
+  Mitophagy_of_new_mitochondria: Mito_new + Mitophagy => Mito_turnover + Mitophagy; compartment_*Mitophagy_of_new_mitochondria_k1*Mito_new*Mitophagy;
+  Mitophagy_of_old_mitochondria: Mito_old + Mitophagy => Mito_turnover + Mitophagy; compartment_*Mitophagy_of_old_mitochondria_k1*Mito_old*Mitophagy;
+  Mitochondrial_stress_signal: Mito_old => AICAR_treatment + Mito_old; compartment_*Hill_Cooperativity(Mito_old, Mitochondrial_stress_signal_Shalve, Mitochondrial_stress_signal_V, Mitochondrial_stress_signal_h);
+  Dummy_Reaction_Mitochondrial_Stress_Signal_Removal: AICAR_treatment => ; compartment_*Dummy_Reaction_Mitochondrial_Stress_Signal_Removal_k1*AICAR_treatment;
 
   // Species initializations:
   AMPK = 10;
@@ -77,6 +88,11 @@ model *Mitonuclear_communication_model()
   GlucoseDelay = 1;
   NAD_NegReg = 0;
   NR_NMN = 0;
+  Damage = 0.00251883;
+  Mito_old = 0;
+  Mitophagy = 1;
+  Mito_new = 100;
+  Mito_turnover = 1;
 
   // Compartment initializations:
   compartment_ = 1;
@@ -119,6 +135,17 @@ model *Mitonuclear_communication_model()
   NR_NMN_supplementation_Shalve = 100;
   NR_NMN_supplementation_V = 0.10829;
   NR_NMN_supplementation_h = 1.5;
+  Damage_propagation_k1 = 1e-06;
+  Delay_Reaction_Mitophagy_k1 = 0.1;
+  Dummy_Reaction_Mitophagy_Removal_k1 = 0.1;
+  Mitochondrial_dysfunction_k1 = 0.0003608;
+  Mitogenesis_k1 = 100;
+  Mitophagy_of_new_mitochondria_k1 = 1;
+  Mitophagy_of_old_mitochondria_k1 = 0.0055;
+  Mitochondrial_stress_signal_Shalve = 2;
+  Mitochondrial_stress_signal_V = 0.1;
+  Mitochondrial_stress_signal_h = 20;
+  Dummy_Reaction_Mitochondrial_Stress_Signal_Removal_k1 = 0.1;
 
   // Other declarations:
   const compartment_, quantity_to_number_factor;
@@ -133,9 +160,7 @@ model *Mitonuclear_communication_model()
   AMPK_P is "AMPK-P";
   PGC1a_P is "PGC1a-P";
   quantity_to_number_factor is "quantity to number factor";
-  PARP is "PARP1";
   PGC1a_Deacetylation_Activity is "Deacetylation_Delay";
-  AICAR_treatment is "AICAR";
   NR_NMN is "NR-NMN";
   AMPK_phosphorylation is "AMPK basal phosphorylation";
   AMPK_dephosphorylation is "AMPK basal dephosphorylation";
@@ -163,6 +188,14 @@ model *Mitonuclear_communication_model()
   NAD_negative_regulation is "NAD negative regulation";
   DUMMY_REACTION_NegReg_disappearance is "Dummy Reaction NegReg Removal";
   NR_NMN_supplementation is "NR/NMN supplementation";
+  Damage_propagation is "Damage propagation";
+  Delay_Reaction_Mitophagy is "Delay Reaction Mitophagy";
+  Dummy_Reaction_Mitophagy_Removal is "Dummy Reaction Mitophagy Removal";
+  Mitochondrial_dysfunction is "Mitochondrial dysfunction";
+  Mitophagy_of_new_mitochondria is "Mitophagy of new mitochondria";
+  Mitophagy_of_old_mitochondria is "Mitophagy of old mitochondria";
+  Mitochondrial_stress_signal is "Mitochondrial stress signal";
+  Dummy_Reaction_Mitochondrial_Stress_Signal_Removal is "Dummy Reaction Mitochondrial Stress Signal Removal";
 end
 
 Mitonuclear_communication_model is "Mitonuclear communication model"

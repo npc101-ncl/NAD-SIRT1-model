@@ -25,12 +25,15 @@ model *Mitonuclear_communication_model()
   species AMPK in compartment_, AMPK_P in compartment_, PGC1a in compartment_;
   species PGC1a_P in compartment_, PGC1a_deacet in compartment_, $SIRT1_activity in compartment_;
   species SIRT1 in compartment_, NAD in compartment_, Delay_in_NAD_increase in compartment_;
-  species PARP in compartment_, PGC1a_Deacetylation_Activity in compartment_;
+  species $PARP in compartment_, PGC1a_Deacetylation_Activity in compartment_;
   species AICAR_Delay in compartment_, AICAR_treatment in compartment_, Glucose in compartment_;
   species GlucoseDelay in compartment_, NAD_NegReg in compartment_, NR_NMN in compartment_;
+  species $AMPK_driven_NAD_source in compartment_, $AMPK_driven_NegReg_source in compartment_;
+  species $Glucose_source in compartment_;
 
   // Assignment Rules:
   SIRT1_activity := SIRT1*quantity_to_number_factor*compartment_*NAD*quantity_to_number_factor*compartment_;
+  NAD_fold_increase := NAD/initial_NAD;
 
   // Reactions:
   AMPK_phosphorylation: AMPK => AMPK_P; compartment_*AMPK_phosphorylation_k1*AMPK;
@@ -43,19 +46,26 @@ model *Mitonuclear_communication_model()
   DUMMY_REACTION_Delay_in_NAD_Increase_2: Delay_in_NAD_increase => ; compartment_*DUMMY_REACTION_Delay_in_NAD_Increase_2_k1*Delay_in_NAD_increase;
   NAD_synthesis:  => NAD; compartment_*Constant_flux__irreversible(NAD_synthesis_v);
   NAD_utilisation: NAD => ; compartment_*NAD_utilisation_k1*NAD;
-  NAD_utilisation_by_PARP: NAD + PARP => PARP; compartment_*NAD_utilisation_by_PARP_k1*NAD*PARP;
-  NAD_increase_by_AMPK: Delay_in_NAD_increase => NAD + Delay_in_NAD_increase + NAD_NegReg; compartment_*Hill_Cooperativity(Delay_in_NAD_increase, NAD_increase_by_AMPK_Shalve, NAD_increase_by_AMPK_V, NAD_increase_by_AMPK_h);
+  NAD_utilisation_by_PARP: NAD => ; compartment_*NAD_utilisation_by_PARP_k1*NAD*PARP;
+
+  NAD_increase_by_AMPK: $AMPK_driven_NAD_source => NAD; compartment_*AMPK_driven_NAD_source*Hill_Cooperativity(Delay_in_NAD_increase, NAD_increase_by_AMPK_Shalve, NAD_increase_by_AMPK_V, NAD_increase_by_AMPK_h);
+
+  NAD_decrease_by_AMPK: $AMPK_driven_NegReg_source => NAD_NegReg; compartment_*AMPK_driven_NegReg_source*Hill_Cooperativity(Delay_in_NAD_increase, NAD_increase_by_AMPK_Shalve, NAD_increase_by_AMPK_V, NAD_increase_by_AMPK_h);
+
   Deacetylation_activity: $SIRT1_activity => PGC1a_Deacetylation_Activity + $SIRT1_activity; compartment_*Hill_Cooperativity(SIRT1_activity, Deacetylation_activity_Shalve, Deacetylation_activity_V, Deacetylation_activity_h);
   DUMMY_REACTION_AICAR_stimulus_removal: AICAR_Delay => ; compartment_*DUMMY_REACTION_AICAR_stimulus_removal_k1*AICAR_Delay;
   AMPK_phosphorylation_induced_by_AICAR: AICAR_Delay + AMPK => AMPK_P + AICAR_Delay; compartment_*AMPK_phosphorylation_induced_by_AICAR_k1*AICAR_Delay*AMPK;
   DUMMY_REACTION_Delay_AICAR_stimulus: AICAR_treatment => AICAR_Delay + AICAR_treatment; compartment_*Hill_Cooperativity(AICAR_treatment, DUMMY_REACTION_Delay_AICAR_stimulus_Shalve, DUMMY_REACTION_Delay_AICAR_stimulus_V, DUMMY_REACTION_Delay_AICAR_stimulus_h);
   Basal_PGC1a_deacetylation: PGC1a_P => PGC1a_deacet; compartment_*Basal_deacetylation_function(Basal_PGC1a_deacetylation_v, SIRT1_activity);
   DUMMY_REACTION_PGC1a_Deacetylation_Limiter: PGC1a_Deacetylation_Activity => ; compartment_*DUMMY_REACTION_PGC1a_Deacetylation_Limiter_k1*PGC1a_Deacetylation_Activity;
-  Glucose_induced_AMPK_dephosphorylation: GlucoseDelay + AMPK_P => AMPK + GlucoseDelay; compartment_*Glucose_induced_AMPK_dephosphorylation_k1*GlucoseDelay*AMPK_P;
-  Glucose_input:  => Glucose; compartment_*Constant_flux__irreversible(Glucose_input_v);
+
+  Glucose_induced_AMPK_dephosphorylation: AMPK_P => AMPK; compartment_*Glucose_induced_AMPK_dephosphorylation_k1*GlucoseDelay*AMPK_P;
+  
+  Glucose_input: $Glucose_source => Glucose; compartment_*Glucose_source;
+
   Glucose_utilisation: Glucose => ; compartment_*Glucose_utilisation_k1*Glucose;
   Glucose_DUMMY_REACTION_delay: Glucose => GlucoseDelay + Glucose; compartment_*Hill_Cooperativity(Glucose, Glucose_DUMMY_REACTION_delay_Shalve, Glucose_DUMMY_REACTION_delay_V, Glucose_DUMMY_REACTION_delay_h);
-  Glucose_DUMMY_REACTION_delay_limiter: GlucoseDelay => ; compartment_*Glucose_DUMMY_REACTION_delay_limiter_k1*GlucoseDelay;
+  Glucose_DUMMY_REACTION_delay_limiter: GlucoseDelay => ; compartment_*Glucose_DUMMY_REACTION_delay_limiter_k1*GlucoseDelay;  
   NAD_negative_regulation: NAD + NAD_NegReg => ; compartment_*NAD_negative_regulation_k1*NAD*NAD_NegReg;
   DUMMY_REACTION_NegReg_disappearance: NAD_NegReg => ; compartment_*DUMMY_REACTION_NegReg_disappearance_k1*NAD_NegReg;
   NR_NMN_supplementation: NR_NMN => NAD; compartment_*Hill_Cooperativity(NR_NMN, NR_NMN_supplementation_Shalve, NR_NMN_supplementation_V, NR_NMN_supplementation_h);
@@ -74,9 +84,11 @@ model *Mitonuclear_communication_model()
   AICAR_Delay = 0;
   AICAR_treatment = 0;
   Glucose = 25;
-  GlucoseDelay = 1;
   NAD_NegReg = 0;
   NR_NMN = 0;
+  AMPK_driven_NAD_source = 1;
+  AMPK_driven_NegReg_source = 1;
+  initial_NAD = NAD;
 
   // Compartment initializations:
   compartment_ = 1;
@@ -108,7 +120,7 @@ model *Mitonuclear_communication_model()
   Basal_PGC1a_deacetylation_v = 0.25;
   DUMMY_REACTION_PGC1a_Deacetylation_Limiter_k1 = 0.56472;
   Glucose_induced_AMPK_dephosphorylation_k1 = 5;
-  Glucose_input_v = 25;
+  Glucose_source = 25;
   Glucose_utilisation_k1 = 1;
   Glucose_DUMMY_REACTION_delay_Shalve = 5.36174;
   Glucose_DUMMY_REACTION_delay_V = 0.1013;
@@ -119,6 +131,9 @@ model *Mitonuclear_communication_model()
   NR_NMN_supplementation_Shalve = 100;
   NR_NMN_supplementation_V = 0.10829;
   NR_NMN_supplementation_h = 1.5;
+  
+  // forcing GlucoseDelay to start in stable state
+  GlucoseDelay = Hill_Cooperativity(Glucose, Glucose_DUMMY_REACTION_delay_Shalve, Glucose_DUMMY_REACTION_delay_V, Glucose_DUMMY_REACTION_delay_h)/Glucose_DUMMY_REACTION_delay_limiter_k1;
 
   // Other declarations:
   const compartment_, quantity_to_number_factor;
@@ -148,7 +163,10 @@ model *Mitonuclear_communication_model()
   NAD_synthesis is "NAD synthesis";
   NAD_utilisation is "NAD utilisation";
   NAD_utilisation_by_PARP is "NAD utilisation by PARP";
+
   NAD_increase_by_AMPK is "NAD increase by AMPK";
+  NAD_decrease_by_AMPK is "NAD decrease by AMPK";
+
   Deacetylation_activity is "Delay Reaction Induced Deacetylation";
   DUMMY_REACTION_AICAR_stimulus_removal is "Dummy Reaction AICAR Stimulus Removal";
   AMPK_phosphorylation_induced_by_AICAR is "AMPK induced phosphorylation by AICAR";

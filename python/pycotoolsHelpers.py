@@ -10,7 +10,9 @@ import site, os, time, re
 from pycotools3 import model, tasks, viz
 import tellurium as te
 import pandas as pd
-import logging
+import logging, pickle, sys
+from random import randint
+from subprocess import getoutput
 
 def addCopasiPath(copasiPath):
     """adds the path to copasi to pythons working path
@@ -143,7 +145,7 @@ def renameCSVColumns(CSVPathOrList,targetDir,renameDict,indepToAdd=None):
     return outList
   
 class modelRunner:
-    def __init__(self, antString=None, run_dir=None):
+    def __init__(self, antString=None, run_dir=None, CopasiFile = None):
         if run_dir is None:
             # run_dir = os.path.dirname(os.path.abspath(''))
             run_dir = os.path.abspath('')
@@ -165,10 +167,14 @@ class modelRunner:
                 os.makedirs(run_dir)
                 self.run_dir=run_dir
         if antString is None:
-            self.antString = '''
-            model empty_model()
-            end
-            '''
+            if CopasiFile is None:
+                self.antString = '''
+                model empty_model()
+                end
+                '''
+            else:
+                myModel = model.Model(CopasiFile)
+                self.antString = myModel.to_antimony()
         else:
             self.antString=antString
         self.methodDict = {
@@ -262,28 +268,148 @@ class modelRunner:
         for name in estimatedVar:
             self.prefixAntString = replaceVariable(self.prefixAntString,
                                                    name,prefix+name)
+            
+    def genReactionAntString(self, revTag = "RevRe__",
+                             iRevTag = "IrRevRe__"):
+        """Creates a new antimony string with added prefixs
+        
+        creates a new antimony string (stored seperatly from the refrence
+        string) with aditional asigned variables to represent each reaction
+        in the model. These variables can be used to create diagrams showing
+        the 'flow' of reactions.
+        
+        Kwargs:
+           revTag (str):  the prefix used to represent reactions with
+               revesable flow.
+           iRevTag (str):  the prefix used to represent reactions with
+               irevesable flow.
+        """
+        
+        
+        lines = self.antString.splitlines()
+        lines = [line.split("#")[0] for line in lines]
+        rLines = [line.split(":") for line in lines if
+                  len(line.split(":"))==2]
+        rLines = [[line[0]]+line[1].split(";") for line in rLines
+                  if len(line[1].split(";"))==2]
+        rLines = [[part.strip() for part in line] for line in rLines]
+        rLines = [line for line in rLines if ("->" in line[1]) or
+                  ("=>" in line[1])]
+        rLines = [[line[0], "->" in line[1], line[2]] for line in rLines]
+        rLines = [[revTag+line[0], line[1], line[2]] if line[1] else
+                  [iRevTag+line[0], line[1], line[2]] for line in rLines]
+        rLines = [line[0]+" := "+line[2]+";" for line in rLines]
+        for i, line in zip(range(len(lines)),lines):
+            if line.strip() == "end":
+                break
+        indent = ""
+        while indent == "" and i>0:
+            i = i-1
+            indent = re.search(r'^\s*', lines[i]).group()
+        rLines = [indent+line for line in rLines]
+        self.reactionAntString = "\n".join(lines[:i+1]+rLines+lines[i+1:])
     
-    def genRefCopasiFile(self, filePath = None):
+    def genRefCopasiFile(self, filePath = None, adjustParams = None,
+                         setIndex=None):
         if filePath is None:
             copasi_filename = self.genPathCopasi("refFile")
         else:
             copasi_filename = filePath
+        
         self.recentModel = model.loada(self.antString, copasi_filename)
         
-    def runSteadyStateFinder(self,params=None):
+        if isinstance(adjustParams,pd.DataFrame): 
+            if (setIndex>=0 and setIndex < len(adjustParams)):
+                model.InsertParameters(self.recentModel,
+                                       df=adjustParams,
+                                       index=setIndex,inplace=True)
+    
+    def runSteadyStateFinder_TC(self, params=None, rocket=False, duration=1,
+                                genReactions=False, cycleMax=1,
+                                threshold=0):
+        workingParams = params
+        for i in range(cycleMax): 
+            timeCourses = self.runTimeCourse(duration,
+                                             adjustParams=workingParams,
+                                             rocket=rocket,
+                                             genReactions=genReactions)
+            oldWorkingParams = workingParams
+            if isinstance(timeCourses,list):
+                workingParams = pd.DataFrame([timeCourse.iloc[-1]
+                                              for timeCourse
+                                              in timeCourses])
+                if ((workingParams-oldWorkingParams)**2
+                    ).sum(axis=0).min()>threshold:
+                    break
+            else:
+                acum = 0
+                workingParams = timeCourses.iloc[-1].to_dict()
+                for key, value in oldWorkingParams.items():
+                    acum = acum + (workingParams[key]-value)**2
+                if acum>threshold:
+                    break
+        if isinstance(timeCourses,list):            
+            return [row.to_dict() for _, row in workingParams.iterrows()]
+        else:
+            return workingParams
+        
+    
+    def runSteadyStateFinder(self, params=None, rocket=False, chunks=1):
+        if isinstance(params, pd.DataFrame) and rocket:
+            list_df = [params[i:i+chunks] for i
+                       in range(0, params.shape[0], chunks)]
+            jobName = "SS"+str(randint(0, 99999))
+            for index, df in zip(range(len(list_df)),list_df):
+                file = open(os.path.join(self.run_dir,
+                                         'SteadyState'+str(index)+'.p'), 'wb')
+                pickle.dump({"param":df, "run_dir":self.run_dir,
+                             "antimony_string":self.antString},file)
+                file.close()
+                myScriptName = self.genPathCopasi("SSSlurmScript",
+                                                      suffix = ".sh")
+                shellString = ("#!/bin/bash\n "+
+                               '#SBATCH --job-name="'+jobName+'"\n'+
+                               "python " + __file__ + 
+                               " runSteadyStateFinder" +
+                               ' SteadyState'+str(index)+'.p')
+                f = open(myScriptName, 'w')
+                f.write(shellString)
+                f.close()
+                os.system("sbatch "+myScriptName)
+            while int(getoutput("squeue -n " + jobName + " | wc -l"))>1:
+                time.sleep(60)
+            df2 = pd.DataFrame()
+            for index in range(len(list_df)):
+                file = open(os.path.join(self.run_dir,
+                                         'SteadyState'+str(index)+'.p'), 'rb')
+                df3 = pickle.load(file)
+                file.close()
+                if isinstance(df3, pd.DataFrame):
+                    df2 = pd.concat([df2,df3])
+                else:
+                    for _ in range(list_df[index].shape[0]):
+                        df2.append(pd.Series(), ignore_index=True)
+            return df2
+        elif isinstance(params, pd.DataFrame):
+            dictList = [self.runSteadyStateFinder(params=row.to_dict())
+                        for _, row in params.iterrows()]
+            return pd.DataFrame(dictList)
         r = te.loada(self.antString)
         outValues = r.getFloatingSpeciesIds()
         boundValues = r.getBoundarySpeciesIds()
         outValues.extend(boundValues)
         r.conservedMoietyAnalysis = True
         r.setSteadyStateSolver('nleq1')
-        if params is not None:
+        r.getSteadyStateSolver().maximum_iterations = 1000
+        if isinstance(params,dict):
             for key, value in params.items():
                 temp = r[key]
                 r[key] = value
-                print(key,": ",temp," -> ",r[key])
-        
-        r.steadyState()
+                # print(key,": ",temp," -> ",r[key])
+        try:
+            r.steadyState()
+        except:
+            pass
         rState = {key:r[key] for key in outValues}
         return rState
     
@@ -489,7 +615,7 @@ class modelRunner:
     
     def runTimeCourse(self,duration,stepSize=0.01,intervals=100,
                       TCName=None,adjustParams=None,subSet=None,
-                      rocket=False):
+                      rocket=False,genReactions=False):
         if adjustParams is not None:
             if subSet is None:
                 subSet = range(len(adjustParams.index))
@@ -502,8 +628,16 @@ class modelRunner:
                 timeCourses = []
                 for setIndex, myDur in zip(subSet,duration):
                     copasi_filename = self.genPathCopasi("timeCourse")
-                    self.recentModel = model.loada(self.antString,
-                                                   copasi_filename)
+                    if genReactions!=False:
+                        if isinstance(genReactions,dict):
+                            self.genReactionAntString(*genReactions)
+                        else:
+                            self.genReactionAntString()
+                        self.recentModel = model.loada(self.reactionAntString,
+                                                       copasi_filename)
+                    else:
+                        self.recentModel = model.loada(self.antString,
+                                                       copasi_filename)
                     model.InsertParameters(self.recentModel,
                                            df=adjustParams,
                                            index=setIndex,inplace=True)
@@ -537,8 +671,16 @@ class modelRunner:
                     copasi_filename = self.genPathCopasi("timeCourse")
                 else:
                     copasi_filename = os.path.join(self.run_dir, TCName)
-                self.recentModel = model.loada(self.antString,
-                                               copasi_filename)
+                if genReactions!=False:
+                    if isinstance(genReactions,dict):
+                        self.genReactionAntString(*genReactions)
+                    else:
+                        self.genReactionAntString()
+                    self.recentModel = model.loada(self.reactionAntString,
+                                                   copasi_filename)
+                else:
+                    self.recentModel = model.loada(self.antString,
+                                                   copasi_filename)
                 for setIndex, myDur in zip(subSet,duration):
                     model.InsertParameters(self.recentModel,
                                            df=adjustParams,
@@ -555,9 +697,32 @@ class modelRunner:
             else:
                 copasi_filename = os.path.join(self.run_dir, TCName)
                 
-            self.recentModel = model.loada(self.antString, copasi_filename)
+            if genReactions!=False:
+                if isinstance(genReactions,dict):
+                    self.genReactionAntString(*genReactions)
+                else:
+                    self.genReactionAntString()
+                self.recentModel = model.loada(self.reactionAntString,
+                                               copasi_filename)
+            else:
+                self.recentModel = model.loada(self.antString,
+                                               copasi_filename)
             self.recentTimeCourse = tasks.TimeCourse(self.recentModel,
                                                      end=duration,
                                                      step_size=stepSize,
                                                      intervals=intervals)
             return viz.Parse(self.recentTimeCourse).data.copy()
+        
+if __name__ == "__main__" and len(sys.argv[1:])>0:
+    cmdLineArg = sys.argv[1:]
+    if cmdLineArg[0]=="runSteadyStateFinder" and len(cmdLineArg)>=2:
+        file = open(cmdLineArg[1],'rb')
+        myDict = pickle.load(file)
+        file.close()
+        myModel = modelRunner(myDict["antimony_string"],
+                              myDict["run_dir"])
+        outputs = myModel.runSteadyStateFinder(params=myDict["param"])
+        file = open(cmdLineArg[1],'wb')
+        pickle.dump(outputs,file)
+        file.close()
+        

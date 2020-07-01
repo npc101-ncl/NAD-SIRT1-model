@@ -31,6 +31,15 @@ indep_cond = [{"AICAR":1, "Glucose_source":0},
               {"PARP1":0, "AMPK_driven_NAD_source":0,
                "AMPK_driven_NegReg_source":0}]
 
+"""    
+# makes no obvious difrence
+indep_cond = [{"AICAR":1, "Glucose_source":0, "Glucose":0, "GlucoseDelay":0}, 
+              {"AICAR":1, "Glucose_source":0, "Glucose":0, "GlucoseDelay":0}, 
+              {"Glucose_source":5},
+              {"PARP1":0, "AMPK_driven_NAD_source":0,
+               "AMPK_driven_NegReg_source":0}]
+"""
+
 duration = [24,12,36,24]
 
 Fakouri_file = os.path.join(working_directory,"oldModel","NAD_model_files",
@@ -131,6 +140,8 @@ if __name__ == "__main__":
     
     myModel = modelRunner(antimony_string, run_dir)
     
+    # replicating figure s21
+    
     tempParams = myModel.extractModelParam()
     Fakouri_data["AMPK total"] = (tempParams["AMPK-P"]+
                  tempParams["AMPK"])*Fakouri_data["AMPK total"]
@@ -165,6 +176,9 @@ if __name__ == "__main__":
                  "sim":Fakouri_sim}, file)
     file.close()
     
+    # replication of the independent conditions associated experamental
+    # inputs for comparision.
+    
     df = pd.DataFrame(indep_cond)
     
     df = myModel.preProcessParamEnsam(df)
@@ -176,6 +190,8 @@ if __name__ == "__main__":
     file.close()
     myModel.clearRunDirectory()
     
+    # a run of the unperturbed model
+    
     timeCourse = myModel.runTimeCourse(24,stepSize=0.25) 
     
     file = open(os.path.join(working_directory,'old-timeCoursesN.p'),'wb')
@@ -184,6 +200,8 @@ if __name__ == "__main__":
     myModel.clearRunDirectory()
     
     # replicating figure s27 branched time serise
+    # 0.5mM AICAR treatment with optional pretreatment (24h prior) with
+    # 0.5mM Nicotinamide Riboside or 1µM PJ34
     
     timeCourseGI = myModel.runTimeCourse(24,stepSize=0.25,
                                          adjustParams=pd.DataFrame([{

@@ -25,7 +25,7 @@ def showValsFunc(timeCourses,newParams):
     showValues = [val for val in showValues
                   if not val in ["Time","quantity to number factor",
                                  "initial_NAD"]]
-    return showValues
+    return showValues        
 
 cmdLineArg = sys.argv[1:]
 
@@ -34,7 +34,7 @@ name = [name[5:] for name in cmdLineArg if (name.startswith("name:") and
 if len(name)>0:
     name = name[0]
 else:
-    name = "reConf3B"
+    name = "reConf6S7E"
 
 working_dir = os.path.abspath('')
 
@@ -47,6 +47,25 @@ data_dir = os.path.join(working_dir,'data', name)
 file = open(os.path.join(data_dir,'runSwitches.p'),'rb')
 RS = pickle.load(file)
 file.close()
+
+def probeIC(ID):
+    for dia in RS['diagrams']:
+        if dia["name"]==ID:
+            if isinstance(dia["IC"],list):
+                df = pd.DataFrame([RS["ICTrack"][i] for i in dia["IC"]]).T
+            else:
+                df = pd.DataFrame([RS["ICTrack"][dia["IC"]]])
+            return df
+    return None
+
+def probeConditions(ID):
+    for dia in RS['diagrams']:
+        if dia["name"]==ID:
+            if 'Timepoint (hr)' in dia["DS"]:
+                return dia["DS"]['Timepoint (hr)']
+            else:
+                return None
+    return None
  
 f = open(os.path.join(data_dir,'new-params.p'), "rb" )
 newParams = pickle.load(f)
@@ -94,6 +113,27 @@ for i, myDF in zip(range(len(RS["calDf"])),RS["calDf"]):
                     save=os.path.join(fig_dir,'timeCourseCal'+
                                       str(i)+'.png'))
 
+expNADLevels = [(i,j.iloc[-1]["NAD_fold_increase"]) for i, j
+                in zip(range(len(RS["calDf"])),RS["calDf"])
+                if "NAD_fold_increase" in j.columns]
+
+S5df = []
+for i, expNAD in expNADLevels:
+    f = open(os.path.join(data_dir,
+                          'new-timeCourses'+str(i)+'.p'),'rb')
+    timeCourses = pickle.load(f)
+    f.close()
+    tempDict = {"Simulation "+str(j):timeCourses[j].iloc[-1][
+            "NAD_fold_increase"] for j in indexCutoff}
+    tempDict.update({"Experament":expNAD})
+    S5df.append(tempDict)
+S5df = pd.DataFrame(S5df)
+S5df["NR"] = [0, 50, 100, 200, 500, 1000]
+S5df = pd.melt(S5df, id_vars=['NR'], value_name="NAD", var_name="Catagory")
+plt.figure()
+bp = sns.barplot(x="NR", y="NAD", hue="Catagory", data=S5df)
+bp.get_figure().savefig(os.path.join(fig_dir, "figS5.png"))
+
 for i, diagram in zip(range(len(RS["diagrams"])),RS["diagrams"]):
     DS = diagram["DS"]
     if "Timepoint (hr)" in DS:
@@ -118,8 +158,8 @@ for i, diagram in zip(range(len(RS["diagrams"])),RS["diagrams"]):
                 mySpecies = DS["Species"]
                 if mySpecies == "AMPK-P":
                     mySpecies = "AMPK_P"
-                values.append((SteadyStates[mySpecies].iloc[indexCutoff]
-                ).values.tolist())
+                values.append([SteadyStates[k][mySpecies]
+                               for k in indexCutoff])
         if len(diagram["DS"]["df"]) == len(pd.DataFrame(values)):
             df = pd.concat([diagram["DS"]["df"], pd.DataFrame(values)],
                             axis=1)
@@ -135,7 +175,7 @@ for i, diagram in zip(range(len(RS["diagrams"])),RS["diagrams"]):
             df["Extracted values"] = (df["Extracted values"]/
               ds["Extracted values"])
             df = df.rename(columns={'Extracted values':"Experiment"})
-            print(df["Experiment"])
+            #print(df["Experiment"])
         df = df.rename(columns={index:"Simulation "+str(index) for index
                                 in indexCutoff})
         value_col = ["Simulation "+str(index) for index
@@ -144,12 +184,17 @@ for i, diagram in zip(range(len(RS["diagrams"])),RS["diagrams"]):
         df = pd.melt(df, id_vars=['Treatment'], value_vars=value_col,
                      value_name=DS["Species"], var_name="Catagory")
         #print(df)
-        plt.figure()
-        bp = sns.barplot(x="Treatment", y=DS["Species"], hue="Catagory",
-                         data=df)
-        bp.get_figure().savefig(os.path.join(fig_dir,
-                     "fig"+diagram["name"]+'.png'))
-                    
+        for i in range(len(df)):
+                if isinstance(df.iloc[i, 2],pd.Series):
+                    df.iloc[i, 2] = None
+        try:
+            plt.figure()
+            bp = sns.barplot(x="Treatment", y=DS["Species"], hue="Catagory",
+                             data=df)
+            bp.get_figure().savefig(os.path.join(fig_dir,
+                         "fig"+diagram["name"]+'.png'))
+        except:
+            print(df)                   
     else:
         f = open(os.path.join(data_dir,
                               'val-timeCourses'+str(diagram["IC"])+'.p'),

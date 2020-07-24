@@ -13,6 +13,7 @@ import pandas as pd
 import logging, pickle, sys
 from random import randint
 from subprocess import getoutput
+from math import gcd
 
 def addCopasiPath(copasiPath):
     """adds the path to copasi to pythons working path
@@ -197,9 +198,20 @@ class modelRunner:
                 "particle_swarm_heroic":{
                         "method":"particle_swarm",
                         "swarm_size":300,
-                        "iteration_limit":6000}}
-                
+                        "iteration_limit":6000},
+                "particle_swarm_ridiculous":{
+                        "method":"particle_swarm",
+                        "swarm_size":350,
+                        "iteration_limit":7000}}
+        
+        
     def extractModelParam(self):
+        """a way of getting the model paramiters / initial conditions out of a
+        model you've loaded for refrence
+        
+        Returns:
+            dict: keys are paramiter / variable names values are model values
+        """
         copasi_filename = self.genPathCopasi("extractor")
         self.recentModel = model.loada(self.antString, copasi_filename)
         return self.recentModel.parameters.copy().squeeze().to_dict()
@@ -291,7 +303,7 @@ class modelRunner:
         rLines = [line.split(":") for line in lines if
                   len(line.split(":"))==2]
         rLines = [[line[0]]+line[1].split(";") for line in rLines
-                  if len(line[1].split(";"))==2]
+                  if len(line[1].split(";"))>=2]
         rLines = [[part.strip() for part in line] for line in rLines]
         rLines = [line for line in rLines if ("->" in line[1]) or
                   ("=>" in line[1])]
@@ -299,18 +311,94 @@ class modelRunner:
         rLines = [[revTag+line[0], line[1], line[2]] if line[1] else
                   [iRevTag+line[0], line[1], line[2]] for line in rLines]
         rLines = [line[0]+" := "+line[2]+";" for line in rLines]
+        primed = False
         for i, line in zip(range(len(lines)),lines):
-            if line.strip() == "end":
+            if line.strip().startswith("model"):
+                primed = True
+            if (line.strip() == "end") and primed:
                 break
+        print("line "+str(i))
         indent = ""
         while indent == "" and i>0:
             i = i-1
             indent = re.search(r'^\s*', lines[i]).group()
         rLines = [indent+line for line in rLines]
         self.reactionAntString = "\n".join(lines[:i+1]+rLines+lines[i+1:])
+        
+    def genColumnWeights(self,df,method = "Mean Square"):
+        """Atempts to replicate the weights copasi generates for experamental
+        data in calibration.
+        
+        Args:
+           df (DataFrame or Series):  Results of a spicific experament (time
+             course or steady state)
+               
+        Kwargs:
+           method (str): methiod used to calculate weights, curently only
+             suports 'Mean Square'
+             
+        Returns:
+           Serise: the weights for the experamental file used for calculating
+             RSS values
+        """
+        if method == "Mean Square":
+            if isinstance(df,pd.Series):
+                df2 = pd.DataFrame([df.to_dict()])
+            else:
+                df2 = df.copy()
+            if "Time" in df2.columns:
+                df2 = df2.drop(columns="Time")
+            df2 = df2*df2
+            df2 = df2.mean(axis = 0)
+            df2 = 1/df2
+            df2 = df2/(df2.sum())
+            return df2
+        return None
+    
+    def getRSSforTimeCourse(self, TC, df, colWeights=None,
+                            method = "Mean Square"):
+        """Atempts to calculate the RSS associated with a time course in the
+        same way copasi does in its paramiter estimations.
+        
+        Args:
+           TC (DataFrame):  The time course to calculated RSS for
+           df (DataFrame):  Results of a asociated experament (time course)
+               
+        Kwargs:
+           colWeights (Serise):  used to overide the weights as produced by
+             genColumnWeights
+           method (str): methiod used to calculate weights, curently only
+             suports 'Mean Square'
+        
+        Returns:
+           float: the RSS value.
+        """
+        if colWeights is None:
+            colWeights = self.genColumnWeights(df, method)
+        mySum = 0
+        for col, wei in colWeights.items():
+            subSum=0
+            for _, row in df.iterrows():
+                TCR = TC[TC["Time"] == row["Time"]].squeeze()
+                subSum = subSum + (row[col]-TCR[col])**2
+            mySum = mySum + wei*subSum
+        return mySum
     
     def genRefCopasiFile(self, filePath = None, adjustParams = None,
-                         setIndex=None):
+                         setIndex = None):
+        """generates a copasi file from the model optionaly adjusted by a
+        paramiter estimation. Useful in testing things in copasi before
+        coding.
+        
+        Kwargs:
+           filePath (str): path to where you want the copasi file. if you omit
+             is created in model run directory
+           adjustParams (DataFrame): paramiters (probably from a paramiter
+             estimation) to be used to overide the models value. (must also
+             have setIndex)
+           setIndex (int): index of the paramiters in adjustParams you wantto
+             use to overide the models paramiters.
+        """
         if filePath is None:
             copasi_filename = self.genPathCopasi("refFile")
         else:
@@ -479,8 +567,12 @@ class modelRunner:
                 context.set('upper_bound', upperParamBound)
             if lowerParamBound is not None:
                 context.set('lower_bound', lowerParamBound)
-            for key, value in self.methodDict[method].items():
-                context.set(key, value)
+            if isinstance(method,dict):
+                for key, value in method.items():
+                    context.set(key, value)
+            else:
+                for key, value in self.methodDict[method].items():
+                    context.set(key, value)
             context.set('run_mode', runMode) 
             context.set('pe_number', 1) 
             context.set('copy_number', copyNum) 
@@ -593,8 +685,15 @@ class modelRunner:
         adjust = {}
         for colName in list(Params.columns):
             baseVal = self.recentModel.get('metabolite', colName, by='name')
-            baseVal = baseVal.to_df()
-            adjust[colName] = baseVal["Value"]["concentration"]
+            if baseVal == []:
+                baseVal = self.recentModel.get('global_quantity', colName,
+                                               by='name')
+                if baseVal!=[]:
+                    baseVal = baseVal.to_df()
+                    adjust[colName] = baseVal["Value"]["initial_value"]
+            else:
+                baseVal = baseVal.to_df()
+                adjust[colName] = baseVal["Value"]["concentration"]
         return Params.fillna(value=adjust)
     
     def TCendState(self, timeCourse, variables = None):
@@ -712,6 +811,137 @@ class modelRunner:
                                                      step_size=stepSize,
                                                      intervals=intervals)
             return viz.Parse(self.recentTimeCourse).data.copy()
+        
+    def getRSSforParamiters(self, param, IC, exp, method = "Mean Square",
+                            step = None, GRRSName = None, rocket=False):
+        if not isinstance(IC,list):
+            IC = [IC]
+        if not isinstance(exp,list):
+            exp = [exp]
+        if len(IC)!=len(exp):
+            return None
+        superParam = []
+        for case in IC:
+            df = param.copy()
+            for key, val in case.items():
+                df[key]=val
+            superParam.append(df)
+        superParam = pd.concat(superParam, sort=True, ignore_index=True)
+        if "RSS" in superParam.columns:
+            superParam = superParam.drop(columns="RSS")
+        superParam = self.preProcessParamEnsam(superParam)
+        duration = 0
+        myStep = []
+        pointStats = []
+        for path in exp:
+            df = pd.read_csv(path)
+            pointStats.append({"len":len(df),
+                               "cols":[i for i in df.columns
+                                       if i != "Time"]})
+            duration = max(duration,df.iloc[-1]["Time"])
+            myStep.append(df["Time"].diff().min(skipna=True))
+        if step is not None:
+            myStep = step
+        else:
+            myStep = min(myStep)
+        timeCourses = self.runTimeCourse(duration, stepSize=myStep,
+                      TCName = GRRSName, adjustParams=superParam,
+                      rocket=rocket)
+        RSS = []
+        for i, TC in zip(range(len(timeCourses)),timeCourses):
+            if (i%len(param) == 0):
+                df = pd.read_csv(exp[i//len(param)])
+                myColWeights = self.genColumnWeights(df, method = method)
+                pointStats[i//len(param)]["cols"] = len(
+                        set(pointStats[i//len(param)]["cols"]).intersection(
+                                set(myColWeights.keys())))
+                pointStats[i//len(param)] = (pointStats[i//len(param)][
+                        "cols"]*pointStats[i//len(param)]["len"])
+                # need to add weights to experaments based on data points etc
+            if TC.iloc[-1]["Time"] == duration:
+                RSS.append(self.getRSSforTimeCourse(TC, df,
+                                                    colWeights=myColWeights,
+                                                    method = method))
+            else:
+                RSS.append(None)
+        RSS2 = []
+        pointStats = [i/sum(pointStats) for i in pointStats]
+        for i in range(len(param)):
+            subSum = 0
+            for j in range(len(IC)):
+                if RSS[i+j*len(param)] is None:
+                    subSum = None
+                    break
+                subSum = subSum + RSS[i+j*len(param)]*pointStats[j]
+            RSS2.append(subSum)
+        return RSS2
+    
+    def makeSensAnalDF(self, sensa, params=None):
+        if isinstance(params,pd.DataFrame):
+            df = params.copy()
+            if "RSS" in df.columns:
+                df.drop(columns="RSS")
+        else:
+            df = pd.DataFrame()
+        for col in sensa.keys():
+            if not (col in df.columns):
+                df[col] = pd.NA
+        df = self.preProcessParamEnsam(df)
+        myList = [df]
+        for col, adjs in sensa.items():
+            if isinstance(adjs,int):
+                df2 = df[df[col]!=0].copy()
+                df2[col] = df2[col]*(1+adjs)
+                myList.append(df2)
+                df2 = df[df[col]!=0].copy()
+                df2[col] = df2[col]*(1-adjs)
+                myList.append(df2)
+            elif isinstance(adjs,list):
+                for adj in adjs:
+                    df2 = df[df[col]!=0].copy()
+                    df2[col] = df2[col]*(1+adj)
+                    myList.append(df2)
+                    df2 = df[df[col]!=0].copy()
+                    df2[col] = df2[col]*(1-adj)
+                    myList.append(df2)
+        df = pd.concat(myList, ignore_index=True)
+        return df 
+
+    def getSensativitys(self, adjustParams=None, setIndex=None):
+        if (setIndex is None) and (isinstance(adjustParams,pd.DataFrame)):
+            indexs = range(len(adjustParams))
+        elif not isinstance(setIndex,list):
+            indexs = [setIndex]
+        else:
+            indexs = setIndex
+        if not isinstance(adjustParams,pd.DataFrame):
+            indexs = None
+        if indexs is not None:
+            outList = []
+            for index in indexs:
+                copasi_filename = self.genPathCopasi("sensativity")
+                self.recentModel = model.loada(self.antString,
+                                               copasi_filename)
+                model.InsertParameters(self.recentModel, df=adjustParams,
+                                       index=index, inplace=True)
+                try:
+                    self.recentSensativity = tasks.Sensitivities(
+                            self.recentModel)
+                    outList.append(
+                            self.recentSensativity.sensitivities.copy())
+                except:
+                    outList.append(None)
+            return outList
+        else:
+            copasi_filename = self.genPathCopasi("sensativity")
+            self.recentModel = model.loada(self.antString,
+                                           copasi_filename)
+            try:
+                self.recentSensativity = tasks.Sensitivities(
+                        self.recentModel)
+                return self.recentSensativity.sensitivities.copy()
+            except:
+                return None
         
 if __name__ == "__main__" and len(sys.argv[1:])>0:
     cmdLineArg = sys.argv[1:]

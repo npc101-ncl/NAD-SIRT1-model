@@ -26,7 +26,14 @@ antFile = [antFile[4:] for antFile in cmdLineArg
 if len(antFile)>0:
     antFile = antFile[0]
 else:
-    antFile = "modAntFile.txt"
+    antFile = None
+    
+all_data_file = [adf[4:] for adf in cmdLineArg
+                 if (adf.startswith("adf:") and len(adf)>4)]
+if len(all_data_file)>0:
+    all_data_file = all_data_file[0]
+else:
+    all_data_file = "All_data_NAD_model.xlsx"
 
 
 working_directory = os.path.dirname(os.path.abspath(__file__))
@@ -54,15 +61,17 @@ run_dir = os.path.join(working_directory,'copasiRuns', 'val'+name)
 if not os.path.isdir(run_dir):
     os.makedirs(run_dir)
     
-antFile = open(os.path.join(working_directory,antFile), "r")
-antimony_string = antFile.read()
-antFile.close()
+if antFile is None:
+    antimony_string = RS["antimony_string"]    
+else: 
+    antFile = open(os.path.join(working_directory,antFile), "r")
+    antimony_string = antFile.read()
+    antFile.close()
 
 validationPath = os.path.join(working_directory, "oldModel",
                               "NAD_model_files")
 
-data_file = os.path.join(validationPath,
-                            "All_data_NAD_model.xlsx")
+data_file = os.path.join(validationPath, all_data_file)
 
 val_data = pd.read_excel(data_file,sheet_name='Sheet1',skiprows=2)
 
@@ -85,14 +94,18 @@ for i in range(len(val_data)):
     val_data[i]["df"]["AICARLevel"]=0
     val_data[i]["df"]["NRLevel"]=0
     val_data[i]["df"]["PARPLevel"]=1
-    val_data[i]["df"]["SIRT"]=1
+    val_data[i]["df"]["SIRT1"]=1
     for j, treatment in zip(range(len(val_data[i]["df"])),
                             val_data[i]["df"]["Treatment"]):
         ycol = val_data[i]["df"].columns.get_loc("GlucoseLevel")
-        if "5mM glucose" in treatment:
-            val_data[i]["df"].iloc[j,ycol] = 5
-        elif "25mM Glucose" in treatment:
-            val_data[i]["df"].iloc[j,ycol] = 25
+        if "Treat Glucose" in val_data[i]["df"].columns:
+            val_data[i]["df"].iloc[j,ycol] = val_data[i][
+                        "df"]["Treat Glucose"][j]
+        else:
+            if "5mM glucose" in treatment:
+                val_data[i]["df"].iloc[j,ycol] = 5
+            elif "25mM Glucose" in treatment:
+                val_data[i]["df"].iloc[j,ycol] = 25
         ycol = val_data[i]["df"].columns.get_loc("AICARLevel")
         if "0.1mM AICAR" in treatment:
             val_data[i]["df"].iloc[j,ycol] = 0.2
@@ -124,7 +137,7 @@ for i in range(len(val_data)):
         ycol = val_data[i]["df"].columns.get_loc("PARPLevel")
         if "ATM -/-" in treatment:
             val_data[i]["df"].iloc[j,ycol] = 3.22
-        ycol = val_data[i]["df"].columns.get_loc("SIRT")
+        ycol = val_data[i]["df"].columns.get_loc("SIRT1")
         if "SIRT1" in treatment:
             val_data[i]["df"].iloc[j,ycol] = 0
     val_data[i]["hasGlucose"]=any([j!=0 for j
@@ -179,7 +192,7 @@ diagrams = [{"name":"S6","crit":{'Reference':"Park et al. 2011"}},
             {"name":"S14","crit":{'Reference':"Gerhart-Hines et al. 2007"}},
             {"name":"S15","crit":{'Reference':"Fulco et al. 2008",
                                   'Species':"NAD",
-                                  'hasGlucose':True}},
+                                  'hasAICAR':False}},
             {"name":"S16","crit":{'Reference':"Canto et al. 2012",
                                   'hasNMN':True}},
             {"name":"S17","crit":{'Reference':"Ryu et al. 2016"}},
@@ -214,6 +227,11 @@ def genIC(DS):
             for i in range(1,len(DS)):
                 df = pd.concat([df,DS[i]["df"]],
                      ignore_index=True)
+            if ("Treat Glucose" in df.columns):
+                df2 = df[df["Species"]=="AMPK total"]
+                temp = True
+            else:
+                temp = False
             df = df[df["Treatment"] == "REV1 -/- MEFs"]
             df.index = df["Species"]
             df = df["Fold-change Measurement"]
@@ -242,27 +260,35 @@ def genIC(DS):
                         Fakouri_data["NAD"])
             Fakouri_data.pop("AMPK total", None) 
             Fakouri_data.pop("AMPK ratio", None)
-            Fakouri_data.pop("PARP1", None)
-            Fakouri_data.pop("AMPK-P", None)
-            ICList = [{},Fakouri_data]
+            Fakouri_data["PARP1"]=Fakouri_data["PARP"]
+            Fakouri_data.pop("PARP", None)
+            Fakouri_data["PGC1a-P"]=Fakouri_data["PGC1a_P"]
+            Fakouri_data.pop("PGC1a_P", None)
+            Fakouri_data["AMPK-P"]=Fakouri_data["AMPK_P"]
+            Fakouri_data.pop("AMPK_P", None)
+            if temp:
+                temp = df2[df2["Treatment"]=="REV1 -/- MEFs"].squeeze()
+                Fakouri_data.update({"Glucose_source":temp["Treat Glucose"]})
+                temp = df2[df2["Treatment"]=="WT MEFs"].squeeze()
+                contDict = {"Glucose_source":temp["Treat Glucose"]}
+            else:
+                contDict = {}
+            ICList = [contDict,Fakouri_data]
             return ICList, newDS
     elif isinstance(DS,pd.Series):
         ICDict = {}
-        if DS["GlucoseLevel"]==0:
-            ICDict.update({"Glucose_source":0, "Glucose":0,
-                           "GlucoseDelay":0})
-        elif DS["GlucoseLevel"]==5:
-            ICDict.update({"Glucose_source":5, "Glucose":0,
-                           "GlucoseDelay":0})
-        elif DS["GlucoseLevel"]==25:
-            ICDict.update({"Glucose_source":25, "Glucose":0,
-                           "GlucoseDelay":0})
+        if ("Treat Glucose" in DS) and ("Pre Glucose" in DS):
+            ICDict.update({"Glucose_source":DS["Treat Glucose"], 
+                           "Glucose":DS["Pre Glucose"]})
+        else:
+            ICDict.update({"Glucose_source":DS["GlucoseLevel"], 
+                           "Glucose":0, "GlucoseDelay":0})
         if DS["AICARLevel"]!=0:
             ICDict.update({"AICAR":DS["AICARLevel"]})
         if DS["NRLevel"]!=0:
             ICDict.update({"NR-NMN":DS["NRLevel"]})
-        if DS["SIRT"]!=1:
-            ICDict.update({"SIRT1":DS["SIRT"]})
+        if DS["SIRT1"]!=1:
+            ICDict.update({"SIRT1":DS["SIRT1"]})
         if DS["PARPLevel"]!=1:
             ICDict.update({"PARP1":DS["PARPLevel"]})
         return ICDict, None
@@ -274,8 +300,8 @@ def genIC(DS):
     else:
         if "Timepoint (hr)" in DS:
             ICList = genIC(DS["df"])[0]
-            if DS["Timepoint (hr)"]=="steady state":
-                for i in range(len(ICList)):
+            if DS["Timepoint (hr)"]=="steady state" and False:
+                for i in range(len(ICList)): # only needed for telerium
                     for key, val in {"AICAR":"AICAR_treatment",
                                      "NR-NMN":"NR_NMN",
                                      "PARP1":"PARP"}.items():

@@ -18,9 +18,11 @@ RS={}
 isLinked = "reconnect" in cmdLineArg
 addS7 = "addS7" in cmdLineArg
 ICReview = "ICReview" in cmdLineArg
+EGAWA = "EGAWA" in cmdLineArg
 RS["isLinked"] = isLinked
 RS["addS7"] = addS7
 RS["ICReview"] = ICReview
+RS["EGAWA"] = EGAWA
 
 name = [name[5:] for name in cmdLineArg if (name.startswith("name:") and 
         len(name)>5)]
@@ -43,6 +45,14 @@ if len(antFile)>0:
 else:
     antFile = "modAntFile.txt"
 RS["antFile"] = antFile
+
+myCopyNum = [runs[5:] for runs in cmdLineArg if (runs.startswith("runs:") and 
+          len(runs)>5)]
+if len(myCopyNum)>0:
+    myCopyNum = myCopyNum[0]
+else:
+    myCopyNum = 100
+
 
 
 working_directory = os.path.dirname(os.path.abspath(__file__))
@@ -67,11 +77,10 @@ data_names = ["PE_0.5mM_AICAR_AMPK-P.txt",
 
 if isLinked:
     if ICReview: # requires mod ant file 3+
-        indep_cond = [{"AICAR":1, "Glucose_source":5.5, "Glucose":5.5,
-                       "GlucoseDelay":0}, 
-                      {"AICAR":1, "Glucose_source":0, "Glucose":25}, 
+        indep_cond = [{"AICAR":1, "Glucose_source":5.5, "Glucose":5.5}, 
+                      {"AICAR":1, "Glucose_source":25, "Glucose":25},
                       {"Glucose_source":5, "Glucose":25},
-                      {"PARP1":0, "Glucose_source":25, "Glucose":25}]
+                      {"PARP1":0, "Glucose_source":25, "Glucose":25}]            
     else:
         indep_cond = [{"AICAR":1, "Glucose_source":0, "Glucose":0,
                        "GlucoseDelay":0}, 
@@ -81,9 +90,8 @@ if isLinked:
                       {"PARP1":0}]
 else:
     if ICReview:
-        indep_cond = [{"AICAR":1, "Glucose_source":5.5, "Glucose":5.5,
-                       "GlucoseDelay":0}, 
-                      {"AICAR":1, "Glucose_source":0, "Glucose":25}, 
+        indep_cond = [{"AICAR":1, "Glucose_source":5.5, "Glucose":5.5}, 
+                      {"AICAR":1, "Glucose_source":25, "Glucose":25},
                       {"Glucose_source":5, "Glucose":25},
                       {"PARP1":0, "Glucose_source":25, "Glucose":25,
                        "AMPK_driven_NAD_source":0,
@@ -96,6 +104,9 @@ else:
                       {"Glucose_source":5},
                       {"PARP1":0, "AMPK_driven_NAD_source":0,
                        "AMPK_driven_NegReg_source":0}]
+if EGAWA and ICReview:
+    indep_cond[0]["Glucose_source"]=25
+    indep_cond[0]["Glucose"]=25
 
 RLD_path = os.path.join(working_directory,"oldModel","NAD_model_files",
                        "AMPK-NAD-PGC1a-SIRT1-manuscript",
@@ -162,8 +173,8 @@ NR_data["NR-NMN"] = NR_data.index # /1000 my inclination would be to convert
 NR_data["NAD_fold_increase"] = NR_data["Fold change"]
 
 myUpperBound=1000
-myLowerBound=0.0
-myCopyNum=100
+myLowerBound=0.0001
+
 mySuperComputer = "slurm" in cmdLineArg
 if "removeHardCoded2" in cmdLineArg:
     removeHardCoded = 2
@@ -206,10 +217,10 @@ if __name__ == "__main__":
         df.to_csv(path_or_buf = pathRef)
         calDf.append(df.copy())
         if ICReview:
-            indep_cond.append({"NR-NMN":row["NR-NMN"], "Glucose_source":0, 
+            indep_cond.append({"NR-NMN":row["NR-NMN"], "Glucose_source":25, 
                                "Glucose":25})
         else:
-            indep_cond.append({"NR-NMN":row["NR-NMN"]})
+            indep_cond.append({"NR-NMN":row["NR-NMN"]}) 
         calPaths.append(pathRef)
     if addS7:
         df = pd.read_excel(S7_file)

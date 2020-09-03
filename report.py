@@ -17,7 +17,7 @@ from reportlab.pdfgen import canvas
 
 working_directory = os.path.dirname(os.path.abspath(__file__))
 
-name = "report2a"
+name = "report2b"
 calAlvaro = ["Figure_S"+str(i)+".png" for i in range(1,24+1)]
 supAlPath = os.path.join(working_directory, "oldModel", "NAD_model_files",
                          "AMPK-NAD-PGC1a-SIRT1-manuscript", "Figures",
@@ -31,8 +31,8 @@ newRefs = ["Egawa et al. (2014)",
            "Canto et al. (2010)",
            "Bai et al. (2011)"]
 calNew = calNew + ["figS"+str(i)+".png" for i in range(5,24+1)]
-newA = "reConf6"
-newB = "reConf6S7"
+newA = "reConf7"
+newB = "reConf7S7"
 
 data_dirA = os.path.join(working_directory,'figures', newA)
 data_dirB = os.path.join(working_directory,'figures', newB)

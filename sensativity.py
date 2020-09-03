@@ -9,6 +9,8 @@ Created on Sun Jul 12 17:57:39 2020
 import site, os, re
 import pandas as pd
 from python.pycotoolsHelpers import *
+from python.analysisTools import *
+from python.utilityTools import *
 import pickle
 import time, sys
 
@@ -41,6 +43,9 @@ f = open(os.path.join(data_dir,'new-params.p'), "rb" )
 newParams = pickle.load(f)
 f.close()
 
+myClust = RSSClusterEstimation(GFID(newParams))
+myClust = myClust[0]["size"]
+
 secondsToRun = 60*60*47
 endTime = time.time()+secondsToRun
 
@@ -66,31 +71,40 @@ for i, df in zip(range(len(RS['calDf'])),RS['calDf']):
     df.to_csv(path, index = False)
     myPaths.append(path)
 
-myDF = newParams[next(iter(newParams))].iloc[[0]]
+myList1 = []
+myList2 = []
+for index in range(myClust):
+    myDF = newParams[next(iter(newParams))].iloc[[index]]
+    
+    contSec = len(myDF)
+    
+    myModel = modelRunner(antimony_string, run_dir)
+    
+    steps = 10
+    adj = [(i+1)*0.01/steps for i in range(steps)]
+    
+    myDF = myModel.makeSensAnalDF({col:adj for col in myDF.columns
+                                   if col != "RSS"}, myDF)
+    
+    myRSS = myModel.getRSSforParamiters(myDF, RS["indep_cond"], myPaths)
+    
+    myDF['RSS'] = myRSS
+    
+    myDF2 = myDF.copy()
+    tempDS = myDF.iloc[0]
+    myDF2 = (myDF2-tempDS)/tempDS
+    myDF2 = pd.melt(myDF2, id_vars = ['RSS'])
+    myDF2 = myDF2[myDF2["value"] != 0.0]
+    myDF2 = myDF2[pd.isnull(myDF2["value"])==False]
+    myDF2 = myDF2.sort_values(by=['RSS'])
+    myDF2 = myDF2.rename(columns={"value":"paramiter change%",
+                                  "RSS":"RSS change%"})  
+    myDF["index"] = index
+    myDF2["index"] = index
+    myList1.append(myDF)
+    myList2.append(myDF2)
 
-contSec = len(myDF)
-
-myModel = modelRunner(antimony_string, run_dir)
-
-steps = 10
-adj = [(i+1)*0.01/steps for i in range(steps)]
-
-myDF = myModel.makeSensAnalDF({col:adj for col in myDF.columns
-                               if col != "RSS"}, myDF)
-
-myRSS = myModel.getRSSforParamiters(myDF, RS["indep_cond"], myPaths)
-
-myDF['RSS'] = myRSS
-
+myDF = pd.concat(myList1)
+myDF2 = pd.concat(myList2)
 myDF.to_csv(os.path.join(data_dir,"sensativity.csv"))
-
-myDF2 = myDF.copy()
-tempDS = myDF.iloc[0]
-myDF2 = (myDF2-tempDS)/tempDS
-myDF2 = pd.melt(myDF2, id_vars = ['RSS'])
-myDF2 = myDF2[myDF2["value"] != 0.0]
-myDF2 = myDF2[pd.isnull(myDF2["value"])==False]
-myDF2 = myDF2.sort_values(by=['RSS'])
-myDF2 = myDF2.rename(columns={"value":"paramiter change%",
-                              "RSS":"RSS change%"})   
 myDF2.to_csv(os.path.join(data_dir,"sensativity2.csv"))

@@ -49,7 +49,7 @@ RS["antFile"] = antFile
 myCopyNum = [runs[5:] for runs in cmdLineArg if (runs.startswith("runs:") and 
           len(runs)>5)]
 if len(myCopyNum)>0:
-    myCopyNum = myCopyNum[0]
+    myCopyNum = int(myCopyNum[0])
 else:
     myCopyNum = 100
 

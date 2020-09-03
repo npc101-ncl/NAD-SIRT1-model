@@ -16,3 +16,5 @@ copasiRuns/*
 *.pdf
 *.jpg
 *.svg
+data/reConf7/temp.txt
+data/reConf7S7/temp.txt

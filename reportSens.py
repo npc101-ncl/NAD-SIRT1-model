@@ -17,10 +17,10 @@ from reportlab.pdfgen import canvas
 
 working_directory = os.path.dirname(os.path.abspath(__file__))
 
-name = "reportSens"
+name = "reportSensB"
 
-newA = "reConf6"
-newB = "reConf6S7"
+newA = "reConf7"
+newB = "reConf7S7"
 
 data_dirA = os.path.join(working_directory,'figures', newA)
 data_dirB = os.path.join(working_directory,'figures', newB)

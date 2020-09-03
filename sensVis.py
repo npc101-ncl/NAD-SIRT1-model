@@ -19,7 +19,7 @@ name = [name[5:] for name in cmdLineArg if (name.startswith("name:") and
 if len(name)>0:
     name = name[0]
 else:
-    name = "reConf6S7"
+    name = "reConf7S7"
 
 working_directory = os.path.dirname(os.path.abspath(__file__))
 
@@ -35,7 +35,7 @@ for theVar in myVars:
               (df['paramiter change%'] == 0)]) == 0:
         df = df.append({'RSS change%':0, 'variable':theVar,
                         'paramiter change%':0}, ignore_index=True)
-df = df.sort_values(by=['variable', 'paramiter change%'])
+df = df.sort_values(by=['variable', 'index', 'paramiter change%'])
 df["variable"] = [i.replace('DUMMY_REACTION_','') for i
                   in list(df["variable"])]
 varNames = list(set(df["variable"]))
@@ -46,6 +46,6 @@ chunks = [df[df["variable"].isin(i)] for i in varNames]
 
 for i, chunk in zip(range(len(chunks)),chunks):
     grid = sns.FacetGrid(chunk, col="variable", col_wrap=3)
-    grid.map(sns.lineplot,"paramiter change%",
-             "RSS change%").set_titles("{col_name}")
+    grid.map(sns.lineplot, "paramiter change%",
+             "RSS change%", "index").set_titles("{col_name}")
     grid.savefig(os.path.join(fig_dir,"RSSSensitivity"+str(i)+".png"))

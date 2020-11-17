@@ -9,6 +9,7 @@ Created on Sat Dec 14 01:00:04 2019
 import seaborn as sns
 import pandas as pd
 import matplotlib.pyplot as plt
+import numpy as np
 import math
 
 sns.set(context='paper')
@@ -150,6 +151,13 @@ class profileLikelyhoodVisualisor:
             #self.fitDict[idenPage].sort(key=(lambda x:np.abs(x["m"])))
             self.fitDict[idenPage].sort(key=(lambda x:np.abs(x["m"])),
                         reverse=True)
+        self.displayOrder = [{"k":k, "o":np.abs(v[0]["m"])} for k,v
+                     in self.fitDict.items()]
+        self.displayOrder.sort(key=(lambda x:x["o"]),reverse=True)
+        self.displayOrder = [i["k"] for i in self.displayOrder]
+        self.displayOrder = [self.displayOrder[4*i:4*(i+1)] for i
+                             in range(len(self.displayOrder))]
+        self.displayOrder = [i for i in self.displayOrder if len(i)>0]
     
     def plotProfiles(self,showRows,showLimit=5, save = None):
         fig, axs = plt.subplots(len(showRows), showLimit,
@@ -275,6 +283,55 @@ class timeCourseVisualiser:
                 ax.set_xlim(xlim)
             if forceYAxisZero:
                 ax.set_ylim([0, None])
+        fig.tight_layout()
+        if save is not None:
+            fig.savefig(save)
+            
+    def barChart(self, time, indexSelect=None, varSelect=None,
+                 wrapNumber=5, compLines=None, save = None):
+        if compLines is not None:
+            compVars=list(compLines.columns)
+            dfB = compLines.copy()
+            if "Time" not in compVars:
+                dfB["Time"]=dfB.index
+            else:
+                compVars.remove("Time")
+            dfB = pd.melt(dfB,id_vars=["Time"],
+                          value_vars=compVars)
+        if varSelect is None:
+            varSelect=list(self.longData['variable'].unique())
+        if indexSelect is None:
+            indexSelect=list(self.longData['index'].unique())
+        if not isinstance(indexSelect,list):
+            indexSelect = [indexSelect]
+        if len(varSelect)<wrapNumber:
+            cols = math.floor(math.sqrt(len(varSelect)))
+        else:
+            cols = wrapNumber
+        rows = math.ceil(len(varSelect)/cols)
+        fig, axs = plt.subplots(rows, cols, sharex=True, figsize=(12,10))
+        if (rows>1):
+            axs = trim_axs(axs, len(varSelect))
+        elif (cols==1):
+            axs = [axs]
+        # may need to add black
+        myColorMap = plt.get_cmap(name="hsv", lut=len(indexSelect)+1)
+        
+        for ax, theVar in zip(axs, varSelect):
+            ax.set_title(theVar)
+            df = self.longData
+            df = df[df['variable']==theVar]
+            df = df[df['Time']==time]
+            df = df[df['index'].isin(indexSelect)]
+            bar_pos = np.arange(len(df['index']))
+            colorList = [[j for j,x in enumerate(indexSelect) if x == i][0]
+                         for i in df['index']]
+            colorList = [myColorMap(i) for i in colorList]
+            ax.bar(bar_pos, df["value"], color=colorList)
+            df = dfB[dfB["Time"] == time]
+            df = df[df['variable'] == theVar]
+            if len(df)==1:
+                ax.axhline(y=df.squeeze()["value"])
         fig.tight_layout()
         if save is not None:
             fig.savefig(save)

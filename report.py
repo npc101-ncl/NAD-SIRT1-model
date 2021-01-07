@@ -17,7 +17,7 @@ from reportlab.pdfgen import canvas
 
 working_directory = os.path.dirname(os.path.abspath(__file__))
 
-name = "report2b"
+name = "report2c"
 calAlvaro = ["Figure_S"+str(i)+".png" for i in range(1,24+1)]
 supAlPath = os.path.join(working_directory, "oldModel", "NAD_model_files",
                          "AMPK-NAD-PGC1a-SIRT1-manuscript", "Figures",

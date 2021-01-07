@@ -9,65 +9,70 @@ Created on Sun Jan 12 18:13:35 2020
 import site, os, re
 import pandas as pd
 from python.pycotoolsHelpers import *
+from python.utilityTools import *
 import pickle
 import time, sys
 
 cmdLineArg = sys.argv[1:]
+cmdDict, cmdFlags = getCmdLineArgs()
 RS={}
 
-# switch to perform the paramiter estimations with all parts of the model
-# conected
-isLinked = "reconnect" in cmdLineArg
-
-# calibrate using data from figgure s7
-addS7 = "addS7" in cmdLineArg
-
-# impliment modified initial conditions based a litrature reveiw of data
-# sources
-ICReview = "ICReview" in cmdLineArg
-
-# the egawa et al 2014 paper was writen unclearly so this allows for the 2
-# interpritations
-EGAWA = "EGAWA" in cmdLineArg
-
-# records switches for future refrence
-RS["isLinked"] = isLinked
-RS["addS7"] = addS7
-RS["ICReview"] = ICReview
-RS["EGAWA"] = EGAWA
+isFocusedEst = "importBounds" in cmdFlags
 
 # set run name
-name = [name[5:] for name in cmdLineArg if (name.startswith("name:") and 
-        len(name)>5)]
-if len(name)>0:
-    name = name[0]
+if "name" in cmdDict.keys():
+    name = cmdDict["name"]
 else:
     name = "noName"
 
+if not isFocusedEst:
+    # switch to perform the paramiter estimations with all parts of the
+    # model conected
+    isLinked = "reconnect" in cmdFlags
+    
+    # calibrate using data from figgure s7
+    addS7 = "addS7" in cmdFlags
+    
+    # impliment modified initial conditions based a litrature reveiw of
+    # data sources
+    ICReview = "ICReview" in cmdFlags
+    
+    # the egawa et al 2014 paper was writen unclearly so this allows for
+    # the 2 interpritations
+    EGAWA = "EGAWA" in cmdFlags
+    
+    # records switches for future refrence
+    RS["isLinked"] = isLinked
+    RS["addS7"] = addS7
+    RS["ICReview"] = ICReview
+    RS["EGAWA"] = EGAWA
+else:
+    RS = loadPick(['data', name, 'runSwitches.p'], relative=True)
+    bounds = loadPick(['data', name, 'PE_bounds.p'], relative=True)
+
 # set paramiter estimation methiod from comand line argument
-myMeth = [meth[5:] for meth in cmdLineArg if (meth.startswith("meth:") and 
-          len(meth)>5)]
-if len(myMeth)>0:
-    myMeth = myMeth[0]
+if "meth" in cmdDict.keys():
+    myMeth = cmdDict["meth"]
 else:
     myMeth = "particle_swarm_default"
 
 # get antimoney file path from comand line    
-antFile = [antFile[4:] for antFile in cmdLineArg
-           if (antFile.startswith("ant:") and len(antFile)>4)]
-if len(antFile)>0:
-    antFile = antFile[0]
+if "ant" in cmdDict.keys():
+    antFile = cmdDict["ant"]
 else:
     antFile = "modAntFile.txt"
 RS["antFile"] = antFile
 
 # get number of estimations to do from comand line
-myCopyNum = [runs[5:] for runs in cmdLineArg if (runs.startswith("runs:") and 
-          len(runs)>5)]
-if len(myCopyNum)>0:
-    myCopyNum = int(myCopyNum[0])
+if "runs" in cmdDict.keys():
+    myCopyNum = int(cmdDict["runs"])
 else:
     myCopyNum = 100
+    
+if "reuse" in cmdDict.keys():
+    reuseParams = cmdDict["reuse"].split(",")
+else:
+    reuseParams = dict([])
 
 # set working rirectory, data directory and run directory
 working_directory = os.path.dirname(os.path.abspath(__file__))
@@ -82,6 +87,15 @@ if not os.path.isdir(run_dir):
 oData_dir = os.path.join(working_directory,'data', name)
 if not os.path.isdir(oData_dir):
     os.makedirs(oData_dir)
+
+if len(reuseParams)>0:
+    file = open(os.path.join(oData_dir,'new-params.p'),'rb')
+    params = pickle.load(file)
+    file.close()
+    params = GFID(params)
+    reuseParams = params[[col for col in reuseParams
+                          if col in params.columns]]
+    reuseParams = reuseParams.iloc[0].to_dict()
     
 # calculate time to perform emergency wind up of estimation
 secondsToRun = 60*60*47
@@ -94,8 +108,8 @@ data_names = ["PE_0.5mM_AICAR_AMPK-P.txt", # egawa et al 2014
               "PE_PARP_Inhib_PJ34_NAD.txt"] # bai et al 2011
 
 # sets initial conditions based in switches
-if isLinked:
-    if ICReview: # requires mod ant file 3+
+if RS["isLinked"]:
+    if RS["ICReview"]: # requires mod ant file 3+
         indep_cond = [{"AICAR":1, "Glucose_source":5.5, "Glucose":5.5}, 
                       {"AICAR":1, "Glucose_source":25, "Glucose":25},
                       {"Glucose_source":5, "Glucose":25},
@@ -108,7 +122,7 @@ if isLinked:
                       {"Glucose_source":5},
                       {"PARP1":0}]
 else:
-    if ICReview:
+    if RS["ICReview"]:
         indep_cond = [{"AICAR":1, "Glucose_source":5.5, "Glucose":5.5}, 
                       {"AICAR":1, "Glucose_source":25, "Glucose":25},
                       {"Glucose_source":5, "Glucose":25},
@@ -123,7 +137,7 @@ else:
                       {"Glucose_source":5},
                       {"PARP1":0, "AMPK_driven_NAD_source":0,
                        "AMPK_driven_NegReg_source":0}]
-if EGAWA and ICReview:
+if RS["EGAWA"] and RS["ICReview"]:
     indep_cond[0]["Glucose_source"]=25
     indep_cond[0]["Glucose"]=25
 
@@ -187,6 +201,29 @@ hardCodeSuspects = ["AMPK_dephosphorylation_k1",
                     "PGC1a_acetylation_k1",
                     "PGC1a_dephosphorylation_k1",
                     "PGC1a_phosphorylation_k1"]
+
+ver4Add = ["Deacetylation_activity_V",
+           "DUMMY_REACTION_PGC1a_Deacetylation_Limiter_k1",
+           "PGC1a_Deacetylation_ActivityA",
+           "PGC1a_Deacetylation_ActivityI",
+           "DUMMY_REACTION_Delay_AICAR_stimulus_V",
+           "DUMMY_REACTION_AICAR_stimulus_removal_k1",
+           "AICAR_DelayA", "AICAR_DelayI","Glucose_DUMMY_REACTION_delay_V",
+           "Glucose_DUMMY_REACTION_delay_limiter_k1",
+           "GlucoseDelayI", "NAD_increase_by_AMPK_V",
+           "DUMMY_REACTION_Delay_in_NAD_Increase_k1",
+           "DUMMY_REACTION_Delay_in_NAD_Increase_2_k1",
+           "Delay_in_NAD_increaseI", "NAD_negative_regulation_k1",
+           "DUMMY_REACTION_NegReg_disappearance_k1", "NAD_synthesis_v",
+           "NAD_NegRegI", "SIRT_NAD_depleation_k1",
+           "NAD_utilisation_by_PARP_k1", "NAD_utilisation_k1",
+           "NAD_synthesis_v"]
+
+ver4Fix = ["Induced_PGC1a_deacetylation_k1",
+           "AMPK_phosphorylation_induced_by_AICAR_k1",
+           "Glucose_induced_AMPK_dephosphorylation_k1",
+           "Delay_in_NAD_increaseA", "GlucoseDelayA", "NAD_NegRegA","NAD",
+           "NAD_precursor"]
 
 # import NR data from excel file
 NR_data = pd.read_excel (NR_file,sheet_name='Hoja1',skiprows=1,
@@ -264,7 +301,7 @@ if __name__ == "__main__":
         # save data frame for refrence
         calDf.append(df.copy())
         # add initial condtions for NR experamental data based on switches
-        if ICReview:
+        if RS["ICReview"]:
             indep_cond.append({"NR-NMN":row["NR-NMN"], "Glucose_source":25, 
                                "Glucose":25})
         else:
@@ -272,7 +309,7 @@ if __name__ == "__main__":
         # save path to refrence
         calPaths.append(pathRef)
     # add data and initia conditions for S7 experaments if switch on
-    if addS7:
+    if RS["addS7"]:
         # import excel file
         df = pd.read_excel(S7_file)
         # drop and rename columns
@@ -303,6 +340,35 @@ if __name__ == "__main__":
         estVars = [var for var in estVars if var not in hardCodeSuspects2]
     else:
         estVars = myKVars
+    if "NAD_precursor" in antimony_string:
+        estVars.extend(ver4Add)
+        estVars = list(set(estVars))
+        for var in ver4Fix:
+            try:
+                estVars.remove(var)
+            except:
+                pass
+    RS["estVarsPreOveride"] = estVars
+    if len(reuseParams)>0:
+        estVars = [var for var in estVars
+                   if not var in reuseParams.keys()]
+    else:
+        reuseParams = None
+        
+    if isFocusedEst:
+        for myVar in estVars:
+            if bounds["upperBounds"][myVar]<=bounds["lowerBounds"][myVar]:
+                if reuseParams is None:
+                    reuseParams = dict([])
+                reuseParams[myVar] = (bounds["upperBounds"][myVar] + 
+                                      bounds["lowerBounds"][myVar])/2
+        estVars = [var for var in estVars
+                   if bounds["upperBounds"][var]>bounds["lowerBounds"][var]]
+        upperBounds = bounds["upperBounds"]
+        lowerBounds = bounds["lowerBounds"]
+    else:
+        upperBounds = None
+        lowerBounds = None
     RS["estVars"] = estVars
     
     # run parameter estimation
@@ -310,13 +376,21 @@ if __name__ == "__main__":
                                             rocket=mySuperComputer,
                                             estimatedVar=estVars,
                                             upperParamBound=myUpperBound,
+                                            upperParamBoundOverride=
+                                            upperBounds,
                                             lowerParamBound=myLowerBound,
+                                            lowerParamBoundOverride=
+                                            lowerBounds,
                                             method=myMeth,
+                                            overrideParam=reuseParams,
                                             indepToAdd=indep_cond,
                                             endTime=endTime)   
     
     # save paramiter estimation results
-    file = open(os.path.join(oData_dir,'new-params.p'),'wb')
+    if isFocusedEst:
+        file = open(os.path.join(oData_dir,'narrow-params.p'),'wb')
+    else:
+        file = open(os.path.join(oData_dir,'new-params.p'),'wb')
     pickle.dump(params, file)
     file.close()
     
@@ -327,7 +401,10 @@ if __name__ == "__main__":
                                                stepSize=0.25) 
     
     # and save it
-    file = open(os.path.join(oData_dir,'new-timeCourses.p'),'wb')
+    if isFocusedEst:
+        file = open(os.path.join(oData_dir,'narrow-timeCourses.p'),'wb')
+    else:
+        file = open(os.path.join(oData_dir,'new-timeCourses.p'),'wb')
     pickle.dump(timeCourse, file)
     file.close()
     
@@ -344,12 +421,17 @@ if __name__ == "__main__":
         timeCourse = myModel.runTimeCourse(24, adjustParams=df,
                                            stepSize=0.25)
         # and save it to file with enumerated file names
-        file = open(os.path.join(oData_dir,
-                                 'new-timeCourses'+str(i)+'.p'),'wb')
+        if isFocusedEst:
+            file = open(os.path.join(oData_dir,'narrow-timeCourses'+
+                                     str(i)+'.p'),'wb')
+        else:
+            file = open(os.path.join(oData_dir,
+                                     'new-timeCourses'+str(i)+'.p'),'wb')
         pickle.dump(timeCourse, file)
         file.close()
     
     # save refrence file
-    file = open(os.path.join(oData_dir,'runSwitches.p'),'wb')
-    pickle.dump(RS, file)
-    file.close()
+    if not isFocusedEst:
+        file = open(os.path.join(oData_dir,'runSwitches.p'),'wb')
+        pickle.dump(RS, file)
+        file.close()

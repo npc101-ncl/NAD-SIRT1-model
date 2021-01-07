@@ -15,7 +15,7 @@ import pickle
 import seaborn as sns
 import matplotlib.pyplot as plt
 
-name = "reConf7"
+name = "reConf8"
 
 working_directory = os.path.dirname(os.path.abspath(__file__))
 
@@ -25,12 +25,35 @@ paramCase=0
 myPL = loadPick(["data",name,"proLick-"+str(paramCase)+".p"],
                  relative=True)
 
+tolerance = {'NAD_synthesis_v':0.02,
+             'Glucose_DUMMY_REACTION_delay_Shalve':0.02,
+             'NAD_increase_by_AMPK_V':0.02,
+             'NAD_negative_regulation_k1':0.015}
+upperBound = {key:value["RSS"] for key, value
+              in myPL[0].items()}
+for key in upperBound.keys():
+    if key in tolerance.keys():
+        temoTol = tolerance[key]
+    else:
+        temoTol = 0.01
+    upperBound[key] = upperBound[key][upperBound[key]<np.inf]
+    upperBound[key] = (upperBound[key].min(skipna=True)+
+              temoTol*(upperBound[key].max(skipna=True)-
+                       upperBound[key].min(skipna=True)))
+    
+lowerAdjBound = {}
+upperAdjBound = {}
+for key, value in upperBound.items():
+    temp = myPL[0][key]
+    temp = temp[temp["RSS"]<=value]
+    lowerAdjBound[key] = temp[key].min()
+    upperAdjBound[key] = temp[key].max()
+
 myVis = profileLikelyhoodVisualisor(myPL)
 
 chunkSize=25
 cols=5
 varNameMax=20
-
 
 chunks = [list(myPL[0].keys())[chunkSize*i:chunkSize*(i+1)] for i
           in range(len(myPL[0].keys()))
@@ -66,6 +89,15 @@ for chunk, i in zip(chunks,range(len(chunks))):
         ax.title.set_text(myTitle)
         ax.plot(df[df["variable"]==variable]["adjustment"],
                 df[df["variable"]==variable]["RSS"])
+        if variable in upperBound.keys():
+            ax.axhline(upperBound[variable])
+            ax.axvline(lowerAdjBound[variable]/myPL[1][variable])
+            ax.axvline(upperAdjBound[variable]/myPL[1][variable])
     fig.tight_layout()
+    os.makedirs(resolvePath(['figures', name],relative=True),exist_ok=True)
     fig.savefig(os.path.join(working_directory,'figures', name, "PL"+
                              str(paramCase)+"-"+str(i)+".png"))
+    
+savePick(["data",name,"PE_bounds.p"],
+         {"lowerBounds":lowerAdjBound, "upperBounds":upperAdjBound},
+         relative=True)

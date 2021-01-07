@@ -34,7 +34,7 @@ name = [name[5:] for name in cmdLineArg if (name.startswith("name:") and
 if len(name)>0:
     name = name[0]
 else:
-    name = "reConf7S7"
+    name = "reConf7"
 
 working_dir = os.path.abspath('')
 
@@ -82,7 +82,7 @@ PEVis.waterFall(save=os.path.join(fig_dir,'waterfall.png'),
 
 RSScutoff = min(GFID(newParams)["RSS"].iloc[9],
                 RSSClusterEstimation(GFID(newParams))[0]["maxRSS"])
-indexCutoff = range(min(10,
+indexCutoff = range(min(3,
                         RSSClusterEstimation(GFID(newParams))[0]["size"]))
 
 

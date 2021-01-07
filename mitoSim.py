@@ -10,6 +10,7 @@ import site, os, re
 import pandas as pd
 from python.pycotoolsHelpers import *
 from python.visualisationTools import *
+from python.utilityTools import *
 import pickle
 import time, sys
 
@@ -20,14 +21,14 @@ name = [name[5:] for name in cmdLineArg if (name.startswith("name:") and
 if len(name)>0:
     name = name[0]
 else:
-    name = "reConf5"
+    name = "reConf7"
     
 antFile = [antFile[4:] for antFile in cmdLineArg
            if (antFile.startswith("ant:") and len(antFile)>4)]
 if len(antFile)>0:
     antFile = antFile[0]
 else:
-    antFile = "modAntFileMB.txt"
+    antFile = "modAntFile3CM.txt"
 
 working_directory = os.path.dirname(os.path.abspath(__file__))
 
@@ -68,12 +69,44 @@ myModel.clearRunDirectory()
 df = GFID(newParams).copy()
 df = df.drop(columns="RSS")
 res = {}
+
+timeCourse = myModel.runTimeCourse(24*365*60,
+                                   adjustParams=df,
+                                   #rocket=mySuperComputer,
+                                   subSet = [0],
+                                   stepSize=24*365,
+                                   genReactions=False)
+
+test = timeCourse[0].iloc[-1] + 9*(timeCourse[0].iloc[-1]-
+                 timeCourse[0].iloc[-2])
+print(test.to_dict())
+
+TCV = timeCourseVisualiser(timeCourse)
+
+TCV.multiPlot(varSelect=['AMPK', 'AMPK-P', 'PGC1a', 'PGC1a-P',
+                         'PGC1a_deacet', 'SIRT1_activity', 'SIRT1',
+                         'NAD', 'Delay_in_NAD_increase', 'PARP1',
+                         'Deacetylation_Delay', 'AICAR_Delay', 'AICAR',
+                         'Glucose', 'GlucoseDelay', 'NAD_NegReg', 'NR-NMN',
+                         'AMPK_driven_NAD_source',
+                         'AMPK_driven_NegReg_source', 'Glucose_source',
+                         'Damage', 'Mito_old', 'Mitophagy', 'Mito_new',
+                         'Mito_turnover'],
+              save=resolvePath(["figures",name,"mitoFail.png"],
+                               relative=True))
+
+
+
+# time = 335750
+
 for j in range(len(df)):
+    """
     timeCourse = myModel.runTimeCourse(24,
                                        adjustParams=df,
                                        #rocket=mySuperComputer,
                                        subSet = [j],
                                        stepSize=1)
+    
     if len(timeCourse[0]==1):
         res[str(j)]={}
         for i in df.columns:
@@ -86,6 +119,7 @@ for j in range(len(df)):
                                                stepSize=1)
             if len(timeCourse[0])>1:
                 res[str(j)][i] = df.iloc[j][i]
+    """
 
 """
 myModel = modelRunner(antimony_string, run_dir)

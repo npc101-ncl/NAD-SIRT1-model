@@ -47,7 +47,7 @@ if "lower" in cmdDict.keys():
 else:
     lowerAdjR = 0.1
     
-if "meth" in cmdFlags.keys():
+if "meth" in cmdDict.keys():
     methDict = cmdDict["meth"]
     methDict = [l.split(":") for l in methDict.split(",")]
     methDict = {l[0]:l[1] for l in methDict if len(l)==2}
@@ -56,6 +56,8 @@ if "meth" in cmdFlags.keys():
             methDict[mKey] = float(methDict[mKey])
             if methDict[mKey].is_integer():
                 methDict[mKey] = int(methDict[mKey])
+        except:
+            pass
 else:
     methDict = None
     
@@ -104,7 +106,12 @@ myRange = [10**((i-(points-1)//2)/perLog10)
 
 print("profile likelyhood begins")
 
-myPL = myModel.runProfileLikelyhood(expPaths, myRange, RS["estVars"],
+if "estVarsPreOveride" in RS.keys():
+    estVars = RS["estVarsPreOveride"]
+else:
+    estVars = RS["estVars"]
+
+myPL = myModel.runProfileLikelyhood(expPaths, myRange, estVars,
                                     rocket=mySuperComputer, 
                                     overrideParam=myOverride,
                                     indepToAdd=RS["indep_cond"],

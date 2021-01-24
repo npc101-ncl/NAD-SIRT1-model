@@ -15,7 +15,7 @@ import pickle
 import seaborn as sns
 import matplotlib.pyplot as plt
 
-name = "reConf8"
+name = "reConf9"
 
 working_directory = os.path.dirname(os.path.abspath(__file__))
 

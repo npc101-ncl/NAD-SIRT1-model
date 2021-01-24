@@ -73,6 +73,11 @@ if "reuse" in cmdDict.keys():
     reuseParams = cmdDict["reuse"].split(",")
 else:
     reuseParams = dict([])
+    
+if "forceParam" in cmdDict.keys():
+    forceParam = cmdDict["forceParam"].split(",")
+else:
+    forceParam = []
 
 # set working rirectory, data directory and run directory
 working_directory = os.path.dirname(os.path.abspath(__file__))
@@ -225,6 +230,13 @@ ver4Fix = ["Induced_PGC1a_deacetylation_k1",
            "Delay_in_NAD_increaseA", "GlucoseDelayA", "NAD_NegRegA","NAD",
            "NAD_precursor"]
 
+ver6Add = ["DUMMY_REACTION_Delay_AICAR_stimulus_Shalve",
+           "DUMMY_REACTION_Delay_AICAR_stimulus_h",
+           "Glucose_DUMMY_REACTION_delay_Shalve",
+           "Glucose_DUMMY_REACTION_delay_h"]
+
+ver6Fix = ["AICAR_DelayA"]
+
 # import NR data from excel file
 NR_data = pd.read_excel (NR_file,sheet_name='Hoja1',skiprows=1,
                          index_col=0,usecols=3,nrows=6)
@@ -340,7 +352,7 @@ if __name__ == "__main__":
         estVars = [var for var in estVars if var not in hardCodeSuspects2]
     else:
         estVars = myKVars
-    if "NAD_precursor" in antimony_string:
+    if "GlucoseDelayI" in antimony_string:
         estVars.extend(ver4Add)
         estVars = list(set(estVars))
         for var in ver4Fix:
@@ -348,6 +360,17 @@ if __name__ == "__main__":
                 estVars.remove(var)
             except:
                 pass
+        if "Glucose_DUMMY_REACTION_delay_h" in antimony_string:
+            estVars.extend(ver6Add)
+            estVars = list(set(estVars))
+            for var in ver6Fix:
+                try:
+                    estVars.remove(var)
+                except:
+                    pass
+    if len(forceParam)>0:
+        estVars.extend(forceParam)
+        estVars=list(set(estVars))
     RS["estVarsPreOveride"] = estVars
     if len(reuseParams)>0:
         estVars = [var for var in estVars

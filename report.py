@@ -17,7 +17,9 @@ from reportlab.pdfgen import canvas
 
 working_directory = os.path.dirname(os.path.abspath(__file__))
 
-name = "report2c"
+name = "report10b"
+supressHeader = True
+
 calAlvaro = ["Figure_S"+str(i)+".png" for i in range(1,24+1)]
 supAlPath = os.path.join(working_directory, "oldModel", "NAD_model_files",
                          "AMPK-NAD-PGC1a-SIRT1-manuscript", "Figures",
@@ -31,8 +33,8 @@ newRefs = ["Egawa et al. (2014)",
            "Canto et al. (2010)",
            "Bai et al. (2011)"]
 calNew = calNew + ["figS"+str(i)+".png" for i in range(5,24+1)]
-newA = "reConf7"
-newB = "reConf7S7"
+newA = "reConf10b"
+newB = "reConf7"
 
 data_dirA = os.path.join(working_directory,'figures', newA)
 data_dirB = os.path.join(working_directory,'figures', newB)
@@ -102,21 +104,22 @@ tempPar = Paragraph("test text", style = styles["Normal"])
 story.append(tempPar)
 """
 
-tempIm = Image(os.path.join(working_directory,"Tital Card.png"))
-tempIm._restrictSize(PW-2.2*inch, PH-2.2*inch)
-story.append(tempIm)
-
-tempIm = Image(os.path.join(working_directory,"motivation.png"))
-tempIm._restrictSize(PW-2.2*inch, PH-2.2*inch)
-story.append(tempIm)
-
-tempIm = Image(os.path.join(working_directory,"newModelHandAn.jpg"))
-tempIm._restrictSize(PW-2.2*inch, PH-2.2*inch)
-story.append(tempIm)
-
-tempIm = Image(os.path.join(working_directory,"workflow.png"))
-tempIm._restrictSize(PW-2.2*inch, PH-2.2*inch)
-story.append(tempIm)
+if not supressHeader:
+    tempIm = Image(os.path.join(working_directory,"Tital Card.png"))
+    tempIm._restrictSize(PW-2.2*inch, PH-2.2*inch)
+    story.append(tempIm)
+    
+    tempIm = Image(os.path.join(working_directory,"motivation.png"))
+    tempIm._restrictSize(PW-2.2*inch, PH-2.2*inch)
+    story.append(tempIm)
+    
+    tempIm = Image(os.path.join(working_directory,"newModelHandAn.jpg"))
+    tempIm._restrictSize(PW-2.2*inch, PH-2.2*inch)
+    story.append(tempIm)
+    
+    tempIm = Image(os.path.join(working_directory,"workflow.png"))
+    tempIm._restrictSize(PW-2.2*inch, PH-2.2*inch)
+    story.append(tempIm)
 
 for i, imNameAl, imNameNew in zip(range(1,len(calAlvaro)+1),calAlvaro,
                                   calNew):
@@ -143,9 +146,10 @@ for i, imNameAl, imNameNew in zip(range(1,len(calAlvaro)+1),calAlvaro,
     story.append(tempPar)
     story.append(myTable)
 
-tempIm = Image(os.path.join(working_directory,"newModelHandMito.jpg"))
-tempIm._restrictSize(PW-2.2*inch, PH-2.2*inch)
-story.append(tempIm)
+if not supressHeader:
+    tempIm = Image(os.path.join(working_directory,"newModelHandMito.jpg"))
+    tempIm._restrictSize(PW-2.2*inch, PH-2.2*inch)
+    story.append(tempIm)
 
 doc = SimpleDocTemplate(name+".pdf",pagesize = (PW,PH))
 doc.build(story)

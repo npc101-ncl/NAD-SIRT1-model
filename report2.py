@@ -17,12 +17,12 @@ from reportlab.pdfgen import canvas
 
 working_directory = os.path.dirname(os.path.abspath(__file__))
 
-name = "report3b"
+name = "report8b"
 supAlPath = os.path.join(working_directory, "oldModel", "NAD_model_files",
                          "AMPK-NAD-PGC1a-SIRT1-manuscript", "Figures")
 
-newA = "reConf7"
-newB = "reConf7S7"
+newA = "reConf8"
+newB = "reConf7"
 
 data_dirA = os.path.join(working_directory,'figures', newA)
 data_dirB = os.path.join(working_directory,'figures', newB)

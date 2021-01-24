@@ -34,7 +34,7 @@ name = [name[5:] for name in cmdLineArg if (name.startswith("name:") and
 if len(name)>0:
     name = name[0]
 else:
-    name = "reConf7"
+    name = "reConf10b"
 
 working_dir = os.path.abspath('')
 

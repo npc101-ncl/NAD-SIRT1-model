@@ -1,0 +1,53 @@
+function Hill_Cooperativity(substrate, Shalve, V, h)
+  V*(substrate/Shalve)^h/(1 + (substrate/Shalve)^h);
+end
+
+function Power_Law_Rate(substrate, alpha, h)
+  (substrate/alpha)^h;
+end
+
+model signalDelayModel()
+    var delay1
+    var delay2A
+    var delay2I
+    var delay3A
+    var delay3I
+    
+    RD1A: ->delay1; Hill_Cooperativity(signal, kD1_S, kD1_V, kD1_h)
+    RD1B: delay1->; kD1_R*delay1
+    RD2A: delay2I->delay2A; Hill_Cooperativity(signal, kD2_S, kD2_V, kD2_h)*delay2I
+    RD2B: delay2A->delay2I; kD2_R*delay2A
+    RD3A: delay3I->delay3A; Power_Law_Rate(signal, kD3_a, kD3_h)*delay3I
+    RD3B: delay3A->delay3I; kD3_R*delay3A
+    
+    Sq2C1  := abs(delay2A-delay1)
+    Sq3C1  := abs(delay3A-delay1)
+    signal := (sin(S_f*time+S_p)+1)*0.5
+    
+    // given paramiters
+    kD1_S     = 1;
+    kD1_V     = 1;
+    kD1_h     = 1;
+    kD1_R     = 1;
+    preSignal = 0;
+    S_f       = 0;
+    S_p       = 0;
+    
+    // estimated paramiters
+    kD2_S   = 1;
+    kD2_V   = 1;
+    kD2_h   = 1;
+    kD2_R   = 1;
+    delay2I = 1;
+    kD3_a   = 1;
+    kD3_h   = 1;
+    kD3_R   = 1;
+    delay3I = 1;
+    
+    
+    // infered paramiters
+    delay1  = Hill_Cooperativity(preSignal, kD1_S, kD1_V, kD1_h)/kD1_R;
+    delay2A = Hill_Cooperativity(preSignal, kD2_S, kD2_V, kD2_h)*delay2I/kD2_R;
+    delay3A = Power_Law_Rate(preSignal, kD3_a, kD3_h)*delay3I/kD3_R;
+    
+end

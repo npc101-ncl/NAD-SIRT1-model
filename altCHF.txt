@@ -1,0 +1,41 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+"""
+Created on Wed Jan 27 18:29:58 2021
+
+@author: peter
+"""
+
+function Hill_Cooperativity(substrate, Shalve, V, h)
+  V*(substrate/Shalve)^h/(1 + (substrate/Shalve)^h);
+end
+
+  dD/dt=Hill_Cooperativity(G, Shalve, V, h)-k1*D 
+  
+  S = Hill_Cooperativity(G, Shalve, V, h)/k1 
+  
+  ********
+  
+  dA/dt=g(G)*I-k2*A
+  A+I=K
+  
+  dA/dt=g(G)*(K-A)-k2*A
+  0=g(G)*K-g(G)*A-k2*A
+  (g(G)+k2)*A=g(G)*K
+  A=(g(G)/k2)*K/((g(G)/k2)+1)
+  
+  if  g(G) = k2*(G/Shalve)^h
+  
+  then A=((G/Shalve)^h)*K/((G/Shalve)^h+1)
+  
+  if K = V/k1:
+      
+  then Hill_Cooperativity(G, Shalve, V, h)/k1=S=A
+  
+  **********
+  
+function HC2(substrate, Shalve, h, k2)
+  k2*(substrate/Shalve)^h;
+end
+
+k1 = V/(A+I)

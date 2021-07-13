@@ -1,0 +1,32 @@
+g(PARP) = NAD_utilisation_k1+NAD_utilisation_by_PARP_k1*PARP+SIRT1*SIRT_NAD_depleation_k1
+f(Delay_in_NAD_increase) = Hill_Cooperativity(Delay_in_NAD_increase, NAD_increase_by_AMPK_Shalve, NAD_increase_by_AMPK_V, NAD_increase_by_AMPK_h)
+h(NR_NMN) = Hill_Cooperativity(NR_NMN, NR_NMN_supplementation_Shalve, NR_NMN_supplementation_V, NR_NMN_supplementation_h)
+a = NAD_synthesis_v
+b = AMPK_driven_NAD_source
+c = NAD_negative_regulation_k1
+
+x = AMPK_driven_NegReg_source
+y = DUMMY_REACTION_NegReg_disappearance_k1
+
+a+b*f(Delay_in_NAD_increase)+h(NR_NMN)
+=g(PARP)*NAD+c*NAD*NAD_NegReg
+
+x*f(Delay_in_NAD_increase)
+=c*NAD*NAD_NegReg+y*NAD_NegReg
+
+x*f(Delay_in_NAD_increase)/(c*NAD+y)=NAD_NegReg
+
+a+b*f(Delay_in_NAD_increase)+h(NR_NMN)
+=g(PARP)*NAD+c*NAD*x*f(Delay_in_NAD_increase)/(c*NAD+y)
+
+(a+b*f(Delay_in_NAD_increase)+h(NR_NMN))*(c*NAD+y)
+=(g(PARP)+c*x*f(Delay_in_NAD_increase))*NAD
+
+(a+b*f(Delay_in_NAD_increase)+h(NR_NMN))*y
+=(g(PARP)+c*x*f(Delay_in_NAD_increase)-(a+b*f(Delay_in_NAD_increase)+h(NR_NMN))*c)*NAD
+
+NAD = (a+b*f(Delay_in_NAD_increase)+h(NR_NMN))*y/(g(PARP)+c*x*f(Delay_in_NAD_increase)-(a+b*f(Delay_in_NAD_increase)+h(NR_NMN))*c)
+
+NAD = (a+b*f(Delay_in_NAD_increase)+h(NR_NMN))*y/(g(PARP)+(x-b)*c*f(Delay_in_NAD_increase)-a*c-c*h(NR_NMN))
+
+__________________________________________________________

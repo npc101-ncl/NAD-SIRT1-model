@@ -60,9 +60,20 @@ else:
     antFile = open(os.path.join(working_directory,antFile), "r")
     antimony_string = antFile.read()
     antFile.close()
+    
+antStrBD = getModelsAndFunctions(antimony_string)
+antimony_string_fig3 = antStrBD["models"][0]["text"]
+antimony_string_fig3 = antimony_string_fig3.splitlines()
+antimony_string_fig3 = (antimony_string_fig3[:-1]+
+                        ["\tat (Time>12): AICAR_treatment=1.0"]+
+                        antimony_string_fig3[-1:])
+antimony_string_fig3 = "\n".join(antimony_string_fig3)
+antimony_string_fig3 = ("\n".join([i["text"] for i 
+                                   in antStrBD["functions"]])+
+                        "\n"+antimony_string_fig3)
 
-fig3ICCont = {"AICAR":1}
-fig3ICGI = {"AICAR":1, "PARP1":2.5}
+fig3ICCont = {"PARP1":1}
+fig3ICGI = {"PARP1":2.5}
 fig3Dur = 12
 
 figAlphaICCont = {}
@@ -79,7 +90,7 @@ fig4IC = {"cont":fig4ICCont, "GI":fig4ICGI, "GINR":fig4ICGINR,
 
 if __name__ == "__main__":
     
-    myModel = modelRunner(antimony_string, run_dir)
+    myModel = modelRunner(antimony_string_fig3, run_dir)
     
     myModel.clearRunDirectory()
     df=newParams[next(iter(newParams))].copy()
@@ -87,10 +98,13 @@ if __name__ == "__main__":
         df = df.head()
     for myVar, myVal in fig3ICCont.items():
         df[myVar] = myVal
-    timeCourse = myModel.runTimeCourse(fig3Dur,
+    timeCourse = myModel.runTimeCourse(fig3Dur+12,
                                        adjustParams=df,
                                        #rocket=mySuperComputer,
                                        stepSize=0.25)
+    timeCourse = [tc[tc["Time"]>=12] for tc in timeCourse]
+    for tc in timeCourse:
+        tc["Time"]=tc["Time"]-12
     if not testRun:
         file = open(os.path.join(data_dir, 
                                  'fig3Cont-timeCourses.p'),'wb')
@@ -103,15 +117,19 @@ if __name__ == "__main__":
         df = df.head()
     for myVar, myVal in fig3ICGI.items():
         df[myVar] = myVal
-    timeCourse = myModel.runTimeCourse(fig3Dur,
+    timeCourse = myModel.runTimeCourse(fig3Dur+12,
                                        adjustParams=df,
                                        #rocket=mySuperComputer,
                                        stepSize=0.25)
+    timeCourse = [tc[tc["Time"]>=12] for tc in timeCourse]
+    for tc in timeCourse:
+        tc["Time"]=tc["Time"]-12
     if not testRun:
         file = open(os.path.join(data_dir, 
                                  'fig3GI-timeCourses.p'),'wb')
         pickle.dump(timeCourse, file)
         file.close()
+    myModel = modelRunner(antimony_string, run_dir)
     myStr = ""
     for ICName, myIC in fig4IC.items():
         myModel.clearRunDirectory()

@@ -77,7 +77,7 @@ model *Mitonuclear_communication_model()
   
   AMPK_phosphorylation_induced_by_AICAR:  AMPK => AMPK_P ; compartment_*AMPK_phosphorylation_induced_by_AICAR_k1*AICAR_DelayA*AMPK;
   
-  DUMMY_REACTION_Delay_AICAR_stimulus: AICAR_DelayI => AICAR_DelayA; compartment_*Power_Law_Rate(AICAR_treatment, DUMMY_REACTION_Delay_AICAR_stimulus_alpha, DUMMY_REACTION_Delay_AICAR_stimulus_h);
+  DUMMY_REACTION_Delay_AICAR_stimulus: AICAR_DelayI => AICAR_DelayA; compartment_*AICAR_DelayI*Power_Law_Rate(AICAR_treatment, DUMMY_REACTION_Delay_AICAR_stimulus_alpha, DUMMY_REACTION_Delay_AICAR_stimulus_h);
   
   Basal_PGC1a_deacetylation: PGC1a_P => PGC1a_deacet; compartment_*Basal_deacetylation_function(Basal_PGC1a_deacetylation_v, SIRT1_activity);
   DUMMY_REACTION_PGC1a_Deacetylation_Limiter: PGC1a_Deacetylation_Activity => ; compartment_*DUMMY_REACTION_PGC1a_Deacetylation_Limiter_k1*PGC1a_Deacetylation_Activity;
@@ -87,7 +87,7 @@ model *Mitonuclear_communication_model()
   Glucose_input: $Glucose_source => Glucose; compartment_*Glucose_source;
 
   Glucose_utilisation: Glucose => ; compartment_*Glucose_utilisation_k1*Glucose;
-  Glucose_DUMMY_REACTION_delay: GlucoseDelayI => GlucoseDelayA; compartment_*Power_Law_Rate(Glucose, Glucose_DUMMY_REACTION_delay_alpha, Glucose_DUMMY_REACTION_delay_h);
+  Glucose_DUMMY_REACTION_delay: GlucoseDelayI => GlucoseDelayA; compartment_*GlucoseDelayI*Power_Law_Rate(Glucose, Glucose_DUMMY_REACTION_delay_alpha, Glucose_DUMMY_REACTION_delay_h);
   Glucose_DUMMY_REACTION_delay_limiter: GlucoseDelayA => GlucoseDelayI ; compartment_*Glucose_DUMMY_REACTION_delay_limiter_k2*GlucoseDelayA;
   NAD_negative_regulation: NAD + NAD_NegReg => ; compartment_*NAD_negative_regulation_k1*NAD*NAD_NegReg;
   DUMMY_REACTION_NegReg_disappearance: NAD_NegReg => ; compartment_*DUMMY_REACTION_NegReg_disappearance_k1*NAD_NegReg;
@@ -162,11 +162,11 @@ model *Mitonuclear_communication_model()
   SIRT_NAD_depleation_k1 = 1;
   
   // forcing GlucoseDelay to start in stable state
-  GlucoseDelayA = Power_Law_Rate(Glucose, Glucose_DUMMY_REACTION_delay_alpha, Glucose_DUMMY_REACTION_delay_h)/Glucose_DUMMY_REACTION_delay_limiter_k2;
+  GlucoseDelayA = Glucose_DUMMY_REACTION_delay_T*Power_Law_Rate(Glucose, Glucose_DUMMY_REACTION_delay_alpha, Glucose_DUMMY_REACTION_delay_h)/(Glucose_DUMMY_REACTION_delay_limiter_k2*(1+Power_Law_Rate(Glucose, Glucose_DUMMY_REACTION_delay_alpha, Glucose_DUMMY_REACTION_delay_h)/Glucose_DUMMY_REACTION_delay_limiter_k2));
   GlucoseDelayI = Glucose_DUMMY_REACTION_delay_T-GlucoseDelayA;
   
   // forcing AICAR_Delay to start in stable state for assumption AICAR_treatment = 0
-  AICAR_DelayA = Power_Law_Rate(0, DUMMY_REACTION_Delay_AICAR_stimulus_alpha, DUMMY_REACTION_Delay_AICAR_stimulus_h)/DUMMY_REACTION_AICAR_stimulus_removal_k2;
+  AICAR_DelayA = DUMMY_REACTION_Delay_AICAR_stimulus_T*Power_Law_Rate(0, DUMMY_REACTION_Delay_AICAR_stimulus_alpha, DUMMY_REACTION_Delay_AICAR_stimulus_h)/(DUMMY_REACTION_AICAR_stimulus_removal_k2+Power_Law_Rate(0, DUMMY_REACTION_Delay_AICAR_stimulus_alpha, DUMMY_REACTION_Delay_AICAR_stimulus_h));
   AICAR_DelayI = DUMMY_REACTION_Delay_AICAR_stimulus_T-AICAR_DelayA;
 
   // Other declarations:

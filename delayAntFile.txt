@@ -1,29 +1,49 @@
+# a function used in a rate law
 function Hill_Cooperativity(substrate, Shalve, V, h)
   V*(substrate/Shalve)^h/(1 + (substrate/Shalve)^h);
 end
 
+# a difrent function definition for use it rate laws
 function Power_Law_Rate(substrate, alpha, h)
   (substrate/alpha)^h;
 end
 
+# the purpose of this model is to see if two alternative signaling
+# pathways can well aproxomate an origional signaling pathway
 model signalDelayModel()
+    # the dynamics of delay1, delay2A (with delay2I) and
+    # delay3A (with delay3I) are unafected by each other.
     var delay1
     var delay2A
     var delay2I
     var delay3A
     var delay3I
     
+    # R1 defines an open system with a source and sink driven by a 
+    # Hill_Cooperativity reaction
     RD1A: ->delay1; Hill_Cooperativity(signal, kD1_S, kD1_V, kD1_h)
     RD1B: delay1->; kD1_R*delay1
+    # R2 defines a closed system also driven by a Hill_Cooperativity
+    # reaction
     RD2A: delay2I->delay2A; Hill_Cooperativity(signal, kD2_S, kD2_V, kD2_h)*delay2I
     RD2B: delay2A->delay2I; kD2_R*delay2A
+    # R3 defines a closed system driven by a Power_Law_Rate reaction
     RD3A: delay3I->delay3A; Power_Law_Rate(signal, kD3_a, kD3_h)*delay3I
     RD3B: delay3A->delay3I; kD3_R*delay3A
     
+    # Sq2C1 and Sq3C1 mesure the difrence between signal pathway 1s
+    # output and the output of the other 2 pathways. We will be
+    # atempting to minamise this by assuming it is 0 in dummy data
     Sq2C1  := abs(delay2A-delay1)
     Sq3C1  := abs(delay3A-delay1)
+    # We define an imput signal for the pathway that is dependant
+    # on a number of paramiters we can modify.
     signal := (sin(S_f*time+S_p)+1)*0.5
     
+    # these paramiters are loosely the input of the model
+    # preSignal, S_f and S_p define the singal and we will calibrate
+    # (paramiter estimate) for several singals at once trying to
+    # get them all to give similar answers for each pathway.
     // given paramiters
     kD1_S     = 1;
     kD1_V     = 1;
@@ -33,6 +53,8 @@ model signalDelayModel()
     S_f       = 0;
     S_p       = 0;
     
+    # these paramiters are lloosely the outputs we want from the
+    # estimation
     // estimated paramiters
     kD2_S   = 1;
     kD2_V   = 1;
@@ -44,7 +66,8 @@ model signalDelayModel()
     kD3_R   = 1;
     delay3I = 1;
     
-    
+    # we asume the singnal pathways start in a steady state for what ever
+    # the preSignal state was 
     // infered paramiters
     delay1  = Hill_Cooperativity(preSignal, kD1_S, kD1_V, kD1_h)/kD1_R;
     delay2A = Hill_Cooperativity(preSignal, kD2_S, kD2_V, kD2_h)*delay2I/kD2_R;

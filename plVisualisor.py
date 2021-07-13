@@ -15,12 +15,12 @@ import pickle
 import seaborn as sns
 import matplotlib.pyplot as plt
 
-name = "reConf9"
+name = "reConf12"
 
 working_directory = os.path.dirname(os.path.abspath(__file__))
 
 
-paramCase=0
+paramCase=1
 
 myPL = loadPick(["data",name,"proLick-"+str(paramCase)+".p"],
                  relative=True)
@@ -77,26 +77,28 @@ for chunk, i in zip(chunks,range(len(chunks))):
     rows = len(chunk)//cols
     if len(chunk)%cols>0:
         rows=rows+1
-    fig, axs = plt.subplots(rows, cols, sharex=True, figsize=(12,10))
-    axs = trim_axs(axs,len(chunk))
-    for ax, variable in zip(axs,chunk):
-        ax.set_xscale('log')
-        if len(variable)>varNameMax:
-            myTitle = (variable[:varNameMax//2]+"..."+
-                       variable[(len(variable)-varNameMax//2):])
-        else:
-            myTitle = variable
-        ax.title.set_text(myTitle)
-        ax.plot(df[df["variable"]==variable]["adjustment"],
-                df[df["variable"]==variable]["RSS"])
-        if variable in upperBound.keys():
-            ax.axhline(upperBound[variable])
-            ax.axvline(lowerAdjBound[variable]/myPL[1][variable])
-            ax.axvline(upperAdjBound[variable]/myPL[1][variable])
-    fig.tight_layout()
-    os.makedirs(resolvePath(['figures', name],relative=True),exist_ok=True)
-    fig.savefig(os.path.join(working_directory,'figures', name, "PL"+
-                             str(paramCase)+"-"+str(i)+".png"))
+    with sns.axes_style(style="ticks"):
+        fig, axs = plt.subplots(rows, cols, sharex=True, figsize=(12,10))
+        axs = trim_axs(axs,len(chunk))
+        for ax, variable in zip(axs,chunk):
+            ax.set_xscale('log')
+            if len(variable)>varNameMax:
+                myTitle = (variable[:varNameMax//2]+"..."+
+                           variable[(len(variable)-varNameMax//2):])
+            else:
+                myTitle = variable
+            ax.title.set_text(myTitle)
+            ax.plot(df[df["variable"]==variable]["adjustment"],
+                    df[df["variable"]==variable]["RSS"])
+            if variable in upperBound.keys():
+                ax.axhline(upperBound[variable])
+                ax.axvline(lowerAdjBound[variable]/myPL[1][variable])
+                ax.axvline(upperAdjBound[variable]/myPL[1][variable])
+        fig.tight_layout()
+        os.makedirs(resolvePath(['figures', name],relative=True),
+                    exist_ok=True)
+        fig.savefig(os.path.join(working_directory,'figures', name,
+                                 "PL"+str(paramCase)+"-"+str(i)+".png"))
     
 savePick(["data",name,"PE_bounds.p"],
          {"lowerBounds":lowerAdjBound, "upperBounds":upperAdjBound},

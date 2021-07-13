@@ -14,6 +14,8 @@ import pickle
 import seaborn as sns
 import matplotlib.pyplot as plt
 
+myStyle = "ticks"
+
 def showValsFunc(timeCourses,newParams):
     showValues = list(timeCourses[0].columns)
     showValues = [val for val in showValues
@@ -34,7 +36,7 @@ name = [name[5:] for name in cmdLineArg if (name.startswith("name:") and
 if len(name)>0:
     name = name[0]
 else:
-    name = "reConf10"
+    name = "reConf12"
 
 working_dir = os.path.abspath('')
 
@@ -78,13 +80,15 @@ f.close()
 PEVis = parameterEstimationVisualiser(newParams)
 
 PEVis.waterFall(save=os.path.join(fig_dir,'waterfall.png'),
-                indexNames="parameters")
+                indexNames="parameters", style=myStyle)
 
 RSScutoff = min(GFID(newParams)["RSS"].iloc[9],
                 RSSClusterEstimation(GFID(newParams))[0]["maxRSS"])
 indexCutoff = range(min(3,
                         RSSClusterEstimation(GFID(newParams))[0]["size"]))
 
+indexToShow = [1]
+lableToShow = ["Simulation"]
 
 showValues = list(timeCourses[0].columns)
 for param in list(GFID(newParams).columns):
@@ -108,8 +112,12 @@ for i, myDF in zip(range(len(RS["calDf"])),RS["calDf"]):
     showValues = [i for i in showValues if i in myDF.columns]          
     
     TCVis = timeCourseVisualiser(timeCourses)
-    TCVis.multiPlot(indexSelect=list(indexCutoff),compLines=myDF,
-                    varSelect=showValues,
+    if indexToShow is None:
+        thisShowIndex = list(indexCutoff)
+    else:
+        thisShowIndex = indexToShow 
+    TCVis.multiPlot(indexSelect=thisShowIndex, compLines=myDF,
+                    varSelect=showValues, style=myStyle,
                     save=os.path.join(fig_dir,'timeCourseCal'+
                                       str(i)+'.png'))
 
@@ -123,16 +131,24 @@ for i, expNAD in expNADLevels:
                           'new-timeCourses'+str(i)+'.p'),'rb')
     timeCourses = pickle.load(f)
     f.close()
-    tempDict = {"Simulation "+str(j):timeCourses[j].iloc[-1][
-            "NAD_fold_increase"] for j in indexCutoff}
+    if (lableToShow is not None) and (indexToShow is not None):
+        tempDict = {k:timeCourses[j].iloc[-1]["NAD_fold_increase"]
+                    for j, k in zip(indexToShow,lableToShow)}
+    elif indexToShow is not None:
+        tempDict = {"Simulation "+str(j):timeCourses[j].iloc[-1][
+                "NAD_fold_increase"] for j in indexToShow}
+    else:
+        tempDict = {"Simulation "+str(j):timeCourses[j].iloc[-1][
+                "NAD_fold_increase"] for j in indexCutoff}
     tempDict.update({"Experament":expNAD})
     S5df.append(tempDict)
 S5df = pd.DataFrame(S5df)
 S5df["NR"] = [0, 50, 100, 200, 500, 1000]
 S5df = pd.melt(S5df, id_vars=['NR'], value_name="NAD", var_name="Catagory")
-plt.figure()
-bp = sns.barplot(x="NR", y="NAD", hue="Catagory", data=S5df)
-bp.get_figure().savefig(os.path.join(fig_dir, "figS5.png"))
+with sns.axes_style(style=myStyle):
+    plt.figure()
+    bp = sns.barplot(x="NR", y="NAD", hue="Catagory", data=S5df)
+    bp.get_figure().savefig(os.path.join(fig_dir, "figS5.png"))
 
 for i, diagram in zip(range(len(RS["diagrams"])),RS["diagrams"]):
     DS = diagram["DS"]
@@ -145,10 +161,18 @@ for i, diagram in zip(range(len(RS["diagrams"])),RS["diagrams"]):
                 timeCourses = pickle.load(f)
                 f.close()
                 subValues = []
-                for _, timeCourse in zip(indexCutoff,timeCourses):
+                if indexToShow is not None:
+                    myPair = zip(indexToShow,
+                                 [timeCourses[k] for k in indexToShow])
+                else:
+                    myPair = zip(indexCutoff,timeCourses)
+                for k, timeCourse in myPair:
                     row = timeCourse[timeCourse["Time"]==
                                      DS["Timepoint (hr)"]].squeeze()
-                    subValues.append(row[DS['Species']])
+                    if isinstance(row[DS['Species']], (float, int)):
+                        subValues.append(row[DS['Species']])
+                    else:
+                        subValues.append(float("NAN"))
                 values.append(subValues)
             elif DS["Timepoint (hr)"] == "steady state":
                 f = open(os.path.join(data_dir,
@@ -158,43 +182,62 @@ for i, diagram in zip(range(len(RS["diagrams"])),RS["diagrams"]):
                 mySpecies = DS["Species"]
                 if mySpecies == "AMPK-P":
                     mySpecies = "AMPK_P"
-                values.append([SteadyStates[k][mySpecies]
-                               for k in indexCutoff])
+                if indexToShow is not None:
+                    values.append([SteadyStates[k][mySpecies]
+                                   for k in indexToShow])
+                else:
+                    values.append([SteadyStates[k][mySpecies]
+                                   for k in indexCutoff])
         if len(diagram["DS"]["df"]) == len(pd.DataFrame(values)):
             df = pd.concat([diagram["DS"]["df"], pd.DataFrame(values)],
                             axis=1)
         ds = df[df['Fold-change Measurement']==1].squeeze()
         if isinstance(ds, pd.Series):
-            for index in indexCutoff:
-                df[index] = df[index]/ds[index]
+            if indexToShow is not None:
+                for index in range(len(indexToShow)):
+                    df[index] = df[index]/ds[index]
+            else:
+                for index in indexCutoff:
+                    df[index] = df[index]/ds[index]
             df = df.rename(columns={'Fold-change Measurement':"Experiment"})
         else:
             ds = df.iloc[0]
-            for index in indexCutoff:
-                df[index] = df[index]/ds[index]
+            if indexToShow is not None:
+                for index in range(len(indexToShow)):
+                    df[index] = df[index]/ds[index]
+            else:
+                for index in indexCutoff:
+                    df[index] = df[index]/ds[index]
             df["Extracted values"] = (df["Extracted values"]/
               ds["Extracted values"])
             df = df.rename(columns={'Extracted values':"Experiment"})
             #print(df["Experiment"])
-        df = df.rename(columns={index:"Simulation "+str(index) for index
-                                in indexCutoff})
-        value_col = ["Simulation "+str(index) for index
-                     in indexCutoff]
+        if lableToShow is not None:
+            df = df.rename(columns={index:lab for index, lab
+                                    in enumerate(lableToShow)})
+            value_col = lableToShow
+        else:
+            df = df.rename(columns={index:"Simulation "+str(index)
+                                    for index in indexCutoff})
+            value_col = ["Simulation "+str(index) for index
+                         in indexCutoff]
         value_col.append("Experiment")
         df = pd.melt(df, id_vars=['Treatment'], value_vars=value_col,
                      value_name=DS["Species"], var_name="Catagory")
         #print(df)
         for i in range(len(df)):
-                if isinstance(df.iloc[i, 2],pd.Series):
-                    df.iloc[i, 2] = None
-        try:
-            plt.figure()
-            bp = sns.barplot(x="Treatment", y=DS["Species"], hue="Catagory",
-                             data=df)
-            bp.get_figure().savefig(os.path.join(fig_dir,
-                         "fig"+diagram["name"]+'.png'))
-        except:
-            print(df)                   
+            if isinstance(df.iloc[i, 2],pd.Series):
+                df.iloc[i, 2] = None
+        with sns.axes_style(style=myStyle):
+            try:
+                plt.figure()
+                bp = sns.barplot(x="Treatment", y=DS["Species"],
+                                 hue="Catagory", data=df)
+                bp.get_figure().savefig(os.path.join(fig_dir,
+                             "fig"+diagram["name"]+'.png'))
+            except:
+                print("error creating :","fig"+diagram["name"]+'.png')
+                print(df)                   
     else:
         f = open(os.path.join(data_dir,
                               'val-timeCourses'+str(diagram["IC"])+'.p'),
@@ -214,8 +257,12 @@ for i, diagram in zip(range(len(RS["diagrams"])),RS["diagrams"]):
         
         
         TCVis = timeCourseVisualiser(timeCourses)
-        TCVis.multiPlot(indexSelect=list(indexCutoff),compLines=myDF,
-                        varSelect=showValues,
+        if indexToShow is None:
+            thisShowIndex = list(indexCutoff)
+        else:
+            thisShowIndex = indexToShow 
+        TCVis.multiPlot(indexSelect=thisShowIndex,compLines=myDF,
+                        varSelect=showValues, style=myStyle,
                         save=os.path.join(fig_dir,"fig"+diagram["name"]+
                                           '.png'))
 

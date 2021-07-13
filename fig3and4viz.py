@@ -21,7 +21,9 @@ name = [name[5:] for name in cmdLineArg if (name.startswith("name:") and
 if len(name)>0:
     name = name[0]
 else:
-    name = "reConf7"
+    name = "reConf12"
+    
+indexToShow = [1]
 
 working_directory = os.path.dirname(os.path.abspath(__file__))
 
@@ -43,24 +45,39 @@ RSScutoff = min(GFID(newParams)["RSS"].iloc[9],
                 RSSClusterEstimation(GFID(newParams))[0]["maxRSS"])
 indexCutoff = range(min(10,
                         RSSClusterEstimation(GFID(newParams))[0]["size"]))
+if indexToShow is None:
+    indexToShow = list(indexCutoff)
 
 file = open(os.path.join(data_dir, 'fig3Cont-timeCourses.p'),'rb')
 f3CtimeCourse = pickle.load(file)
 file.close()
 
+f3CtimeCourse = [tc.reset_index(drop=True) for tc in f3CtimeCourse]
+
 file = open(os.path.join(data_dir, 'fig3GI-timeCourses.p'),'rb')
 f3GItimeCourse = pickle.load(file)
 file.close()
 
+f3GItimeCourse = [tc.reset_index(drop=True) for tc in f3GItimeCourse]
+
 TCVis = timeCourseVisualiser(f3CtimeCourse)
-TCVis.multiPlot(indexSelect=list(indexCutoff),
+TCVis.multiPlot(indexSelect=indexToShow,
                 varSelect=["AMPK-P","NAD","PGC1a_deacet"],
-                save=os.path.join(fig_dir,'fig3Cont.png'))
+                save=os.path.join(fig_dir,'fig3Cont.png'),
+                style="ticks")
 
 TCVis = timeCourseVisualiser(f3GItimeCourse)
-TCVis.multiPlot(indexSelect=list(indexCutoff),
+TCVis.multiPlot(indexSelect=indexToShow,
                 varSelect=["AMPK-P","NAD","PGC1a_deacet"],
-                save=os.path.join(fig_dir,'fig3GI.png'))
+                save=os.path.join(fig_dir,'fig3GI.png'),
+                style="ticks")
+
+f3timeCourse = [f3CtimeCourse[0], f3GItimeCourse[0]]
+
+TCVis = timeCourseVisualiser(f3timeCourse)
+TCVis.multiPlot(varSelect=["AMPK-P","NAD","PGC1a_deacet"],
+                save=os.path.join(fig_dir,'fig3.png'),
+                style="ticks")
 
 fig4IC = ["cont", "GI", "GINR", "GIPJ"]
 
@@ -97,7 +114,11 @@ for name, finStates in myDict.items():
     df.append(df2)
 df = pd.concat(df, ignore_index=True)
 
-df = df[df["Index"] <= max(list(indexCutoff))]
+indexOveride = 1
+if indexToShow != list(indexCutoff):
+    df = df[df["Index"].isin(indexToShow)]
+else:
+    df = df[df["Index"] <= min(max(list(indexCutoff)),indexOveride)]
 
 df = df[df["condition"]!="GINR"]
 df = df[df["condition"]!="GIPJ"]
@@ -107,10 +128,12 @@ df2 = df2.replace({'condition': {"contAIC":"AIC", "GIAIC":"GI+AIC",
                                  "GINRAIC":"GI+NR+AIC",
                                  "GIPJAIC":"GI+PJ34+AIC"}})
 
-plt.figure()
-bp = sns.barplot(x="condition", y="NAD", hue="Index",
-                 data=df2)
-bp.get_figure().savefig(os.path.join(fig_dir,'fig4NAD.png'))
+with sns.axes_style(style="ticks"):
+    plt.figure()
+    bp = sns.barplot(x="condition", y="NAD", hue="Index",
+                     data=df2)
+    bp.get_figure().savefig(os.path.join(fig_dir,'fig4NAD.png'))
+
 
 df2 = df[df["variable"]=="PGC1a_deacet"].copy()
 df2 = df2.rename(columns={"value":"PGC1a_deacet"})
@@ -118,10 +141,11 @@ df2 = df2.replace({'condition': {"contAIC":"AIC", "GIAIC":"GI+AIC",
                                  "GINRAIC":"GI+NR+AIC",
                                  "GIPJAIC":"GI+PJ34+AIC"}})
 
-plt.figure()
-bp = sns.barplot(x="condition", y="PGC1a_deacet", hue="Index",
-                 data=df2)
-bp.get_figure().savefig(os.path.join(fig_dir,'fig4PGC1a_d.png'))
+with sns.axes_style(style="ticks"):
+    plt.figure()
+    bp = sns.barplot(x="condition", y="PGC1a_deacet", hue="Index",
+                     data=df2)
+    bp.get_figure().savefig(os.path.join(fig_dir,'fig4PGC1a_d.png'))
 
 #######
 
@@ -134,11 +158,13 @@ fAlphaNotimeCourse = pickle.load(file)
 file.close()
 
 TCVis = timeCourseVisualiser(fAlphaCtimeCourse)
-TCVis.multiPlot(indexSelect=list(indexCutoff),
+TCVis.multiPlot(indexSelect=indexToShow,
                 varSelect=["AMPK-P","NAD","PGC1a_deacet"],
-                save=os.path.join(fig_dir,'figAlphaCont.png'))
+                save=os.path.join(fig_dir,'figAlphaCont.png'),
+                style="ticks")
 
 TCVis = timeCourseVisualiser(fAlphaNotimeCourse)
-TCVis.multiPlot(indexSelect=list(indexCutoff),
+TCVis.multiPlot(indexSelect=indexToShow,
                 varSelect=["AMPK-P","NAD","PGC1a_deacet"],
-                save=os.path.join(fig_dir,'figAlphaNoSirt.png'))
+                save=os.path.join(fig_dir,'figAlphaNoSirt.png'),
+                style="ticks")

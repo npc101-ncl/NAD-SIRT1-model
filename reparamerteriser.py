@@ -19,6 +19,8 @@ RS={}
 
 isFocusedEst = "importBounds" in cmdFlags
 
+newReact = "powerLaw" in cmdFlags
+
 # set run name
 if "name" in cmdDict.keys():
     name = cmdDict["name"]
@@ -237,6 +239,9 @@ ver6Add = ["DUMMY_REACTION_Delay_AICAR_stimulus_Shalve",
 
 ver6Fix = ["AICAR_DelayA"]
 
+ver7add = ["Glucose_DUMMY_REACTION_delay_limiter_k2",
+           "DUMMY_REACTION_AICAR_stimulus_removal_k2"]
+
 # import NR data from excel file
 NR_data = pd.read_excel (NR_file,sheet_name='Hoja1',skiprows=1,
                          index_col=0,usecols=3,nrows=6)
@@ -352,7 +357,7 @@ if __name__ == "__main__":
         estVars = [var for var in estVars if var not in hardCodeSuspects2]
     else:
         estVars = myKVars
-    if "GlucoseDelayI" in antimony_string:
+    if ("GlucoseDelayI" in antimony_string) and not newReact:
         estVars.extend(ver4Add)
         estVars = list(set(estVars))
         for var in ver4Fix:
@@ -368,6 +373,8 @@ if __name__ == "__main__":
                     estVars.remove(var)
                 except:
                     pass
+    if newReact:
+        estVars.extend(ver7add)
     if len(forceParam)>0:
         estVars.extend(forceParam)
         estVars=list(set(estVars))
@@ -392,6 +399,16 @@ if __name__ == "__main__":
     else:
         upperBounds = None
         lowerBounds = None
+    if newReact:
+        h_estVars = [i for i in estVars if i.endswith("_h")]
+        if lowerBounds is None:
+            lowerBounds = {i:1 for i in h_estVars}
+        else:
+            for i in h_estVars:
+                if i in lowerBounds:
+                    lowerBounds[i] = max(lowerBounds[i],1)
+                else:
+                    lowerBounds[i] = 1
     RS["estVars"] = estVars
     
     # run parameter estimation

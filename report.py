@@ -17,7 +17,7 @@ from reportlab.pdfgen import canvas
 
 working_directory = os.path.dirname(os.path.abspath(__file__))
 
-name = "report10b"
+name = "report12b"
 supressHeader = True
 
 calAlvaro = ["Figure_S"+str(i)+".png" for i in range(1,24+1)]
@@ -33,7 +33,7 @@ newRefs = ["Egawa et al. (2014)",
            "Canto et al. (2010)",
            "Bai et al. (2011)"]
 calNew = calNew + ["figS"+str(i)+".png" for i in range(5,24+1)]
-newA = "reConf10b"
+newA = "reConf12b"
 newB = "reConf7"
 
 data_dirA = os.path.join(working_directory,'figures', newA)

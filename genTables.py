@@ -13,8 +13,9 @@ import re
 import pandas as pd
 from sympy.parsing.sympy_parser import parse_expr
 from sympy.printing.mathml import mathml
+from sympy import latex
 
-def rateLawToMathml(rateLaw):
+def rateLawToMathml(rateLaw, doLatex = False):
     myMML = rateLaw.replace("^","**")
     tokens = []
     i = 0
@@ -29,8 +30,13 @@ def rateLawToMathml(rateLaw):
     for token in reversed(tokens):
         myMML = myMML[:token["s"]] + token["T"] + myMML[token["e"]:]
     savecopy = myMML
-    myMML = mathml(parse_expr(myMML),printer='presentation')
-    tokens = {T["T"]:T["o"] for T in tokens}
+    if doLatex:
+        myMML = latex(parse_expr(myMML))
+        tokens = {T["T"]:"\\mathrm{"+T["o"].replace("_","\\_")+"}" 
+                  for T in tokens}
+    else:
+        myMML = mathml(parse_expr(myMML),printer='presentation')
+        tokens = {T["T"]:T["o"] for T in tokens}
     pattern = re.compile("|".join(tokens.keys()))
     myMML = pattern.sub(lambda m: tokens[m.group(0)], myMML)
     return myMML
@@ -41,9 +47,11 @@ if "name" in cmdDict.keys():
     name = cmdDict["name"]
 else:
     name = "reConf12"
-nameS = None #"reConf12R2"
+nameS = "reConf12R2"
 if nameS is None:
     nameS = name
+    
+doLatex = True
     
 paramCase = 1
     
@@ -74,9 +82,13 @@ for i in range(len(myReaction)):
     myReaction[i]['formula'] = (
             myReaction[i]['formula'].replace("compartment_*",""))
     myReaction[i]['formula'] = (
-            rateLawToMathml(myReaction[i]['formula']))
-    myReaction[i]['symbol'] = (
-            "<msub><mi>V</mi><mn>"+str(i+1)+"</mn></msub>")
+            rateLawToMathml(myReaction[i]['formula'],doLatex=doLatex))
+    if doLatex:
+        myReaction[i]['symbol'] = (
+                "V_{"+str(i+1)+"}")
+    else:
+        myReaction[i]['symbol'] = (
+                "<msub><mi>V</mi><mn>"+str(i+1)+"</mn></msub>")
     
 ODEs = {}
 
@@ -99,16 +111,27 @@ for k in ODEs.keys():
     expresion = ""
     for i, term in enumerate(ODEs[k]["term"]):
         if term["s"]=="-":
-            expresion += "<mo>-</mo>"
+            if doLatex:
+                expresion += "-"
+            else:
+                expresion += "<mo>-</mo>"
         elif i==0:
             pass
         else:
-            expresion += "<mo>+</mo>"
+            if doLatex:
+                expresion += "+"
+            else:
+                expresion += "<mo>+</mo>"
         expresion += term["n"]
-    expresion = "<mrow>"+expresion+"</mrow>"
+    if not doLatex:
+        expresion = "<mrow>"+expresion+"</mrow>"
     ODEs[k]["expresion"] = expresion
-    ODEs[k]["symbol"] = ("<mfrac><mrow><mi>d</mi><mi>"+k+
-        "</mi></mrow><mrow><mi>d</mi><mi>t</mi></mrow></mfrac>")
+    if doLatex:
+        ODEs[k]["symbol"] = ("\\frac{d\\mathrm{"+k.replace("_","\\_")+
+            "}}{dt}")
+    else:
+        ODEs[k]["symbol"] = ("<mfrac><mrow><mi>d</mi><mi>"+k+
+            "</mi></mrow><mrow><mi>d</mi><mi>t</mi></mrow></mfrac>")
     
 
 myMod = modelRunner(antString=RS["mitoAntStr"], run_dir=runDir)
@@ -126,11 +149,17 @@ params = []
 
 i = 1
 for p in myE["kineticParams"]:
-    symb = ("<msub><mi>k</mi><mn>"+str(i)+"</mn></msub>")
+    if doLatex:
+        symb = ("k_{"+str(i)+"}")
+    else:
+        symb = ("<msub><mi>k</mi><mn>"+str(i)+"</mn></msub>")
     if not p in myP:
         continue
     isInR = False
-    searchTerm = r"<mi>\s*"+p+"\s*</mi>"
+    if doLatex:
+        searchTerm = r"\s*\\mathrm{"+p.replace("_","\\\\_")+"}\s*"
+    else:
+        searchTerm = r"<mi>\s*"+p+"\s*</mi>"
     for j, R in enumerate(myReaction):
         temp = R['formula']
         myReaction[j]['formula'] = (
@@ -147,29 +176,46 @@ for p in myE["kineticParams"]:
 
 reactionTable = ""
 for R in myReaction:
-    row = ("<td><math>"+R['symbol']+"</math></td>\n<td><math>"+
-           R['formula']+"</math></td>")
+    if doLatex:
+        row = ("<td>"+R['symbol']+"</td>\n<td>"+
+               R['formula']+"</td>")
+    else:
+        row = ("<td><math>"+R['symbol']+"</math></td>\n<td><math>"+
+               R['formula']+"</math></td>")
     reactionTable += "<tr>\n"+row+"\n</tr>\n"
 reactionTable = "<table>\n" + reactionTable + "</table>"
 
 ODETable = ""
 for k, v in ODEs.items():
-    row = ("<td><math>"+v['symbol']+"</math></td>\n<td><math>"+
-           v['expresion']+"</math></td>")
+    if doLatex:
+        row = ("<td>"+v['symbol']+"</td>\n<td>"+
+               v['expresion']+"</td>")
+    else:
+        row = ("<td><math>"+v['symbol']+"</math></td>\n<td><math>"+
+               v['expresion']+"</math></td>")
     ODETable += "<tr>\n"+row+"\n</tr>\n"
 ODETable = "<table>\n" + ODETable + "</table>"
 
 ParamTable = ""
 for p in params:
-    row = ("<td><math>"+p['symbol']+"</math></td>\n<td>"+
-           p['value']+"</td>")
+    if doLatex:
+        row = ("<td>"+p['symbol']+"</td>\n<td>"+
+               p['value']+"</td>")
+    else:
+        row = ("<td><math>"+p['symbol']+"</math></td>\n<td>"+
+               p['value']+"</td>")
     ParamTable += "<tr>\n"+row+"\n</tr>\n"
 ParamTable = "<table>\n" + ParamTable + "</table>"
 
 htmlTables = ("<!DOCTYPE html>\n<html>\n<body>\n"+reactionTable+"\n"+
               ODETable+"\n"+ParamTable+"\n</body>\n</html>")
-outPath = resolvePath(["myTables.html"],relative=True)
+if doLatex:
+    outPath = resolvePath(["myTablesLatex.html"],relative=True)
+else:
+    outPath = resolvePath(["myTables.html"],relative=True)
 file = open(outPath, 'w')
 file.write(htmlTables)
 file.close()
     
+myIC = pd.Series({i:myP[i] for i in myE['metabolites']})
+myIC.to_csv("ICTable.csv")

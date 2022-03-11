@@ -16,6 +16,26 @@ import time, sys
 
 cmdLineArg = sys.argv[1:]
 
+def removeUnderScores(dfOrListLike):
+    myDict ={"AMPK_P":"AMPK-P",
+             "PGC1a_deacet":"deacylated PGC1a",
+             "_":" "}
+    if isinstance(dfOrListLike,pd.DataFrame):
+        df = dfOrListLike.copy()
+        if len(df)>0:
+            for col in df.columns:
+                if isinstance(df[col].iloc[0],str):
+                    df[col] = df[col].apply(removeUnderScores)
+        df.columns = removeUnderScores(df.columns)
+        return df
+    elif isinstance(dfOrListLike,str):
+        myStr = dfOrListLike
+        for k,v in myDict.items():
+            myStr = myStr.replace(k,v)
+        return myStr
+    else:
+        return [removeUnderScores(i) for i in dfOrListLike]
+
 name = [name[5:] for name in cmdLineArg if (name.startswith("name:") and 
         len(name)>5)]
 if len(name)>0:
@@ -23,7 +43,7 @@ if len(name)>0:
 else:
     name = "reConf12"
     
-indexToShow = [1]
+indexToShow = [0]
 
 working_directory = os.path.dirname(os.path.abspath(__file__))
 
@@ -64,20 +84,23 @@ TCVis = timeCourseVisualiser(f3CtimeCourse)
 TCVis.multiPlot(indexSelect=indexToShow,
                 varSelect=["AMPK-P","NAD","PGC1a_deacet"],
                 save=os.path.join(fig_dir,'fig3Cont.png'),
-                style="ticks")
+                style="ticks", varAsAxis = True, xAxisLabel = "Time (hr)",
+                yAxisLabel = "(AU)", wrapNumber=1, figsize = (4,10))
 
 TCVis = timeCourseVisualiser(f3GItimeCourse)
 TCVis.multiPlot(indexSelect=indexToShow,
                 varSelect=["AMPK-P","NAD","PGC1a_deacet"],
                 save=os.path.join(fig_dir,'fig3GI.png'),
-                style="ticks")
+                style="ticks", varAsAxis = True, xAxisLabel = "Time (hr)",
+                yAxisLabel = "(AU)", wrapNumber=1, figsize = (4,10))
 
 f3timeCourse = [f3CtimeCourse[0], f3GItimeCourse[0]]
 
-TCVis = timeCourseVisualiser(f3timeCourse)
-TCVis.multiPlot(varSelect=["AMPK-P","NAD","PGC1a_deacet"],
+TCVis = timeCourseVisualiser([removeUnderScores(i) for i in f3timeCourse])
+TCVis.multiPlot(varSelect=removeUnderScores(["AMPK-P","NAD","PGC1a_deacet"]),
                 save=os.path.join(fig_dir,'fig3.png'),
-                style="ticks")
+                style="ticks", varAsAxis = True, xAxisLabel = "Time (hr)",
+                yAxisLabel = "(AU)", wrapNumber=1, figsize = (4,10))
 
 fig4IC = ["cont", "GI", "GINR", "GIPJ"]
 
@@ -96,7 +119,7 @@ for name, timeCourses in timeCourseFig4.items():
     df = []
     for TC in timeCourses:
         if isinstance(TC,pd.DataFrame):
-            print(TC.iloc[-1].copy().to_dict())
+            #print(TC.iloc[-1].copy().to_dict())
             if TC.iloc[-1]["Time"] == 12:
                 df.append(TC.iloc[-1].copy().to_dict())
             else:
@@ -123,28 +146,36 @@ else:
 df = df[df["condition"]!="GINR"]
 df = df[df["condition"]!="GIPJ"]
 df2 = df[df["variable"]=="NAD"].copy()
-df2 = df2.rename(columns={"value":"NAD"})
+df2 = df2.rename(columns={"value":"NAD (AU)"})
 df2 = df2.replace({'condition': {"contAIC":"AIC", "GIAIC":"GI+AIC",
                                  "GINRAIC":"GI+NR+AIC",
                                  "GIPJAIC":"GI+PJ34+AIC"}})
 
+df2["   "]=df2["condition"].apply(lambda x: "Genomic instability" 
+   if x[:2]=="GI" else "WT")
+myOrder = ["cont", "GI", "AIC", "GI+AIC", "GI+NR+AIC", "GI+PJ34+AIC"]
 with sns.axes_style(style="ticks"):
     plt.figure()
-    bp = sns.barplot(x="condition", y="NAD", hue="Index",
-                     data=df2)
+    bp = sns.barplot(x="condition", y="NAD (AU)", hue="   ",
+                     data=df2, order=myOrder, dodge=False)
+    #bp.set_xticklabels(bp.get_xticklabels(),rotation = 45)
+    #plt.xticks(rotation=45)
     bp.get_figure().savefig(os.path.join(fig_dir,'fig4NAD.png'))
 
 
 df2 = df[df["variable"]=="PGC1a_deacet"].copy()
-df2 = df2.rename(columns={"value":"PGC1a_deacet"})
+df2 = df2.rename(columns={"value":"PGC1a_deacet (AU)"})
 df2 = df2.replace({'condition': {"contAIC":"AIC", "GIAIC":"GI+AIC",
                                  "GINRAIC":"GI+NR+AIC",
                                  "GIPJAIC":"GI+PJ34+AIC"}})
-
+    
+df2["   "]=df2["condition"].apply(lambda x: "Genomic instability" 
+   if x[:2]=="GI" else "WT")
 with sns.axes_style(style="ticks"):
     plt.figure()
-    bp = sns.barplot(x="condition", y="PGC1a_deacet", hue="Index",
-                     data=df2)
+    bp = sns.barplot(x="condition", y=removeUnderScores("PGC1a_deacet (AU)"), 
+                     hue="   ", data=removeUnderScores(df2), 
+                     order=myOrder, dodge=False)
     bp.get_figure().savefig(os.path.join(fig_dir,'fig4PGC1a_d.png'))
 
 #######

@@ -14,18 +14,43 @@ import pandas as pd
 
 cmdDict, cmdFlags = getCmdLineArgs()
 
+def removeUnderScores(dfOrListLike):
+    myDict ={"AMPK_P":"AMPK-P",
+             "PGC1a_deacet":"deacylated PGC1a",
+             "Mito_old":"old mitochondria",
+             "_":" "}
+    if isinstance(dfOrListLike,pd.DataFrame):
+        df = dfOrListLike.copy()
+        if len(df)>0:
+            for col in df.columns:
+                if isinstance(df[col].iloc[0],str):
+                    df[col] = df[col].apply(removeUnderScores)
+        df.columns = removeUnderScores(df.columns)
+        return df
+    elif isinstance(dfOrListLike,str):
+        myStr = dfOrListLike
+        for k,v in myDict.items():
+            myStr = myStr.replace(k,v)
+        return myStr
+    else:
+        return [removeUnderScores(i) for i in dfOrListLike]
+
 if "name" in cmdDict.keys():
     name = cmdDict["name"]
 else:
     name = "reConf12"
-nameS = None #"reConf12R2"
+nameS = "reConf12R2"
 if nameS is None:
     nameS = name
     
-PECase = 1
+PECase = 0
 # 1 works
     
 mySuperComputer = "slurm" in cmdFlags
+
+myLedLoc = (0.1,0.85) #'upper left'
+myLedLoc2 = (0.05,0.85) #'upper left'
+myLedLoc3 = (0.0475,0.85) #'upper left'
 
 # add path to copasiSE to path varaiable if not on rocket clustor
 if not mySuperComputer:
@@ -87,11 +112,14 @@ for TC in timeCourse:
 
 timeCourse = timeCourse + timeCourse2
 
-mitoVis = timeCourseVisualiser(timeCourse)
+mitoVis = timeCourseVisualiser(removeUnderScores(timeCourse))
 
-mitoVis.multiPlot(varSelect=selVar, style="ticks",
+mitoVis.multiPlot(varSelect=removeUnderScores(selVar), style="ticks",
                   save = resolvePath(["figures", name, "mitoSimFig8.png"], 
-                                     relative=True))
+                                     relative=True),
+                  xAxisLabel = "Time (yr)", yAxisLabel = "%",
+                  varAsAxis = True, wrapNumber=1, figsize = (6,5),
+                  legend=["[1]","[2]","[3]"], legendLoc = myLedLoc)
 print("begin next set")
 mitoMod.clearRunDirectory()
 df = GFID(newParams).copy()
@@ -117,11 +145,14 @@ for TC in timeCourse:
     
 timeCourse = timeCourse + timeCourse2
 
-mitoVis = timeCourseVisualiser(timeCourse)
+mitoVis = timeCourseVisualiser(removeUnderScores(timeCourse))
 
-mitoVis.multiPlot(varSelect=selVar, style="ticks",
+mitoVis.multiPlot(varSelect=removeUnderScores(selVar), style="ticks",
                   save = resolvePath(["figures", name, "mitoSimS28.png"], 
-                                     relative=True))
+                                     relative=True),
+                  xAxisLabel = "Time (yr)", yAxisLabel = ["%","(AU)"],
+                  varAsAxis = True, wrapNumber=3, figsize = (12,5),
+                  legend=["[1]","[2]","[3]"], legendLoc = myLedLoc2)
 
 print("begin next set")
 mitoMod.clearRunDirectory()
@@ -148,11 +179,14 @@ for TC in timeCourse:
     
 timeCourse = timeCourse + timeCourse2
 
-mitoVis = timeCourseVisualiser(timeCourse)
+mitoVis = timeCourseVisualiser(removeUnderScores(timeCourse))
 
-mitoVis.multiPlot(varSelect=selVar, style="ticks",
+mitoVis.multiPlot(varSelect=removeUnderScores(selVar), style="ticks",
                   save = resolvePath(["figures", name, "mitoSimS30.png"], 
-                                     relative=True))
+                                     relative=True),
+                  xAxisLabel = "Time (yr)", yAxisLabel = ["%","(AU)","(AU)"],
+                  varAsAxis = True, wrapNumber=3, figsize = (18,5),
+                  legend=["[1]","[2]","[3]"], legendLoc = myLedLoc3)
 
 print("begin next set")
 mitoMod.clearRunDirectory()
@@ -179,11 +213,14 @@ for TC in timeCourse:
     
 timeCourse = timeCourse + timeCourse2
 
-mitoVis = timeCourseVisualiser(timeCourse)
+mitoVis = timeCourseVisualiser(removeUnderScores(timeCourse))
 
-mitoVis.multiPlot(varSelect=selVar, style="ticks",
+mitoVis.multiPlot(varSelect=removeUnderScores(selVar), style="ticks",
                   save = resolvePath(["figures", name, "mitoSimS29.png"], 
-                                     relative=True))
+                                     relative=True),
+                  xAxisLabel = "Time (yr)", yAxisLabel = ["%","(AU)"],
+                  varAsAxis = True, figsize = (12,5),
+                  legend=["[1]","[2]","[3]"], legendLoc = myLedLoc2)
 
 print("begin next set")
 mitoMod.clearRunDirectory()
@@ -210,11 +247,14 @@ for TC in timeCourse:
     
 timeCourse = timeCourse + timeCourse2
 
-mitoVis = timeCourseVisualiser(timeCourse)
+mitoVis = timeCourseVisualiser(removeUnderScores(timeCourse))
 
-mitoVis.multiPlot(varSelect=selVar, style="ticks",
+mitoVis.multiPlot(varSelect=removeUnderScores(selVar), style="ticks",
                   save = resolvePath(["figures", name, "mitoSimS31.png"], 
-                                     relative=True))
+                                     relative=True),
+                  xAxisLabel = "Time (yr)", yAxisLabel = ["%","(AU)"],
+                  varAsAxis = True, figsize = (12,5),
+                  legend=["[1]","[2]","[3]"], legendLoc = myLedLoc2)
 
 print("begin next set")
 mitoMod.clearRunDirectory()
@@ -240,11 +280,14 @@ for TC in timeCourse:
 
 timeCourse = timeCourse + timeCourse2
 
-mitoVis = timeCourseVisualiser(timeCourse)
+mitoVis = timeCourseVisualiser(removeUnderScores(timeCourse))
 
-mitoVis.multiPlot(varSelect=selVar,
+mitoVis.multiPlot(varSelect=removeUnderScores(selVar),
                   save = resolvePath(["figures", name, "mitoSimS32.png"], 
-                                     relative=True), style="ticks")
+                                     relative=True), style="ticks",
+                  xAxisLabel = "Time (yr)", yAxisLabel = "%",
+                  varAsAxis = True, wrapNumber=1, figsize = (6,5),
+                  legend=["[1]","[2]","[3]"], legendLoc = myLedLoc)
 
 """
 mitoMod.clearRunDirectory()

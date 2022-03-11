@@ -16,6 +16,26 @@ import matplotlib.pyplot as plt
 
 myStyle = "ticks"
 
+def removeUnderScores(dfOrListLike):
+    myDict ={"AMPK_P":"AMPK-P",
+             "PGC1a_deacet":"deacylated PGC1a",
+             "_":" "}
+    if isinstance(dfOrListLike,pd.DataFrame):
+        df = dfOrListLike.copy()
+        if len(df)>0:
+            for col in df.columns:
+                if isinstance(df[col].iloc[0],str):
+                    df[col] = df[col].apply(removeUnderScores)
+        df.columns = removeUnderScores(df.columns)
+        return df
+    elif isinstance(dfOrListLike,str):
+        myStr = dfOrListLike
+        for k,v in myDict.items():
+            myStr = myStr.replace(k,v)
+        return myStr
+    else:
+        return [removeUnderScores(i) for i in dfOrListLike]
+
 def showValsFunc(timeCourses,newParams):
     showValues = list(timeCourses[0].columns)
     showValues = [val for val in showValues
@@ -87,7 +107,7 @@ RSScutoff = min(GFID(newParams)["RSS"].iloc[9],
 indexCutoff = range(min(3,
                         RSSClusterEstimation(GFID(newParams))[0]["size"]))
 
-indexToShow = [1]
+indexToShow = [0]
 lableToShow = ["Simulation"]
 
 showValues = list(timeCourses[0].columns)
@@ -111,15 +131,18 @@ for i, myDF in zip(range(len(RS["calDf"])),RS["calDf"]):
     showValues = showValsFunc(timeCourses,newParams)  
     showValues = [i for i in showValues if i in myDF.columns]          
     
-    TCVis = timeCourseVisualiser(timeCourses)
+    TCVis = timeCourseVisualiser([removeUnderScores(i) for i in timeCourses])
     if indexToShow is None:
         thisShowIndex = list(indexCutoff)
     else:
         thisShowIndex = indexToShow 
-    TCVis.multiPlot(indexSelect=thisShowIndex, compLines=myDF,
-                    varSelect=showValues, style=myStyle,
+    TCVis.multiPlot(indexSelect=thisShowIndex, 
+                    compLines=removeUnderScores(myDF),
+                    varSelect=removeUnderScores(showValues), style=myStyle,
                     save=os.path.join(fig_dir,'timeCourseCal'+
-                                      str(i)+'.png'))
+                                      str(i)+'.png'),
+                    xAxisLabel = "Time (hr)", yAxisLabel = "(AU)",
+                    varAsAxis = True, wrapNumber=1, figsize = (6,5))
 
 expNADLevels = [(i,j.iloc[-1]["NAD_fold_increase"]) for i, j
                 in zip(range(len(RS["calDf"])),RS["calDf"])
@@ -144,10 +167,13 @@ for i, expNAD in expNADLevels:
     S5df.append(tempDict)
 S5df = pd.DataFrame(S5df)
 S5df["NR"] = [0, 50, 100, 200, 500, 1000]
-S5df = pd.melt(S5df, id_vars=['NR'], value_name="NAD", var_name="Catagory")
+S5df = pd.melt(S5df, id_vars=['NR'], value_name="NAD (AU)", 
+               var_name="   ")
+S5df.rename(columns={"NR":"NR (\u03BCM)"}, inplace=True)
 with sns.axes_style(style=myStyle):
     plt.figure()
-    bp = sns.barplot(x="NR", y="NAD", hue="Catagory", data=S5df)
+    bp = sns.barplot(x="NR (\u03BCM)", y="NAD (AU)", hue="   ", 
+                     data=S5df)
     bp.get_figure().savefig(os.path.join(fig_dir, "figS5.png"))
 
 for i, diagram in zip(range(len(RS["diagrams"])),RS["diagrams"]):
@@ -223,7 +249,7 @@ for i, diagram in zip(range(len(RS["diagrams"])),RS["diagrams"]):
                          in indexCutoff]
         value_col.append("Experiment")
         df = pd.melt(df, id_vars=['Treatment'], value_vars=value_col,
-                     value_name=DS["Species"], var_name="Catagory")
+                     value_name=DS["Species"]+" (AU)", var_name="   ")
         #print(df)
         for i in range(len(df)):
             if isinstance(df.iloc[i, 2],pd.Series):
@@ -231,8 +257,9 @@ for i, diagram in zip(range(len(RS["diagrams"])),RS["diagrams"]):
         with sns.axes_style(style=myStyle):
             try:
                 plt.figure()
-                bp = sns.barplot(x="Treatment", y=DS["Species"],
-                                 hue="Catagory", data=df)
+                bp = sns.barplot(x="Treatment", 
+                                 y=removeUnderScores(DS["Species"]+" (AU)"),
+                                 hue="   ", data=removeUnderScores(df))
                 bp.get_figure().savefig(os.path.join(fig_dir,
                              "fig"+diagram["name"]+'.png'))
             except:
@@ -256,16 +283,71 @@ for i, diagram in zip(range(len(RS["diagrams"])),RS["diagrams"]):
         showValues = [i for i in showValues if i in myDF.columns]
         
         
-        TCVis = timeCourseVisualiser(timeCourses)
+        TCVis = timeCourseVisualiser([removeUnderScores(i) 
+                                      for i in timeCourses])
         if indexToShow is None:
             thisShowIndex = list(indexCutoff)
         else:
             thisShowIndex = indexToShow 
-        TCVis.multiPlot(indexSelect=thisShowIndex,compLines=myDF,
-                        varSelect=showValues, style=myStyle,
+        TCVis.multiPlot(indexSelect=thisShowIndex,
+                        compLines=removeUnderScores(myDF),
+                        varSelect=removeUnderScores(showValues),
+                        style=myStyle,
                         save=os.path.join(fig_dir,"fig"+diagram["name"]+
-                                          '.png'))
-
+                                          '.png'),
+                        varAsAxis = True, xAxisLabel = "Time (hr)",
+                        yAxisLabel = "(AU)", wrapNumber=1, figsize = (6, 5))
+                        
+DiaS19 = [i for i in RS["diagrams"] if i["name"]=="S19"][0]
+f = open(os.path.join(data_dir, 'val-timeCourses'+str(DiaS19["IC"])+'.p'),
+         'rb')
+timeCourses = pickle.load(f)
+f.close()
+timeCourses = timeCourses[0][['Time',"NAD"]]
+S19ExtraData = "SupplFig_19_Hsu_and_Burkholder (2016).xlsx"
+S19ExtraData = os.path.join(working_dir,"oldModel","NAD_model_files",
+                            "AMPK-NAD-PGC1a-SIRT1-manuscript",
+                            "Raw_Literature_Data",S19ExtraData)
+S19ExtraData = pd.read_excel(S19ExtraData, engine='openpyxl', skiprows=10) 
+S19ExtraData.rename(columns={"BR"+i:"Biological Repeat "+i 
+                             for i in ["1","2","3"]}, inplace=True)
+S19ExtraData = S19ExtraData.melt(id_vars="Time (hr)", value_name='NAD (AU)', 
+                                 ignore_index=True)
+S19ExtraData = S19ExtraData[S19ExtraData["NAD (AU)"].isna()==False]
+timeCourses.rename(columns={"Time":"Time (hr)", "NAD":'NAD (AU)'}, 
+                            inplace=True)
+timeCourses["variable"] = "Simulation"
+timeCourses = pd.concat([timeCourses, S19ExtraData], ignore_index=True)
+timeCourses.rename(columns={"variable":"   "}, inplace=True)
+with sns.axes_style("ticks"):
+    plt.figure()
+    lp = sns.lineplot(data=timeCourses, x="Time (hr)", y="NAD (AU)", 
+                 hue="   ")
+    lp.get_figure().savefig(os.path.join(fig_dir,
+                 "fig"+DiaS19["name"]+'-1.png'))
+    
+DiaS9 = [i for i in RS["diagrams"] if i["name"]=="S9"][0]
+f = open(os.path.join(data_dir, 'val-timeCourses'+str(DiaS9["IC"])+'.p'),
+         'rb')
+timeCourses = pickle.load(f)
+f.close()
+timeCourses = timeCourses[0][['Time', 'AMPK-P']]
+df = DiaS9["DS"]["df"][['Timepoint (hr)','Fold-change Measurement']]
+timeCourses = timeCourses[timeCourses["Time"].isin([0.0,24.0])]
+df.rename(columns={'Timepoint (hr)':"Protocol",
+                   'Fold-change Measurement':"AMPK_P (AU)"}, inplace=True)
+df["   "]="Experiment"
+timeCourses.rename(columns={'Time':"Protocol", 'AMPK-P':"AMPK_P (AU)"}, 
+                            inplace=True)
+timeCourses["   "]="Simulation"
+df = pd.concat([timeCourses, df], ignore_index=True)
+df["Protocol"] = df["Protocol"].replace({0:"Non treated", 24:"AICAR"})
+with sns.axes_style(style=myStyle):
+    plt.figure()
+    bp = sns.barplot(x="Protocol", y="AMPK-P (AU)", hue="   ", 
+                     data=removeUnderScores(df))
+    bp.get_figure().savefig(os.path.join(fig_dir, "figS9-1.png"))
+    
 """
 
 associatedDuration = list(RS["associatedDuration"].keys())

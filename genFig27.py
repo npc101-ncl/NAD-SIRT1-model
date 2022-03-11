@@ -20,7 +20,7 @@ nameS = None #"reConf12R2"
 if nameS is None:
     nameS = name
     
-PECase = 1
+PECase = 0
     
 mySuperComputer = "slurm" in cmdFlags
     
@@ -70,6 +70,7 @@ df["NR_NMN"] = 0.0
 df.iloc[4, df.columns.get_loc("NR_NMN")] = 500
 
 indexNames = ["Ctrl", "Ctrl", "AIC", "AIC", "NR+AIC", "PJ34+AIC"] 
+indexNames = {i:j for i,j in enumerate(indexNames)}
 
 timeCourse2 = mitoMod.runTimeCourse(24*2,
                                    adjustParams=df,
@@ -78,7 +79,9 @@ timeCourse2 = mitoMod.runTimeCourse(24*2,
                                    stepSize=0.25,
                                    genReactions=False)
 
-selVar = ['AMPK_P']
+selVar = ['AMPK-P (AU)']
+timeCourse2 = [i.rename(columns={"AMPK_P": "AMPK-P (AU)"}) 
+               for i in timeCourse2]
 
 mitoVis = timeCourseVisualiser(timeCourse2)
 
@@ -88,5 +91,7 @@ colours = [(0.0,0.0,1.0),(1.0,0.0,0.0),
 mitoVis.barChart(24*2,varSelect=selVar,
                  save = resolvePath(["figures", name, "figS27.png"],
                                     relative=True),
-                 style="ticks", indexNames = indexNames,
-                 colourOveride = colours)
+                 style="ticks", indexSelect = indexNames,
+                 colourOveride = colours, varOnAxis = True,
+                 spacing = [False,False,True,False,False,False,False],
+                 figsize=(6,5))
